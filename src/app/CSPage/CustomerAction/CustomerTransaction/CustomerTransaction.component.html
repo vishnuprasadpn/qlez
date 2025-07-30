@@ -1,0 +1,175 @@
+<div class="animate-fade" *ngIf="transactionListDiv">
+    <div class="content" id="tableContent" *ngIf="transactionListInnDiv">
+        <h1 style="font-weight: 600;">TRANSACTIONS FROM CUSTOMER</h1>
+        <br><br>
+        <div class="content">
+            <table class="table table-responsive">
+
+                <tr>
+                    <th class="transactionHeadStyle">Sl No</th>
+                    <th class="transactionHeadStyle">Transaction ID</th>
+                    <th class="transactionHeadStyle">Reward Point Earned</th>
+                    <th class="transactionHeadStyle">Reward Point Used</th>
+                    <th class="transactionHeadStyle">Balance Reward Point</th>
+                    <th class="transactionHeadStyle">Date</th>
+                    <th class="transactionHeadStyle">Bill Option</th>
+                </tr>
+
+                <tr *ngFor="let transaction of transactions;let tIndex = index">
+                    <td class="transactionValueStyle">{{tIndex}}+1</td>
+                    <td class="transactionValueStyle">{{transaction.trxn_id}}</td>
+                    <td class="transactionValueStyle">{{transaction.rwpts_earned}}</td>
+                    <td class="transactionValueStyle">{{transaction.rwpts_redeem}}</td>
+                    <td class="transactionValueStyle">{{transaction.rwpts_bal}}</td>
+                    <td class="transactionValueStyle">{{transaction.timestamp}}</td>
+                    <td class="transactionValueStyle">
+                        <a id="viewBillButton" (click)="viewBill(transaction)">VIEW BILL</a>
+                    </td>
+                </tr>
+
+            </table>
+        </div>
+    </div>
+</div>
+
+<div class="animate-fade" *ngIf="noTransactionFoundMessage" align="center">
+    <h1 style="font-weight: 600;">Sorry No Transactions found for the Customer</h1>
+</div>
+
+<div class="animate-fade" *ngIf="connectionErrorMessage" align="center">
+    <h1 style="font-weight: 600;">Oops Something went wrong. Please try again later</h1>
+</div>
+
+<div class="animate-fade" *ngIf="loadingProgress">
+    <h1 style="font-weight: 600;"> Loading.. </h1>
+    <br><br>
+    <svg width="70" height="20">
+        <circle cx="10" cy="10" r="0">
+            <animate attributeName="r" from="0" to="10" values="0;10;10;10;0" dur="1000ms" repeatCount="indefinite" />
+        </circle>
+        <circle cx="35" cy="10" r="0">
+            <animate attributeName="r" from="0" to="10" values="0;10;10;10;0" begin="200ms" dur="1000ms" repeatCount="indefinite" />
+        </circle>
+        <circle cx="60" cy="10" r="0">
+            <animate attributeName="r" from="0" to="10" values="0;10;10;10;0" begin="400ms" dur="1000ms" repeatCount="indefinite" />
+        </circle>
+    </svg>
+</div>
+
+<div class="animate-fade" *ngIf="billView">
+    <h1 style="font-weight: 600;">PRODUCTS FROM TRANSACTION</h1>
+    <br><br>
+    <table class="table table-responsive">
+        <tr>
+            <th class="transactionHeadStyle">Sl No</th>
+            <th class="transactionHeadStyle">Product Name</th>
+            <th class="transactionHeadStyle">Sale / Fresh</th>
+            <th class="transactionHeadStyle">Selling Price</th>
+            <th class="transactionHeadStyle">Color</th>
+            <th class="transactionHeadStyle">Size</th>
+            <th class="transactionHeadStyle">Quantity</th>
+            <th class="transactionHeadStyle">Returned Quantity</th>
+            <th class="transactionHeadStyle">Return Options</th>
+        </tr>
+        <tr *ngFor="let product of purchasedProducts;let count = index">
+            <td class="transactionValueStyle">{{count+1}}</td>
+            <td class="transactionValueStyle">{{product.item_name}}</td>
+            <td class="transactionValueStyle">{{product.sale}}</td>
+            <td class="transactionValueStyle">{{product.item_sp}}</td>
+            <td class="transactionValueStyle">{{product.item_color}}</td>
+            <td class="transactionValueStyle">{{product.item_size}}</td>
+            <td class="transactionValueStyle">{{product.quantity}}</td>
+            <td class="transactionValueStyle">{{product.return_qty}}</td>
+            <td style="text-align: center">
+                <button id="scanButtonStyle" mat-raised-button (click)="returnProduct(product)" *ngIf="product.quantity>product.return_qty">Return/Exchange </button>
+                <p *ngIf="product.quantity==product.return_qty">Returned</p>
+            </td>
+        </tr>
+    </table>
+
+    <h3><a (click)="closeBill()">CLOSE BILL</a></h3>
+</div>
+
+<div class="animate-fade" *ngIf="returnProductView">
+    <h1 style="font-weight: 600;">RETURN OF PRODUCT</h1>
+    <br><br>
+    <table>
+        <tr>
+            <td width="50%">
+                <p style="font-size: 21px">PRODUCT NAME : <b>{{productName}}</b></p>
+            </td>
+            <td>
+                <p style="font-size: 21px">RETURN DATE : <b>{{returnDate}}</b></p>
+
+            </td>
+        </tr>
+        <br>
+        <tr>
+            <td width="50%">
+                <input class="inputField" type="text" #returnAmount (focusout)="validateAmount(returnAmount)" (keyup)="validateAmount(returnAmount)" placeholder="RETURN AMOUNT">
+
+                <span *ngIf="amountErrorMessage" class="warning-message">
+                    Please enter a valid Amount !
+                </span>
+            </td>
+            <td>
+                <select class="inputField" style="width: 82%" #reason (change)="validateReason(reason)">
+                    <option selected="" disabled="" value="Select Type">SELECT A RETURN TYPE</option>
+                    <option value="Defective">DEFECTIVE</option>
+                    <option value="Not Defective">REPLACEMENT</option>
+                </select>
+                <span *ngIf="returnReasonErrorMessage" class="warning-message">
+                    Please choose the Reason !
+                </span>
+            </td>
+        </tr>
+        <br>
+        <tr>
+            <td width="50%">
+
+                <textarea #returnDescription class="inputField" width="100%" cols="18" rows="5" (focusout)="validateDecription(returnDescription)" placeholder="ENTER RETURN DESCRIPTION"></textarea>
+                <span *ngIf="returnDecriptionErrorMessage" class="warning-message">
+                    Please enter a valid Description !
+                </span>
+                <br><br>
+                <input class="inputField" type="text" #returnQuantity (focusout)="validateQuantity(returnQuantity)" min="0" max="{{returnQuantity}}" value="{{returnQuantity}}" placeholder="RETURN QUANTITY">
+                <span *ngIf="returnQuantityErrorMessage" class="warning-message">
+                        Please enter the Quantity !
+                    </span>
+
+            </td>
+            <td>
+                <div class="option-tab" id="saveReturn-option-tab" (click)="saveReturnProduct(returnAmount,reason,returnDescription,returnQuantity)">
+                    <table width="100%">
+                        <tr>
+                            <td>
+                                <p class="option-tab-text">SAVE RETURNED PRODUCT</p>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+
+                <br><br>
+                <div class="option-tab" id="cancelReturn-option-tab" (click)="returnSingleProduct(returnAmount,reason,returnDescription,returnQuantity)">
+                    <table width="100%">
+                        <tr>
+                            <td>
+                                <p class="option-tab-text">CANCEL PRODUCT RETURN</p>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </td>
+        </tr>
+        <br>
+    </table>
+    <br><br>
+</div>
+
+<div class="animate-fade" *ngIf="itemNotSavedMessage" align="center">
+    <span class="warning-message">Sorry! Not Able to Save Item to DB.</span>
+</div>
+
+<div class="animate-fade" *ngIf="itemSavedMessage" align="center">
+    <span class="warning-message">Success! Item Saved to DB.</span>
+</div>

@@ -1,0 +1,243 @@
+<div class="row" id="no_card_main_div">
+    <table style="height:100%;width: 100%">
+        <tr>
+            <td width="50%" id="normal-bg-td" *ngIf="custIDNotFound">
+            </td>
+
+            <td width="50%" id="login-bg-td" *ngIf="guestProcess">
+            </td>
+
+            <td></td>
+
+            <td width="30%" align="center">
+
+                <div *ngIf="forgotCardStatus">
+                    <div align="center" id="forgot-bg-div">
+                        <h1 id="forgot-text">CUSTOMER LOGIN</h1>
+                    </div>
+                    <div id="form-div">
+                        <table class="table">
+                            <tr>
+                                <td>
+                                    <p style="font-size: 18px;font-weight: 600;color:orangered">*Sorry No Customer ID was found! Please Proceed by Login using Credentials</p>
+                                    <br>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>
+                                    <p style="font-size: 18px;font-weight: 600;">Contact Number</p>
+                                    <input class="inputField" type="number" name="" #contact (focus)="focusContact()" (focusout)="isNumber(contact)" (keyup)="isNumber(contact)">
+                                    <span class="warning-msg" *ngIf="loginContactErrorMessage">Please Enter a valid Contact Number</span>
+                                </td>
+                            </tr>
+                            <tr>
+
+                                <td>
+                                    <p style="font-size: 18px;font-weight: 600;">Pass-code</p>
+                                    <input class="inputField" type="text" name="" #passcode (focus)="focusPassCode()">
+                                    <span class="warning-msg" *ngIf="loginPassCodeErrorMessage">Please Enter a Pass Code</span>
+                                </td>
+                            </tr>
+                        </table>
+
+                        <br><br>
+
+                        <table width="100%">
+                            <tr>
+                                <td width="55%">
+                                    <div class="option-tab grow" id="customer-login-tab" (click)="searchCustomer(contact,passcode)">
+                                        <table width="100%">
+                                            <tr>
+                                                <td>
+                                                    <p class="option-tab-text">SHOW BILL</p>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                </td>
+
+                                <td></td>
+
+                                <td width="35%">
+                                    <p id="cancelPurchase" (click)="cancelPurchase()">CANCEL PURCHASE</p>
+                                    <p id="cancelPurchase" (click)="getGuestLoginForm()">Continue As Guest</p>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+
+                <div *ngIf="guestEntryStatus">
+                    <div align="center" id="forgot-bg-div">
+                        <h1 id="forgot-text">CONTINUE AS GUEST</h1>
+                    </div>
+                    <div id="form-div">
+                        <table width="100%">
+                            <tr>
+                                <td>
+                                    <p style="font-size: 18px;font-weight: 600;color: orangered">*Please provide following details to Proceed.</p>
+                                    <br>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <p style="font-size: 18px;font-weight: 600;">Contact Number</p>
+                                    <div class="group">
+                                        <input class="inputField" type="number" id="contactNo" required #contactNo (focusout)="validateGuestContact(contactNo)" (keyup)="validateGuestContact(contactNo)" (focus)="focusGuestContact()">
+                                    </div>
+                                    <div>
+                                        <span class="warning-msg" *ngIf="guestContactErrorMessage">Please Enter a Valid Contact</span>
+                                    </div>
+                                </td>
+                            </tr>
+                            <br>
+                            <tr>
+                                <td>
+                                    <table width="100%">
+                                        <tr>
+                                            <td>
+                                                <p style="font-size: 18px;
+                                                    font-weight: 600;">Date of birth</p>
+                                                <select class="inputField" id="year" #year (change)="validateYear(year)">
+                                                        <option disabled="" selected="" value="Year">Year</option>
+                                                        <option value="{{years}}" *ngFor="let years of allYears">{{years}}</option>
+                                                    </select>
+                                            </td>
+                                            <td>
+                                                <p style="    margin-bottom: 4px;">&nbsp;</p>
+                                                <select class="inputField" id="Month" #month [disabled]="!monthStatus" (change)="validateMonth(month,year)">
+                                                    <option disabled="" selected value="Select Any Month">Month</option>
+                                                    <option  value='1'>Janaury</option>
+                                                    <option value='2'>February</option>
+                                                    <option value='3'>March</option>
+                                                    <option value='4'>April</option>
+                                                    <option value='5'>May</option>
+                                                    <option value='6'>June</option>
+                                                    <option value='7'>July</option>
+                                                    <option value='8'>August</option>
+                                                    <option value='9'>September</option>
+                                                    <option value='10'>October</option>
+                                                    <option value='11'>November</option>
+                                                    <option value='12'>December</option>
+                                                </select>
+                                            </td>
+                                            <td>
+                                                <p style="    margin-bottom: 4px;">&nbsp;</p>
+                                                <select class="inputField" id="day" #date [disabled]="!dateStatus" (change)="selectDate(date)">
+                                                    <option disabled="" selected="" value="Day">Date</option>
+                                                    <option *ngFor="let dates of alldate" value="{{dates}}" >{{dates}}</option>
+                                                </select>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <span class="warning-msg" *ngIf="dateErrorMessage">Please Enter a Valid Date</span>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </td>
+                            </tr>
+                        </table>
+                        <br><br><br>
+
+                        <table width="100%">
+                            <tr>
+                                <td width="55%">
+                                    <div class="option-tab grow" id="guest-login-tab" (click)="loginGuest(contactNo)">
+                                        <table width="100%">
+                                            <tr>
+                                                <td>
+                                                    <p class="option-tab-text">SHOW BILL</p>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                </td>
+
+                                <td></td>
+
+                                <td width="35%">
+                                    <p id="cancelPurchase" (click)="cancelPurchase()">CANCEL PURCHASE</p>
+                                    <p id="cancelPurchase" (click)="getCustomerLoginForm()">Login As User</p>
+
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+
+                <div align="center" *ngIf="loadingBillProgress">
+                    <h2 class="waitMsg">Your bill is being generated. Please Wait...</h2>
+                    <svg version="1.1" id="L4" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 100 100" enable-background="new 0 0 0 0" xml:space="preserve">
+                        <circle fill="#fff" stroke="none" cx="6" cy="70" r="17">
+                            <animate attributeName="opacity" dur="2s" values="0;1;0" repeatCount="indefinite" begin="0.1"></animate>
+                        </circle>
+                        <circle fill="#fff" stroke="none" cx="46" cy="70" r="17">
+                            <animate attributeName="opacity" dur="2s" values="0;1;0" repeatCount="indefinite" begin="0.2"></animate>
+                        </circle>
+                        <circle fill="#fff" stroke="none" cx="85" cy="70" r="17">
+                            <animate attributeName="opacity" dur="2s" values="0;1;0" repeatCount="indefinite" begin="0.3"></animate>
+                        </circle>
+                    </svg>
+                </div>
+
+                <div align="center" *ngIf="cancelPurchaseUi">
+                    <h1>Do you want to cancel your Purchase?</h1>
+                    <br>
+                    <table class="table">
+                        <td>
+                            <div class="option-tab grow" id="customer-login-tab" (click)="confirmCancelPurchase()">
+                                <table width="100%">
+                                    <tr>
+                                        <td>
+                                            <p class="option-tab-text">YES, CANCEL</p>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </td>
+                        <td>&nbsp;&nbsp;&nbsp;</td>
+                        <td>
+                            <div class="option-tab grow" id="customer-login-tab" (click)="continuePurchase()">
+                                <table width="100%">
+                                    <tr>
+                                        <td>
+                                            <p class="option-tab-text">NO, GO BACK</p>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </td>
+                    </table>
+                </div>
+
+            </td>
+
+            <td></td>
+
+        </tr>
+    </table>
+</div>
+
+<div class="modal fade" id="cancelPurchaseModal" role="dialog">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Do you want to cancel your Purchase?</h4>
+            </div>
+            <div class="modal-body">
+                <table class="table">
+                    <td>
+                        <button class="form-control confirmCancelButton" (click)="confirmCancelPurchase()" style="background: red;">Yes</button>
+                    </td>
+                    <td>&nbsp;&nbsp;&nbsp;</td>
+                    <td>
+                        <button class="form-control confirmCancelButton" style="background: grey">No</button>
+                    </td>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>)=can

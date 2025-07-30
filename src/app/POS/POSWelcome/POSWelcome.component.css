@@ -1,0 +1,158 @@
+#welcome_main_div {
+    margin-right: 0px;
+    margin-left: 0px;
+    background: #fff;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
+#logo-td {
+    background-image: url('../../../assets/images/backgrounds/loginbg.jpg');
+    background-size: cover;
+}
+
+#QSS-heading {
+    font-size: 48px;
+    font-weight: 700;
+}
+
+#intro-td {
+    color: #fff;
+    padding: 5%;
+}
+
+#qlez_intro {
+    line-height: 48px;
+    font-size: 24px;
+    font-weight: 600;
+    text-align: justify;
+}
+
+.option-tab {
+    padding: 25px;
+    border-radius: 100px;
+}
+
+.option-tab:hover {
+    cursor: pointer;
+}
+
+#cust-option-tab {
+    background: #14A850;
+}
+
+#cancelAfterScan {
+    font-size: 22px;
+    color: red;
+    cursor: pointer;
+}
+
+#cancelAfterScan:hover {
+    background: red;
+    padding: 14px 8px;
+    color: #fff;
+}
+
+#guest-option-tab,
+#reCal-option-tab {
+    background: #FF7069
+}
+
+.option-tab-text {
+    font-size: 25px;
+    color: #fff;
+    font-weight: 600;
+    text-align: center;
+}
+
+.grow {
+    transition: 1s ease;
+}
+
+.grow:hover {
+    -webkit-transform: scale(1.1);
+    -ms-transform: scale(1.1);
+    transform: scale(1.1);
+    transition: 1s ease;
+}
+
+#reCalculateButton,
+#helpButton,
+#cancelButton {
+    background: #277CD1;
+    font-size: 25px;
+    padding: 10px 36px;
+    width: 250px;
+}
+
+#cancelPurchaseModal {
+    margin-top: 15%
+}
+
+#cancelConfirmBox {
+    display: none;
+}
+
+#forgetPasswordLink {
+    cursor: pointer;
+    text-decoration: none
+}
+
+.row {
+    margin: 0px;
+}
+
+.group {
+    position: relative;
+}
+
+svg {
+    width: 211px;
+    height: 116px;
+    display: inline-block;
+    position: unset;
+}
+
+.waitMsg {
+    top: 45%;
+    margin: auto;
+}
+
+button:after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 5px;
+    height: 5px;
+    background: rgba(255, 255, 255, .5);
+    opacity: 0;
+    border-radius: 100%;
+    transform: scale(1, 1) translate(-50%);
+    transform-origin: 50% 50%;
+}
+
+@keyframes ripple {
+    0% {
+        transform: scale(0, 0);
+        opacity: 1;
+        border-radius: 43px;
+    }
+    20% {
+        transform: scale(25, 25);
+        opacity: 1;
+        border-radius: 43px;
+    }
+    100% {
+        opacity: 0;
+        transform: scale(40, 40);
+        border-radius: 43px;
+    }
+}
+
+button:focus:not(:active)::after {
+    animation: ripple 1s ease-out;
+}

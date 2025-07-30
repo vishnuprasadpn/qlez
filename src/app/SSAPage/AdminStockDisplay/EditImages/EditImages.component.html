@@ -1,0 +1,32 @@
+<div class="container">
+	<table class="table table-bordered" style="color: #fff">
+		<tr>
+			<th>Color</th>
+			<th>Image Links</th>
+		</tr>
+		<tr *ngFor="let itemImg of itemImages;let colorNo = index" >
+			<td style="text-align: center;padding:16px" #imageColor>{{itemImg.color}}</td>
+			<td>
+				<table style="background: none;margin:0px;width: 100%;"  
+				*ngFor="let img of itemImg.image;let imageNo = index" align="left">
+					<tr>
+						<td id="itemImage{{colorNo}}{{imageNo}}">
+							<input type="text" id="imageUrl{{colorNo}}{{imageNo}}" class="form-control" #imageUrl style="color:#000;border-radius:0px;width:100%!important" value="{{img}}">
+						</td>
+						<td> &nbsp;&nbsp;</td>
+						<td width="100px">
+							<button id="scanButtonStyle" (click)="saveImage(colorNo,imageNo,imageUrl,imageColor)" style="background: darkblue;font-size: 20px;">Save Change</button>
+						</td>
+					</tr>
+					<br>
+				</table>
+
+				<div class="alert animate-bottom" *ngIf="ImageSaveFailed" style="background: red;color: #fff;">
+				  <span class="closebtn" style="position: relative;font-size: 39px;top:0px" onclick="this.parentElement.style.display='none';">&times;</span>
+				  <strong style="    position: relative;
+			    top: -8px;">Sorry! Failed to save Image {{imageNo}} of {{itemImg.color}} . Please Enter a Proper Image Format</strong>
+				</div>
+			</td> 
+		</tr>
+	</table>
+</div>

@@ -1,0 +1,126 @@
+<div (click)="logout()">
+
+    <img class="grow" src="" style="    position: absolute;
+                top: 0;right: 0;width: 80px;padding: 20px;cursor:pointer;z-index: 99;" data-toggle="tooltip" title="Logout">
+
+</div>
+
+<div class="row" id="welcome_main_div">
+
+    <table style="height:100%">
+        <tr>
+            <td width="60%" id="logo-td">
+                <table>
+                    <tr>
+                        <td align="center" width="40%">
+                            <img class="img-responsive" src="../../../assets/images/logos/Qulez.png">
+                        </td>
+                        <td id="intro-td">
+                            <p id="QSS-heading">Qlez Smart Billing</p>
+                            <br>
+                            <p id="qlez_intro">
+                                Qlez is the very first product from Pi Revolutions with an aim to craft Retail Store's Future. Artificial Intelligence and Machine Learning combined altogether to redefine customer experience, and operations for retail stores by providing end to end integrated
+                                solution right from stock addition to sales. Get around the rules we are proud to acknowledge that we got Qlez patented in 2016.
+                            </p>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+            <td></td>
+            <td width="30%" align="center">
+
+                <div class="option-tab grow" id="cust-option-tab" *ngIf="buttonStatus" (click)="getCustBill()">
+                    <table width="100%">
+                        <tr>
+
+                            <td>
+                                <p class="option-tab-text">EXISTING CUSTOMER BILL</p>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+
+                <br><br><br><br>
+
+                <div class="option-tab grow" id="guest-option-tab" *ngIf="buttonStatus" (click)="getGuestBill()">
+                    <table width="100%">
+                        <tr>
+
+                            <td>
+                                <p class="option-tab-text">GUEST BILL</p>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+
+                <div *ngIf="NoProductFound">
+                    <h1 style="font-weight:600">Sorry No Products Were Found</h1>
+                    <br><br><br>
+
+                    <div class="option-tab grow" id="reCal-option-tab" (click)="getBill()" width="70%">
+                        <table width="100%">
+                            <tr>
+
+                                <td>
+                                    <p class="option-tab-text">SCAN AGAIN</p>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+
+                    <br>
+                    <br>
+
+                    <p class="grow" (click)="cancelPurchase()" id="cancelAfterScan">CANCEL PURCHASE</p>
+
+                </div>
+                <div align="center" *ngIf="loadingWelcome">
+                    <h2 classs="waitMsg">Your bill is being generated. Please Wait...</h2>
+                    <svg version="1.1" id="L4" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 100 100" enable-background="new 0 0 0 0" xml:space="preserve">
+                        <circle fill="#fff" stroke="none" cx="6" cy="70" r="17">
+                            <animate attributeName="opacity" dur="2s" values="0;1;0" repeatCount="indefinite" begin="0.1"></animate>
+                        </circle>
+                        <circle fill="#fff" stroke="none" cx="46" cy="70" r="17">
+                            <animate attributeName="opacity" dur="2s" values="0;1;0" repeatCount="indefinite" begin="0.2"></animate>
+                        </circle>
+                        <circle fill="#fff" stroke="none" cx="85" cy="70" r="17">
+                            <animate attributeName="opacity" dur="2s" values="0;1;0" repeatCount="indefinite" begin="0.3"></animate>
+                        </circle>
+                    </svg>
+                </div>
+                <div align="center" *ngIf="cancelPurchaseUi">
+                    <h1 class="modal-title">Do you want to cancel your Purchase?</h1>
+                    <table class="table">
+                        <td>
+                            <div class="option-tab grow" id="reCal-option-tab" (click)="confirmCancelPurchase()" width="70%">
+                                <table width="100%">
+                                    <tr>
+
+                                        <td>
+                                            <p class="option-tab-text">YES</p>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+
+                        </td>
+                        <td>&nbsp;&nbsp;&nbsp;</td>
+                        <td>
+                            <div class="option-tab grow" id="reCal-option-tab" (click)="waitToCancel()" width="70%">
+                                <table width="100%">
+                                    <tr>
+
+                                        <td>
+                                            <p class="option-tab-text">NO</p>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </td>
+                    </table>
+                </div>
+            </td>
+            <td></td>
+        </tr>
+    </table>
+</div>

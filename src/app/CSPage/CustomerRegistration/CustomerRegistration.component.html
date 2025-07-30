@@ -1,0 +1,384 @@
+<div class="row">
+
+    <br><br><br>
+
+    <table class="table">
+
+        <tr>
+
+            <td width="50%">
+
+                <input class="inputField" type="text" id="firstName" required #firstName placeholder="FIRST NAME" (focusout)="validateFName(firstName)" (focus)="selectFName()">
+
+                <span *ngIf="fNameError" class="inputErrorMessage">Please enter your First Name	</span>
+
+                <span *ngIf="validatefNameError" class="inputErrorMessage">Please enter a valid First Name </span>
+
+            </td>
+
+            <td></td>
+
+            <td>
+
+                <input class="inputField" type="text" required #lastName (keyup)="validateLName(lastName)" (focus)="selectLName()" style="text-transform: uppercase;" placeholder="SECOND NAME">
+
+                <span *ngIf="lNameError" class="inputErrorMessage">	Please enter your Last Name</span>
+
+                <span *ngIf="validatelNameError" class="inputErrorMessage">Please enter a valid Last Name</span>
+
+            </td>
+
+        </tr>
+
+        <br><br>
+
+        <tr>
+
+            <td>
+
+                <input class="inputField" type="date" placeholder="DATE OF BIRTH : " id="customerDOB" [max]="2014-01-01" required #dob (change)="validateDate(dob)" (focus)="selectDate()">
+
+                <span *ngIf="dateError" class="inputErrorMessage">Please enter a valid date</span>
+
+            </td>
+
+            <td></td>
+
+            <td>
+
+                <div class="row" id="genderButtonDiv" (click)="selectGender()">
+
+                    <div class="col-lg-6 genderOption" id="genderFemale" (click)="validateGender('Female')" align="center">
+
+                        <img src="https://s3-us-west-2.amazonaws.com/qlezfilesbucket/face-head-woman-icon-22100.png" width="40" height="36">&nbsp;&nbsp; Female
+
+                    </div>
+
+                    <div class="col-lg-6 genderOption" id="genderMale" (click)="validateGender('Male')" align="center">
+
+                        <img src="https://s3-us-west-2.amazonaws.com/qlezfilesbucket/male-icon-7916.png" width="40" height="36"> &nbsp;&nbsp;Male
+
+                    </div>
+
+                </div>
+
+                <span *ngIf="genderError" class="inputErrorMessage">Please Select Gender</span>
+
+            </td>
+
+        </tr>
+
+        <br><br>
+
+        <tr>
+
+            <td>
+
+                <input class="inputField" type="text" id="primaryContact" required #primaryContact (focusout)="isNumber(primaryContact)" (keyup)="isNumber(primaryContact)" (focus)="selectPContact()" placeholder="PRIMARY CONTACT">
+
+                <span *ngIf="pContactError" class="inputErrorMessage">Contact Number Warning! Please Check.</span>
+
+                <span *ngIf="pContactCountError" class="inputErrorMessage">Contact Number Digit Count Warning!</span>
+
+            </td>
+
+            <td></td>
+
+            <td>
+
+                <input class="inputField" type="text" id="secondaryContact" required #secondaryContact (focusout)="isNumber(secondaryContact)" (keyup)="isNumber(secondaryContact)" (focus)="selectSContact()" placeholder="SECONDARY CONTACT">
+
+                <span *ngIf="sContactError" class="inputErrorMessage">Contact Number Warning! Please Check.</span>
+
+                <span *ngIf="sContactCountError" class="inputErrorMessage">Contact Number Digit Count Warning!</span>
+
+            </td>
+
+        </tr>
+
+        <br><br>
+
+        <tr>
+
+            <td>
+
+                <input class="inputField" type="text" id="imageLink" required #imageLink (keyup)="verifyImageLink(imageLink)" id="imageLink" (focus)="selectImageLink()" placeholder="IMAGE URL (Optional)">
+
+                <span *ngIf="imageError" class="inputErrorMessage">Please enter an Image link.</span>
+
+            </td>
+
+            <td></td>
+
+            <td>
+
+                <input class="inputField" type="text" required id="emailAddress" #emailAddress (keyup)="verifyEmail(emailAddress)" (focus)="selectEmail()" placeholder="EMAIL ADDRESS">
+
+                <span *ngIf="emailError" class="inputErrorMessage">Email Address Warning! Please Check.	</span>
+
+            </td>
+
+        </tr>
+
+        <br><br><br>
+
+        <tr>
+
+            <td>
+
+                <textarea class="form-control" id="contactAddress" rows="4" placeholder="CONTACT ADDRESS (OPTIONAL)" #contactAddress (keyup)="verifyAddress(contactAddress)"></textarea>
+
+            </td>
+
+            <td></td>
+
+            <td>
+
+                <table class="table" style="width: 100%">
+
+                    <tr>
+
+                        <td align="center" (click)="registerCustomer(firstName,lastName,dob,primaryContact,secondaryContact,contactAddress,emailAddress,imageLink)" id="registerButton" class="grow">
+
+                            <p id="registerText">Register</p>
+
+                        </td>
+
+                    </tr>
+
+                    <br><br>
+
+                    <tr>
+
+                        <td align="center" (click)="resetAll(firstName,lastName,dob,primaryContact,secondaryContact,contactAddress,emailAddress,imageLink)" id="clearAllButton" class="grow">
+
+                            <p id="clearAllButtonText" style="padding:5px">Clear All</p>
+
+                        </td>
+
+                    </tr>
+
+                </table>
+
+            </td>
+
+        </tr>
+
+    </table>
+
+</div>
+
+<div align="center" class="pop-bg" *ngIf="backgroundCover">
+
+    <div *ngIf="informationMessage">
+
+        <br><br>
+
+        <h1 style="margin-top: 9%;font-weight: 700;">Please Place / Hold a Customer Card Near Reader Block</h1>
+
+        <br><br><br><br>
+
+        <div class="option-tab" id="confirm-option-tab" (click)="confirmRead()">
+            <table width="100%">
+                <tr>
+                    <td>
+                        <p class="option-tab-text">PROCEED REGISTRATION</p>
+                    </td>
+                </tr>
+            </table>
+        </div>
+
+        <br><br><br>
+
+        <div class="option-tab" id="cancel-option-tab" (click)="cancelRegister()">
+            <table width="100%">
+                <tr>
+                    <td>
+                        <p class="option-tab-text">EXIT REGISTRATION</p>
+                    </td>
+                </tr>
+            </table>
+        </div>
+
+    </div>
+
+    <div *ngIf="loadingProgress">
+
+        <p class="faa-flash animated" style="font-size: 35px;margin-top: 9%;font-weight: 700;">Please wait</p>
+
+        <br><br>
+
+        <div align="center">
+
+            <svg width="70" height="20" style="z-index: 99999">
+
+                <circle cx="10" cy="10" r="0">
+
+                    <animate attributeName="r" from="0" to="10" values="0;10;10;10;0" dur="1000ms" repeatCount="indefinite" />
+
+                </circle>
+
+                <circle cx="35" cy="10" r="0">
+
+                    <animate attributeName="r" from="0" to="10" values="0;10;10;10;0" begin="200ms" dur="1000ms" repeatCount="indefinite" />
+
+                </circle>
+
+                <circle cx="60" cy="10" r="0">
+
+                    <animate attributeName="r" from="0" to="10" values="0;10;10;10;0" begin="400ms" dur="1000ms" repeatCount="indefinite" />
+
+                </circle>
+
+            </svg>
+
+        </div>
+
+    </div>
+
+    <div *ngIf="noResponseError">
+
+        <br><br>
+
+        <h1 style="margin-top: 9%;font-weight: 700;">Oops... Something went Wrong.</h1>
+        <br>
+        <h2 style="font-weight: 700;">Please check whether connections are fine and Try Again</h2>
+        <br><br><br>
+
+        <div class="option-tab" id="cancel-option-tab" (click)="cancelRegister()">
+            <table width="100%">
+                <tr>
+                    <td>
+                        <p class="option-tab-text">EXIT REGISTRATION</p>
+                    </td>
+                </tr>
+            </table>
+        </div>
+
+    </div>
+
+    <div *ngIf="customerAddSuccess">
+
+        <br><br>
+
+        <h1 style="margin-top: 12%;font-weight: 700;">CONGRATS ! CUSTOMER HAS BEEN REGISTERED SUCCESSFULLY</h1>
+
+        <br><br><br><br>
+
+        <div class="option-tab" id="confirm-option-tab" (click)="completedProcess()">
+            <table width="100%">
+                <tr>
+                    <td>
+                        <p class="option-tab-text">COMPLETE</p>
+                    </td>
+                </tr>
+            </table>
+        </div>
+
+    </div>
+
+    <div *ngIf="noIDFound">
+
+        <br><br>
+
+        <h1 style="margin-top: 9%;font-weight: 700;">SORRY ! NO CUSTOMER CARD WAS DETECTED</h1>
+
+        <br><br><br><br>
+
+        <div class="option-tab" id="confirm-option-tab" (click)="confirmRead()">
+            <table width="100%">
+                <tr>
+                    <td>
+                        <p class="option-tab-text">TRY AGAIN</p>
+                    </td>
+                </tr>
+            </table>
+        </div>
+
+        <br><br><br>
+
+        <div class="option-tab" id="cancel-option-tab" (click)="cancelRegister()">
+            <table width="100%">
+                <tr>
+                    <td>
+                        <p class="option-tab-text">EXIT REGISTRATION</p>
+                    </td>
+                </tr>
+            </table>
+        </div>
+
+
+    </div>
+
+    <div *ngIf="existingTagError">
+
+        <br><br>
+
+        <h1 style="margin-top: 9%;font-weight: 700;">SORRY ! CUSTOMER CARD HAS DATA ALREADY ATTACHED</h1>
+
+        <br><br><br><br>
+
+        <div class="option-tab" id="confirm-option-tab" (click)="confirmRead()">
+            <table width="100%">
+                <tr>
+                    <td>
+                        <p class="option-tab-text">TRY AGAIN</p>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <br><br><br>
+
+        <div class="option-tab" id="cancel-option-tab" (click)="cancelRegister()">
+            <table width="100%">
+                <tr>
+                    <td>
+                        <p class="option-tab-text">EXIT REGISTRATION</p>
+                    </td>
+                </tr>
+            </table>
+        </div>
+
+    </div>
+
+    <div *ngIf="guestFound">
+
+        <br><br>
+
+        <h1 style="margin-top: 12%;font-weight: 700;">GUEST ACCOUNT FOUND AND REGISTERED</h1>
+
+        <br><br><br><br>
+
+        <div class="option-tab" id="confirm-option-tab" (click)="completedProcess()">
+            <table width="100%">
+                <tr>
+                    <td>
+                        <p class="option-tab-text">COMPLETE</p>
+                    </td>
+                </tr>
+            </table>
+        </div>
+
+    </div>
+
+    <div *ngIf="customerAlreadyRegistered">
+
+        <br><br>
+
+        <h1 style="margin-top: 12%;font-weight: 700;">SORRY ! CUSTOMER IS ALREADY REGISTERED</h1>
+
+        <br><br><br><br>
+
+        <div class="option-tab" id="confirm-option-tab" (click)="cancelRegister()">
+            <table width="100%">
+                <tr>
+                    <td>
+                        <p class="option-tab-text">EXIT REGISTRATION</p>
+                    </td>
+                </tr>
+            </table>
+        </div>
+
+    </div>
+
+</div>

@@ -1,0 +1,153 @@
+<div *ngIf="entryForm">
+    <h1>COMBO OFFERS</h1>
+    <br><br>
+    <table class="table">
+        <tr>
+            <td>
+                <input type="text" class="inputField" required #offerCode (focusout)="validateOfferCode(offerCode)" (keyup)="validateOfferCode(offerCode)" placeholder="OFFER CODE - BxGx">
+
+                <!-- <span class="warning-msg">The format for Buy x Get  x is 'BxGx'. </span>
+                <br> -->
+                <span class="warning-msg" *ngIf="offerCodeErrorMessage">
+				Please enter a Offer Code of format!
+				</span>
+            </td>
+            <td>
+                <input class="inputField" type="date" placeholder="EXPIRY DATE : " [min]="today" max="2060-01-02" required #expiryDate (change)="validateDate(expiryDate)">
+
+                <span class="warning-msg" *ngIf="dateErrorMessage ">
+					Please enter Expiry Date !
+				</span>
+            </td>
+        </tr>
+        <br><br>
+        <tr>
+            <td>
+                <textarea class="inputField" #comment (focusout)="validateComment(comment)" (keyup)="validateComment(comment)" rows="4" placeholder="COMMENTS ON COMBO OFFER"></textarea>
+
+                <span class="warning-msg" *ngIf="commentErrorMessage">
+					Please enter Comment on Offer !
+				</span>
+            </td>
+
+            <td>
+                <textarea class="inputField" #description placeholder="DECRIPTION ON COMBO OFFER" rows="4" (focusout)="validateDescription(description)" (keyup)="validateDescription(description)"></textarea>
+
+                <span class="warning-msg" *ngIf="descriptionErrorMessage">
+					Please enter Offer Description !
+				</span>
+            </td>
+        </tr>
+        <br><br>
+        <tr>
+            <td>
+                <input class="inputField" type="text" required #offerKey placeholder="ENTER OFFER BRAND" (focusout)="validateOfferKey(offerKey)" (keyup)="validateOfferKey(offerKey)">
+                <span class="warning-msg" *ngIf="offerKeyErrorMessage">
+					Please enter a valid Offer Key!
+				</span>
+            </td>
+            <td>
+                <table class="table">
+                    <tr>
+                        <td align="center">
+                            <div class="option-tab" id="confirm-option-tab" (click)="saveOffer(offerCode,comment,description,expiryDate,offerKey)">
+                                <table width="100%">
+                                    <tr>
+                                        <td>
+                                            <p class="option-tab-text">SAVE OFFER</p>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </td>
+
+                        <td align="center">
+                            <div class="option-tab" id="cancel-option-tab" (click)="clearAll(offerCode,comment,description,expiryDate,offerKey)">
+                                <table width="100%">
+                                    <tr>
+                                        <td>
+                                            <p class="option-tab-text">CLEAR ALL
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+        <br><br>
+    </table>
+    <br>
+</div>
+
+<div align="center" *ngIf="loadingCombo">
+    <h1>Please wait...</h1>
+    <br><br><br><br><br><br><br>
+    <svg width="70" height="20">
+		
+		<circle cx="10" cy="10" r="0">
+			<animate attributeName="r" from="0" to="10" values="0;10;10;10;0" dur="1000ms" repeatCount="indefinite" />
+		</circle>
+	
+		<circle cx="35" cy="10" r="0">
+			<animate attributeName="r" from="0" to="10" values="0;10;10;10;0" begin="200ms" dur="1000ms" repeatCount="indefinite" />
+		</circle>
+	
+		<circle cx="60" cy="10" r="0">
+			<animate attributeName="r" from="0" to="10" values="0;10;10;10;0" begin="400ms" dur="1000ms" repeatCount="indefinite" />
+		</circle>
+
+	</svg>
+    <br><br><br><br><br><br><br>
+</div>
+
+
+<div *ngIf="successMessageSave">
+
+    <br><br>
+
+    <h1 style="margin-top: 12%;font-weight: 700;">CONGRATS ! OFFER HAS BEEN CREATED SUCCESSFULLY</h1>
+
+    <br><br>
+    <h1><b>{{OfferCode}}</b>has been added Successfully.</h1>
+    <br><br>
+    <div class="option-tab" id="confirm-option-tab" style="width: 300px" (click)="closeMessage()">
+        <table width="100%">
+            <tr>
+                <td>
+                    <p class="option-tab-text">COMPLETE</p>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <br><br><br>
+    <br><br><br>
+    <br><br><br>
+
+</div>
+
+<div *ngIf="failedMessageSave">
+
+    <br><br>
+
+    <h1 style="margin-top: 12%;font-weight: 700;">SORRY ! NO OFFER CODE WAS CREATED</h1>
+
+    <br><br>
+    <h2>Please Retry</h2>
+    <br><br>
+    <div class="option-tab" id="confirm-option-tab" style="width: 300px" (click)="closeMessage()">
+        <table width="100%">
+            <tr>
+                <td>
+                    <p class="option-tab-text">COMPLETE</p>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <br><br><br>
+    <br><br><br>
+    <br><br><br>
+
+</div>

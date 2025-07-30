@@ -1,0 +1,40 @@
+#retry-option-tab {
+    background: chocolate;
+    width: 400px;
+}
+
+.coloumnHeadStyle {
+    background: #363636;
+    color: #eee;
+    padding: 13px 3px;
+    font-size: 21px;
+}
+
+.coloumnValueStyle {
+    padding: 5px;
+    font-size: 21px;
+}
+
+.content {
+    overflow-y: scroll;
+}
+
+.content::-webkit-scrollbar {
+    display: none;
+}
+
+#tableContent {
+    height: 420px;
+    overflow: auto;
+    background: beige;
+}
+
+th {
+    width: 200px;
+    text-align: center;
+}
+
+td {
+    width: 200px;
+    text-align: center;
+}

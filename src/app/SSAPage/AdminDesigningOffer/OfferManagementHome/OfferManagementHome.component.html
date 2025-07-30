@@ -1,0 +1,71 @@
+<div *ngIf="defaultSection">
+    <h1 style="color:#000;font-size:46px;font-weight: 700;margin-top: 0px;">ADMIN OFFER MANAGEMENT MODULE</h1>
+    <br><br>
+    <p style="font-size: 28px;line-height: 55px;">
+        Qlez is the project with an aim to craft Retail Store's Future. Artificial Intelligence and Machine Learning combined altogether to redefine customer experience, and operations for retail stores by providing end to end integrated solution right from stock
+        addition to sales.
+    </p>
+    <br><br><br>
+    <table class="table">
+        <tr>
+            <td>
+                <div class="option-tab grow" id="item-option-tab" (click)="goTOBrandOffers()">
+                    <table width="100%">
+                        <tr>
+
+                            <td>
+                                <p class="option-tab-text">BRAND OFFERS</p>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </td>
+            <td></td>
+            <td>
+                <div class="option-tab grow" id="product-option-tab" (click)="goTOComboOffers()">
+                    <table width="100%">
+                        <tr>
+                            <td>
+                                <p class="option-tab-text">COMBO OFFERS</p>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </td>
+            <td></td>
+            <td>
+                <div class="option-tab grow" id="product-option-tab" (click)="goTOGeneralOffers()">
+                    <table width="100%">
+                        <tr>
+                            <td>
+                                <p class="option-tab-text">GENERAL OFFERS</p>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </td>
+        </tr>
+    </table>
+</div>
+<div *ngIf="brandOffers">
+    <brand-offers></brand-offers>
+</div>
+<div *ngIf="comboOffers">
+    <combo-offers></combo-offers>
+</div>
+
+<div *ngIf="generalOffers">
+    <general-offers></general-offers>
+</div>
+
+<div *ngIf="!defaultSection">
+    <div class="option-tab grow" id="goto-option-tab" (click)="goTOMenu()">
+        <table width="100%">
+            <tr>
+                <td>
+                    <p class="option-tab-text">X</p>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>

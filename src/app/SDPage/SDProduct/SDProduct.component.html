@@ -1,0 +1,98 @@
+<div *ngIf="productScanHome" class="animate-fade">
+    <h1 style="font-weight: 700">Please place the product near the Reader section before starting scan</h1>
+    <br><br><br>
+    <div class="option-tab grow" id="product-option-tab" (click)="getProductDetails()" width="500px">
+        <table width="100%">
+            <tr>
+                <td>
+                    <p class="option-tab-text">SCAN PRODUCT</p>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
+
+<div *ngIf="dataView" class="animate-fade">
+    <table class="table" width="100%" align="center" style="margin-bottom: 0px">
+        <tr>
+            <td class="productColoumnHeadStyle">Product ID</td>
+            <td class="productColoumnHeadStyle">Item Code</td>
+            <td class="productColoumnHeadStyle">Product Color</td>
+            <td class="productColoumnHeadStyle">Product Size</td>
+            <td class="productColoumnHeadStyle">Product Expiry</td>
+        </tr>
+        <tr id="contentSection">
+            <td class="productColoumnValueStyle">{{productDt.pId}}</td>
+            <td class="productColoumnValueStyle">{{productDt.item_code}}</td>
+            <td class="productColoumnValueStyle">{{productDt.color}}</td>
+            <td class="productColoumnValueStyle">{{productDt.size}}</td>
+            <td class="productColoumnValueStyle">{{productDt.expiry}}</td>
+        </tr>
+    </table>
+    <br><br><br>
+
+    <div class="option-tab grow" id="retry-option-tab" (click)="getProductDetails()" style="width: 50%;padding: 20px">
+        <table width="100%">
+            <tr>
+                <td>
+                    <p class="option-tab-text">SCAN AGAIN</p>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
+
+<div *ngIf="loadingProgress" class="animate-fade" align="center">
+
+    <h1 style="font-weight: 700">Please Wait While we Fetch Details of the Product</h1>
+    <br><br><br>
+    <svg width="70" height="20">
+		<circle cx="10" cy="10" r="0">
+			<animate attributeName="r" from="0" to="10" values="0;10;10;10;0" dur="1000ms" repeatCount="indefinite" />
+		</circle>
+
+		<circle cx="35" cy="10" r="0">
+			<animate attributeName="r" from="0" to="10" values="0;10;10;10;0" begin="200ms" dur="1000ms" repeatCount="indefinite" />
+		</circle>
+
+		<circle cx="60" cy="10" r="0">
+			<animate attributeName="r" from="0" to="10" values="0;10;10;10;0" begin="400ms" dur="1000ms" repeatCount="indefinite" />
+		</circle>
+    </svg>
+
+</div>
+
+<div *ngIf="noProductFound" class="animate-fade">
+
+    <h1 style="font-weight: 700">Sorry No Product Details were Found Please Try Again !</h1>
+
+    <br><br><br>
+
+    <div class="option-tab grow" id="retry-option-tab" (click)="getProductDetails()" style="width: 50%;padding: 20px">
+        <table width="100%">
+            <tr>
+                <td>
+                    <p class="option-tab-text">TRY AGAIN</p>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+</div>
+
+<div *ngIf="connectionError" class="animate-fade">
+
+    <h1 style="font-weight: 700">Sorry Something Went Wrong ! Please Try Again</h1>
+
+    <br><br><br>
+    <div class="option-tab grow" id="retry-option-tab" (click)="getProductDetails()" style="width: 50%;padding: 20px">
+        <table width="100%">
+            <tr>
+                <td>
+                    <p class="option-tab-text">TRY AGAIN</p>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+</div>

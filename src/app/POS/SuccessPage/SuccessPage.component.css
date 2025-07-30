@@ -1,0 +1,27 @@
+#printPaperBill,#sendEBill{background: #0072BB;color:#fff;width: 300px}
+#loadingPrint{display: none;}
+#printSuccessMessage,#printSuccessThankMessage{display: none;}
+#loadinginBill{display: none}
+.animate-fade2 {
+  position: relative;
+  -webkit-animation-name: animatefade;
+  -webkit-animation-duration: 1s;
+  animation-name: animatefade;
+  animation-duration: 3.5s
+}
+
+@-webkit-keyframes animatefade {
+  from { opacity:0 } 
+  to { opacity:1 }
+}
+
+@keyframes animatefade { 
+  from{ opacity:0 } 
+  to{ opacity:1 }
+}
+svg {
+    width: 211px;
+    height: 116px;
+    
+    display: inline-block;
+}

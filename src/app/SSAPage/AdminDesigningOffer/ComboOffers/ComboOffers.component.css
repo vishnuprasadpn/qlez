@@ -1,0 +1,53 @@
+.inputField {
+    text-transform: uppercase;
+    font-size: 24px!important;
+    width: 100%!important;
+    font-family: inherit;
+    padding: 11px;
+    line-height: inherit;
+    border: none;
+    border-bottom: 2px solid #aea4a4;
+}
+
+.warning-msg {
+    position: absolute;
+    font-size: 17px;
+    padding: 5px;
+    color: #F0582F;
+    font-weight: 700;
+}
+
+input[type="date"]:before {
+    content: attr(placeholder) !important;
+    color: #aaa;
+    margin-right: 0.5em;
+}
+
+input[type="date"]:focus:before,
+input[type="date"]:valid:before {
+    content: "";
+}
+
+.option-tab {
+    padding: 13px 24px;
+    border-radius: 100px;
+}
+
+.option-tab:hover {
+    cursor: pointer;
+}
+
+.option-tab-text {
+    font-size: 25px;
+    color: #fff;
+    font-weight: 600;
+    text-align: center;
+}
+
+#confirm-option-tab {
+    background: #F0582F;
+}
+
+#cancel-option-tab {
+    background: darkslategrey;
+}

@@ -1,0 +1,70 @@
+<div *ngIf="FSPTableStatus" id="tableContainer">
+    <h1>CURRENT UNDER-STOCK ITEMS</h1>
+    <br><br><br>
+
+    <table style="width:100%" id="tableHead" class="tableHeadings">
+        <tr>
+            <th class="coloumnHeadStyle ">Sl.no</th>
+            <!-- (click)="sort('item_code','IconUpDownitemCode')" -->
+            <th class="coloumnHeadStyle">
+                Item Code
+                <br>
+            </th>
+            <!-- (click)="sort('item_name','IconUpDownitemName')" -->
+            <th class="coloumnHeadStyle">
+                Current Available
+                <br>
+            </th>
+    </table>
+    <div class="content" id="tableContent" class="table">
+        <table class="content" style="width:100%">
+            <tr id="loadTr" *ngFor="let product of USArray|orderBy:Otype:Oby;let itemIdx = index">
+                <td class="coloumnValueStyle ">{{itemIdx+1}}</td>
+                <td class="coloumnValueStyle ">{{product.item_code}}</td>
+                <td class="coloumnValueStyle ">{{product.count}}</td>
+            </tr>
+        </table>
+    </div>
+
+
+</div>
+
+<div *ngIf="loading">
+    <h1>Please Wait...</h1>
+    <br><br><br><br>
+    <svg width="70" height="20">
+
+    <circle cx="10" cy="10" r="0">
+      <animate attributeName="r" from="0" to="10" values="0;10;10;10;0" dur="1000ms" repeatCount="indefinite" />
+    </circle>
+
+    <circle cx="35" cy="10" r="0">
+      <animate attributeName="r" from="0" to="10" values="0;10;10;10;0" begin="200ms" dur="1000ms" repeatCount="indefinite" />
+    </circle>
+
+    <circle cx="60" cy="10" r="0">
+      <animate attributeName="r" from="0" to="10" values="0;10;10;10;0" begin="400ms" dur="1000ms" repeatCount="indefinite" />
+    </circle>
+    </svg>
+    <br><br><br>
+
+</div>
+
+<div *ngIf="noResponseError">
+    <h1 style="margin-top: 9%;font-weight: 700;">Oops... Something went Wrong.</h1>
+    <br>
+    <h2 style="font-weight: 700;">Please check whether connections are fine and Try Again</h2>
+    <br><br><br>
+
+    <div class="option-tab" id="retry-option-tab" (click)="retry()">
+        <table width="100%">
+            <tr>
+                <td>
+                    <p class="option-tab-text">RETRY SYNCING</p>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <br><br><br><br><br><br>
+
+</div>

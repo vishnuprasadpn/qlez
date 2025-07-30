@@ -1,0 +1,65 @@
+.tableHeadTextStyle {
+    text-align: center;
+    font-size: 18px;
+    padding: 15px 0px;
+    max-width: 150px;
+    width: 150px;
+    background: #7fa6ec;
+    color: #fff;
+}
+
+#itemListContainer {
+    height: 430px;
+}
+
+#productDetailContainer {
+    min-height: 550px;
+}
+
+.content {
+    /* These rules create an artificially confined space, so we get 
+     a scrollbar that we can hide. They are not part of the hiding itself. */
+    overflow-y: scroll;
+}
+
+.content::-webkit-scrollbar {
+    /* This is the magic bit */
+    display: none;
+}
+
+.contentScrollX {
+    /* These rules create an artificially confined space, so we get 
+     a scrollbar that we can hide. They are not part of the hiding itself. */
+    overflow-x: scroll;
+}
+
+.contentScrollX::-webkit-scrollbar {
+    /* This is the magic bit */
+    display: none;
+}
+
+.tableValueTextStyle {
+    text-align: center;
+    width: 150px;
+    max-width: 150px;
+    padding: 16px 0px;
+    font-size: 18px;
+}
+
+.not-defective-button-text {
+    font-size: 16px!important;
+}
+
+.data-items {
+    border: 3px solid #7FA6EC;
+    padding: 0px 3px;
+}
+
+#defective-option-tab {
+    background: #00ff7b;
+}
+
+#cancel-option-tab {
+    width: 300px;
+    background: #d93a15;
+}

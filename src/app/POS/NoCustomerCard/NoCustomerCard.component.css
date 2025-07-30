@@ -1,0 +1,161 @@
+#forgot-bg-div {
+    border-top-left-radius: 16px;
+    border-top-right-radius: 16px;
+    background-image: url('../../../assets/images/backgrounds/loginbg.jpg');
+    padding: 10% 5%;
+    background-size: cover;
+}
+
+#forgot-text {
+    color: #fff;
+    font-weight: 700
+}
+
+#form-div {
+    background: #e5e5e5;
+    padding: 6%
+}
+
+.form-label {
+    font-size: 18px;
+    text-align: right
+}
+
+#search-button {
+    background: #57B847;
+}
+
+#cancel-button {
+    background: red;
+}
+
+.action-button {
+    color: #fff;
+    padding: 12px 71px;
+    border-radius: 22px;
+    text-align: center;
+    font-size: 17px;
+    cursor: pointer;
+}
+
+#forgot-button {
+    cursor: pointer;
+    font-size: 15px;
+    text-align: right
+}
+
+#loaderDiv {
+    display: none;
+}
+
+svg {
+    position: fixed;
+    top: 60%;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+}
+
+svg circle {
+    fill: #76daff;
+}
+
+#no_card_main_div {
+    margin-right: 0px;
+    margin-left: 0px;
+    background: #fff;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
+#normal-bg-td {
+    background-image: url('../../../assets/images/backgrounds/bg1.jpg');
+    background-size: cover;
+}
+
+#login-bg-td {
+    background-image: url('../../../assets/images/backgrounds/bg2.jpg');
+    background-size: cover;
+}
+
+#QSS-heading {
+    font-size: 48px;
+    font-weight: 700;
+}
+
+#intro-td {
+    color: #fff;
+    padding: 5%;
+}
+
+#qlez_intro {
+    line-height: 48px;
+    font-size: 24px;
+    font-weight: 600;
+    text-align: justify;
+}
+
+.option-tab {
+    padding: 17px 50px;
+    border-radius: 100px;
+}
+
+.option-tab:hover {
+    cursor: pointer;
+}
+
+#guest-option-tab {
+    background: #2F84D9;
+}
+
+#guest-login-tab,
+#customer-login-tab {
+    padding: 20px 50px;
+    background: #2F84D9;
+}
+
+#forgot-option-tab {
+    background: #FF7069;
+}
+
+.option-tab-text {
+    font-size: 25px;
+    color: #fff;
+    font-weight: 600;
+    text-align: center;
+}
+
+.grow {
+    transition: 1s ease;
+}
+
+.grow:hover {
+    -webkit-transform: scale(1.1);
+    -ms-transform: scale(1.1);
+    transform: scale(1.1);
+    transition: 1s ease;
+}
+
+#cancelPurchase {
+    color: red;
+    font-size: 18px;
+    font-weight: 600;
+    cursor: pointer;
+    text-align: center;
+    padding: 5px;
+    border-radius: 6px;
+}
+
+#cancelPurchase:hover {
+    background: red;
+    color: #fff;
+}
+
+.form-control {
+    height: 46px;
+    font-size: 21px;
+}

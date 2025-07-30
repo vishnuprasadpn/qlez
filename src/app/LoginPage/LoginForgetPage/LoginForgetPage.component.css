@@ -1,0 +1,96 @@
+
+#forgot-main-bg-div {
+    background: #ECEDEF;
+}
+
+p {
+    margin: 0px
+}
+
+td {
+    padding: 8px;
+}
+
+input {
+    font-size: 18px;
+    padding: 10px 10px 10px 5px;
+    display: block;
+    width: 400px;
+    border: none;
+    border-bottom: 1px solid #999;
+    color: #999;
+    background: #fff;
+    border-radius: 0px;
+}
+
+input:focus {
+    outline: none;
+}
+
+#forgot-div {
+    margin-top: 12%
+}
+
+#forgot-bg-div {
+    border-top-left-radius: 16px;
+    border-top-right-radius: 16px;
+    background-image: url('../../../assets/images/backgrounds/loginbg.jpg');
+    padding: 10% 5%;
+    background-size: cover;
+}
+
+#forgot-text {
+    color: #fff;
+    font-weight: 700
+}
+
+#form-div {
+    background: #fff;
+    padding: 6%
+}
+
+.form-label {
+    font-size: 18px;
+    text-align: right
+}
+
+#search-button{
+    background: #57B847;
+}
+
+#cancel-button{
+  background:red;
+} 
+
+.action-button{
+    color: #fff;
+    padding: 12px 71px;
+    border-radius: 22px;
+    text-align: center;
+    font-size: 17px;
+    cursor: pointer;
+}
+
+#forgot-button {
+    cursor: pointer;
+    font-size: 15px;
+    text-align: right
+}
+
+#loaderDiv {
+    display: none;
+}
+
+
+svg {
+    position: fixed;
+    top: 60%;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+}
+
+svg circle {
+    fill: #76daff;
+}

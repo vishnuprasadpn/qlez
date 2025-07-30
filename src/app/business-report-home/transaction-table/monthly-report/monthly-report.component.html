@@ -1,0 +1,145 @@
+<div class="container" align="center">
+    <i class="material-icons md-48 close-button" (click)="backToBRHome()">close</i>
+    <div id="loginDiv">
+        <br>
+        <br>
+        <br>
+        <br>
+        <div *ngIf="monthlyTableStatus" id="tableContainer" class="container table-responsive">
+            <table width="" id="tableHead" class="tableHeadings ">
+                <thead>
+                    <tr>
+                        <th class="coloumnHeadStyle">Sl.no</th>
+                        <th class="coloumnHeadStyle">Transaction Date</th>
+                        <!-- (click)="sort('item_code','IconUpDownitemCode')" -->
+                        <th class="coloumnHeadStyle">
+                            Customer ID
+                            <br>
+                        </th>
+                        <!-- (click)="sort('item_name','IconUpDownitemName')" -->
+                        <th class="coloumnHeadStyle">
+                            Transaction ID
+                            <br>
+                        </th>
+                        <!-- (click)="sort('item_group','IconUpDownitemGroup')" -->
+                        <th class="coloumnHeadStyle">
+                            Payment ID
+                            <br>
+                        </th>
+                        <!-- (click)="sort('item_category','IconUpDownitemCategory')" -->
+                        <th class="coloumnHeadStyle">
+                            Transaction Amount
+                            <br>
+                        </th>
+                        <!-- (click)="sort('item_subcategory','IconUpDownitemSubCategory')" -->
+                        <th class="coloumnHeadStyle">
+                            Product Details
+                            <br>
+
+                        </th>
+
+                    </tr>
+                </thead>
+            </table>
+            <div class="content " id="tableContent" class="table">
+                <table>
+                    <tbody>
+                        <tr id="loadTr" *ngFor="let item of transactionArray|orderBy:Otype:Oby;let itemIdx = index">
+                            <td class="coloumnValueStyle">{{itemIdx+1}}</td>
+                            <td class="coloumnValueStyle">{{item.timestamp}}</td>
+                            <td class="coloumnValueStyle" (click)="showCountDetails(item,itemIdx)">{{item.customer_id}}</td>
+                            <td class="coloumnValueStyle">{{item.trxn_id}}</td>
+                            <td class="coloumnValueStyle">{{item.payment_id}}</td>
+                            <td class="coloumnValueStyle">{{item.trxn_amount}}</td>
+                            <td class="coloumnValueStyle">
+                                <a data-toggle="modal" data-target="#myModalMonthly" (click)="productDetails(itemIdx)">Product Details</a>
+
+                            </td>
+
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div id="myModalMonthly" class="modal fade" role="dialog">
+                <div class="modal-dialog">
+                    <div>
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal">&nbsp;&nbsp;&times;&nbsp;&nbsp;</button>
+                                <h4 class="modal-title">Product details</h4>
+                            </div>
+                            <div class="modal-body">
+                                <table width="" id="tableHead" class="tableHeadings">
+                                    <tr>
+                                        <!-- (click)="sort('item_code','IconUpDownitemCode')" -->
+                                        <th class="coloumnHeadStyle">
+                                            Item Code
+                                            <br>
+                                        </th>
+                                        <!-- (click)="sort('item_name','IconUpDownitemName')" -->
+                                        <th class="coloumnHeadStyle">
+                                            Item Color
+                                            <br>
+                                        </th>
+                                        <!-- (click)="sort('item_group','IconUpDownitemGroup')" -->
+                                        <th class="coloumnHeadStyle">
+                                            Item Name
+                                            <br>
+                                        </th>
+                                        <th class="coloumnHeadStyle">
+                                            Item Size
+                                            <br>
+                                        </th>
+                                        <th class="coloumnHeadStyle">
+                                            Quantity
+                                            <br>
+                                        </th>
+                                        <th class="coloumnHeadStyle">
+                                            item SP
+                                            <br>
+                                        </th>
+                                    </tr>
+                                    <tr id="loadTr" *ngFor="let product of  monthlyProductArray">
+                                        <td class="coloumnValueStyle">{{product.item_code}}</td>
+                                        <td class="coloumnValueStyle">{{product.item_color}}</td>
+                                        <td class="coloumnValueStyle">{{product.item_name}}</td>
+                                        <td class="coloumnValueStyle">{{product.item_size}}</td>
+                                        <td class="coloumnValueStyle">{{product.quantity}}</td>
+                                        <td class="coloumnValueStyle">{{product.item_sp}}</td>
+                                    </tr>
+                                </table>
+
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="container" *ngIf="monthlyTableStatus">
+            <br>
+            <br>
+            <button md-raised-button (click)=printCSV()>Download CSV</button>
+
+        </div>
+    </div>
+    <svg id="loaderDiv" width="70" height="20" *ngIf="monthlyLoading">
+
+    <circle cx="10" cy="10" r="0">
+      <animate attributeName="r" from="0" to="10" values="0;10;10;10;0" dur="1000ms" repeatCount="indefinite" />
+    </circle>
+
+    <circle cx="35" cy="10" r="0">
+      <animate attributeName="r" from="0" to="10" values="0;10;10;10;0" begin="200ms" dur="1000ms" repeatCount="indefinite" />
+    </circle>
+
+    <circle cx="60" cy="10" r="0">
+      <animate attributeName="r" from="0" to="10" values="0;10;10;10;0" begin="400ms" dur="1000ms" repeatCount="indefinite" />
+    </circle>
+
+  </svg>
+</div>

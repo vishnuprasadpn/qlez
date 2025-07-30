@@ -1,0 +1,59 @@
+.option-tab {
+    padding: 16px 24px;
+    border-radius: 100px;
+}
+
+.option-tab:hover {
+    cursor: pointer;
+}
+
+#featureDesc {
+    border: none;
+    border-bottom: 2px solid #aea4a4;
+}
+
+.labelText {
+    padding: 10px;
+    font-size: 25px;
+}
+
+#product-option-tab {
+    background: #F0582F
+}
+
+.option-tab-text {
+    font-size: 25px;
+    color: #fff;
+    font-weight: 600;
+    text-align: center;
+}
+
+#imgLinks {
+    width: 100%!important;
+}
+
+.warning-msg {
+    position: absolute;
+    font-size: 17px;
+    padding: 5px;
+    color: #F0582F;
+    font-weight: 700;
+}
+
+.warn-update {
+    right: 4%;
+}
+
+.inputField {
+    text-transform: uppercase;
+    font-size: 24px!important;
+    width: 100%;
+    font-family: inherit;
+    padding: 11px;
+    line-height: inherit;
+    border-bottom: 2px solid #aea4a4;
+}
+
+svg circle {
+    fill: #76daff;
+}

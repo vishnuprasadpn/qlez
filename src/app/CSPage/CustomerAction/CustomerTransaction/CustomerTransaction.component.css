@@ -1,0 +1,116 @@
+.warning-message {
+    font-size: 18px;
+    color: orangered;
+}
+
+.row {
+    margin: 0px;
+}
+
+.inputField {
+    text-transform: uppercase;
+    font-size: 24px!important;
+    width: 100%;
+    font-family: inherit;
+    padding: 11px;
+    line-height: inherit;
+    border-bottom: 2px solid #000;
+}
+
+#returnSaveButton,
+#returnCanelButton {
+    background: #0072BB;
+    color: #fff;
+    width: 50%!important;
+    font-size: 20px;
+    line-height: 50px
+}
+
+#loadingReturn {
+    display: none;
+    z-index: 999999
+}
+
+.transactionValueStyle,
+.transactionHeadStyle {
+    text-align: center;
+    padding-top: 15px;
+    font-size: 19px;
+    background: aliceblue;
+    border: 1px solid !important;
+}
+
+@media screen and (max-height: 450px) {}
+
+.content {
+    /* These rules create an artificially confined space, so we get 
+     a scrollbar that we can hide. They are not part of the hiding itself. */
+    overflow-y: auto;
+    max-height: 600px;
+}
+
+.content::-webkit-scrollbar {
+    /* This is the magic bit */
+    display: none;
+}
+
+.contentScrollX {
+    /* These rules create an artificially confined space, so we get 
+     a scrollbar that we can hide. They are not part of the hiding itself. */
+    overflow-x: scroll;
+}
+
+.contentScrollX::-webkit-scrollbar {
+    /* This is the magic bit */
+    display: none;
+}
+
+@media (min-width: 1200px) {}
+
+svg {
+    position: fixed;
+    top: 65%;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+}
+
+svg circle {
+    fill: #76daff;
+}
+
+#cancelReturn-option-tab {
+    background: chocolate;
+}
+
+#saveReturn-option-tab {
+    background: #14A850;
+}
+
+.option-tab-text {
+    font-size: 25px;
+    color: #fff;
+    font-weight: 600;
+    text-align: center;
+}
+
+.grow {
+    transition: 1s ease;
+}
+
+.grow:hover {
+    -webkit-transform: scale(1.1);
+    -ms-transform: scale(1.1);
+    transform: scale(1.1);
+    transition: 1s ease;
+}
+
+.option-tab {
+    padding: 13px 24px;
+    border-radius: 100px;
+}
+
+.option-tab:hover {
+    cursor: pointer;
+}

@@ -1,0 +1,216 @@
+.inputField {
+    text-transform: uppercase;
+    font-size: 24px!important;
+    width: 100%;
+    font-family: inherit;
+    padding: 11px;
+    line-height: inherit;
+    border-bottom: 2px solid;
+}
+
+.selectBox {
+    border: 1px solid #eee;
+    border-bottom: 2px solid #eee;
+}
+
+.inputErrorMessage {
+    font-size: 19px;
+    color: crimson;
+}
+
+.inputInfoMessage {
+    margin-top: -30px;
+    color: #00BFF2;
+    font-size: 19px;
+    padding-left: 14px;
+    font-style: oblique;
+    position: absolute;
+}
+
+#itemSearchInputField {
+    width: 50%!important;
+    border: none;
+    border-bottom: 2px solid #9d9898;
+}
+
+::-webkit-input-placeholder {
+    text-align: center;
+}
+
+ :-moz-placeholder {
+    /* Firefox 18- */
+    text-align: center;
+}
+
+ ::-moz-placeholder {
+    /* Firefox 19+ */
+    text-align: center;
+}
+
+ :-ms-input-placeholder {
+    text-align: center;
+}
+
+#itemSearchInputField {
+    text-align: center;
+}
+
+.option-tab {
+    padding: 32px 24px;
+}
+
+#scanProduct-option-tab,
+#searchNew-option-tab {
+    background: #0072BB;
+}
+
+#back-option-tab,
+#resultPageBack-option-tab {
+    background: brown;
+}
+
+#searchNew-option-tab,
+#resultPageBack-option-tab {
+    width: 71%;
+}
+
+#searchNew-option-tab {
+    float: right;
+}
+
+#itemNameSearch-option-tab {
+    background: #FF9900;
+}
+
+#itemCodeSearch-option-tab {
+    background: crimson;
+}
+
+#itemSearchSubmit-option-tab {
+    background: #FF9900;
+}
+
+#itemBrandSearch-option-tab {
+    background: darkslategray;
+}
+
+#categorySearch-option-tab {
+    background: indianred;
+}
+
+.table .table {
+    background-color: transparent;
+}
+
+#imageTd {
+    white-space: nowrap;
+    overflow: auto;
+    padding: 13px;
+}
+
+#tableContent {
+    height: 398px;
+    overflow: auto;
+}
+
+.coloumnHeadStyle {
+    background: #232323;
+    text-align: center;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    color: #fff;
+    font-weight: 700;
+    padding: 5px 2px;
+    font-size: 20px;
+}
+
+.coloumnValueStyle {
+    background: #4e4c4c;
+    text-align: center;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    color: #fff;
+    font-size: 20px;
+}
+
+.productColoumnValueStyle {
+    text-align: center;
+    font-size: 27px;
+    font-weight: 600;
+}
+
+.content {
+    /* These rules create an artificially confined space, so we get 
+     a scrollbar that we can hide. They are not part of the hiding itself. */
+    overflow-y: scroll;
+}
+
+.content::-webkit-scrollbar {
+    /* This is the magic bit */
+    display: none;
+}
+
+.contentScrollX {
+    /* These rules create an artificially confined space, so we get 
+     a scrollbar that we can hide. They are not part of the hiding itself. */
+    overflow-x: scroll;
+}
+
+.contentScrollX::-webkit-scrollbar {
+    /* This is the magic bit */
+    display: none;
+}
+
+.productColor {
+    border-radius: 20px;
+    padding: 1px 10px;
+    margin: 0px 6px;
+    cursor: pointer;
+    border: 1px solid #fff;
+}
+
+#myImg {
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+#myImg:hover {
+    opacity: 0.7;
+}
+
+
+/* The Modal (background) */
+
+.modal {
+    display: none;
+    /* Hidden by default */
+    position: fixed;
+    /* Stay in place */
+    z-index: 1;
+    /* Sit on top */
+    padding-top: 100px;
+    /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%;
+    /* Full width */
+    height: 100%;
+    /* Full height */
+    overflow: auto;
+    /* Enable scroll if needed */
+    background-color: rgba(0, 0, 0, 0.9);
+    /* Black w/ opacity */
+}
+
+svg circle {
+    fill: #76daff;
+}
+
+th {
+    min-width: 150px;
+    max-width: 150px;
+}
+
+td {
+    min-width: 150px;
+    max-width: 150px;
+}

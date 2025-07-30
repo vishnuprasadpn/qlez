@@ -1,0 +1,46 @@
+<header>
+</header>
+<i class="material-icons md-48 close-button" (click)="backToBRHome()">close</i>
+<br>
+<br>
+<div id="tableContainer" class="container">
+    <table style="width:100%;margin-top:150px" id="tableHead" class="tableHeadings">
+        <tr>
+            <th class="coloumnHeadStyle ">Sl.no</th>
+            <th class="coloumnHeadStyle">
+                <!-- (click)="sort('item_code','IconUpDownitemCode')" -->
+                Customer ID
+                <br>
+            </th>
+
+            <th class="coloumnHeadStyle ">
+                <!-- (click)="sort('item_name','IconUpDownitemName')" -->
+                DOB
+                <br>
+            </th>
+
+            <tr id="loadTr">
+                <td class="coloumnValueStyle ">1</td>
+                <td class="coloumnValueStyle ">Joel</td>
+                <td class="coloumnValueStyle ">27/7/1993</td>
+
+
+            </tr>
+    </table>
+</div>
+
+
+<svg id="loaderDiv" width="70" height="20" *ngIf="loading">
+
+    <circle cx="10" cy="10" r="0">
+      <animate attributeName="r" from="0" to="10" values="0;10;10;10;0" dur="1000ms" repeatCount="indefinite" />
+    </circle>
+
+    <circle cx="35" cy="10" r="0">
+      <animate attributeName="r" from="0" to="10" values="0;10;10;10;0" begin="200ms" dur="1000ms" repeatCount="indefinite" />
+    </circle>
+
+    <circle cx="60" cy="10" r="0">
+      <animate attributeName="r" from="0" to="10" values="0;10;10;10;0" begin="400ms" dur="1000ms" repeatCount="indefinite" />
+    </circle>
+  </svg>

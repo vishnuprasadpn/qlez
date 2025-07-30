@@ -1,0 +1,4 @@
+.offerSelect,#offerAddedMessage{display: none;}
+.offerSelectMessage{display: none;background: red;color:#fff;}
+.saveOffer{background: green;color:#fff;display: none}
+#applyOfferSubmit{background: grey;color: #fff;pointer-events: none};

@@ -1,0 +1,34 @@
+#tableContent {
+    height: 398px;
+    overflow: auto;
+}
+
+#view-data-option-tab {
+    background: chocolate;
+}
+
+#back-button-option-tab {
+    position: absolute;
+    top: 7%;
+    right: 8%;
+    background: #a6a6a6;
+    padding: 13px 20px;
+}
+
+.warning-msg {
+    font-weight: 700;
+}
+
+.coloumnHeadStyle {
+    font-size: 21px;
+    padding: 6px;
+    background: #7e9a61;
+    border: 1px solid #7e9a61;
+}
+
+.coloumnValueStyle {
+    font-size: 21px;
+    padding: 6px;
+    background: #f7f9f5;
+    border: 1px solid;
+}

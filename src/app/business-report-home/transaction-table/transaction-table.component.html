@@ -1,0 +1,80 @@
+<div *ngIf="defaultSection">
+    <h1 style="color:#000;font-size:46px;font-weight: 700;margin-top: 0px;">TRANSACTION REPORTS MODULE</h1>
+    <br><br>
+    <p style="font-size: 28px;line-height: 55px;">
+        Please select any of the follwing Reports :
+    </p>
+    <br><br><br>
+    <div class="row">
+        <div class="col-lg-5">
+            <div class="option-tab grow" id="T-option-tab" (click)="showTodayTransactions()">
+                <table width="100%">
+                    <tr>
+                        <td>
+                            <p class="option-tab-text">TODAY'S TRANSACTIONS</p>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <div class="col-lg-2"></div>
+        <div class="col-lg-5">
+            <div class="option-tab grow" id="FSP-option-tab" (click)="showWeeklyTransactions()">
+                <table width="100%">
+                    <tr>
+                        <td>
+                            <p class="option-tab-text">WEEKLY TRANSACTIONS</p>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <br><br><br>
+
+    <div class="row">
+        <div class="col-lg-5">
+            <div class="option-tab grow" id="MVC-option-tab" (click)="showMonthlyTransactions()">
+                <table width="100%">
+                    <tr>
+                        <td>
+                            <p class="option-tab-text">MONTHLY TRANSACTIONS</p>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <div class="col-lg-2"></div>
+        <div class="col-lg-5">
+            <div class="option-tab grow" id="UI-option-tab" (click)="customTransactions()">
+                <table width="100%">
+                    <tr>
+                        <td>
+                            <p class="option-tab-text">CUSTOM DATE TRANSACTIONS</p>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <br><br><br>
+
+</div>
+
+<div *ngIf="dailyTransaction">
+    <app-daily-report></app-daily-report>
+</div>
+
+<div *ngIf="weeklyTransactions">
+    <app-weekly-report></app-weekly-report>
+</div>
+
+<div *ngIf="monthlyTransactions">
+    <app-monthly-report></app-monthly-report>
+</div>
+
+<div *ngIf="customDateTransactions">
+    <app-custom-report></app-custom-report>
+</div>

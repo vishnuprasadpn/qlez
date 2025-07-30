@@ -1,0 +1,209 @@
+<div class="animate-fade" *ngIf="tableStatus">
+    <h1 style="font-weight: 700">RETURNED PRODUCTS</h1>
+    <br><br>
+    <div class="row" id="productDetailContainer">
+
+        <div class="table-responsive" id="itemListContainer">
+
+            <table class="table-hover content">
+                <thead>
+                    <tr>
+                        <th class="tableHeadTextStyle" style="width: 50px">Sl</th>
+                        <th class="tableHeadTextStyle">Product ID</th>
+                        <th class="tableHeadTextStyle">Item Code</th>
+                        <th class="tableHeadTextStyle" style="width: 50px">Size</th>
+                        <th class="tableHeadTextStyle">Color</th>
+                        <th class="tableHeadTextStyle">Comments</th>
+                        <th class="tableHeadTextStyle">Purchase Date</th>
+                        <th class="tableHeadTextStyle">Return Date</th>
+                        <th class="tableHeadTextStyle">Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let product of defectiveProducts;let count = index" id="{{count}}" class="data-items">
+                        <td class="tableValueTextStyle" style="width: 50px">{{count+1}}</td>
+                        <td class="tableValueTextStyle">{{product.pid}}</td>
+                        <td class="tableValueTextStyle"><a class="grow" (click)="viewProductDt(product)" style="cursor: pointer;">{{product.item_code}}</a></td>
+                        <td class="tableValueTextStyle" style="width: 50px">{{product.product_size}}</td>
+                        <td class="tableValueTextStyle">{{product.product_color}}</td>
+                        <td class="tableValueTextStyle">{{product.defect_comments}}</td>
+
+                        <td class="tableValueTextStyle">{{product.invoice_date}}</td>
+                        <td class="tableValueTextStyle">{{product.return_date}}</td>
+                        <td class="tableValueTextStyle">
+
+                            <div class="option-tab" id="defective-option-tab" (click)="notDefective(product,count)">
+                                <table width="100%">
+                                    <tr>
+                                        <td>
+                                            <p class="option-tab-text not-defective-button-text">NOT DEFECTIVE</p>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <br><br>
+    <div class="option-tab grow" id="cancel-option-tab" (click)="getReturnedProducts()">
+        <table width="100%">
+            <tr>
+                <td>
+                    <p class="option-tab-text">REFRESH LIST</p>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
+
+<div class="animate-fade" *ngIf="noDefectiveProductsStatus">
+    <h1>There are no products to display.</h1>
+</div>
+
+<div class="animate-fade" *ngIf="noResponseError">
+    <h1 style="font-weight: 700;">Oops... Something went Wrong.</h1>
+    <br>
+    <h2 style="font-weight: 700;">Please check whether connections are fine and Try Again</h2>
+    <br><br><br>
+
+    <div class="option-tab grow" id="cancel-option-tab" (click)="getReturnedProducts()">
+        <table width="100%">
+            <tr>
+                <td>
+                    <p class="option-tab-text">TRY AGAIN</p>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
+
+<div class="animate-fade" *ngIf="loadingProgress">
+    <p class="faa-flash animated" style="font-size: 35px;font-weight: 700;">Please wait</p>
+    <br><br>
+    <div align="center">
+        <svg width="70" height="20" style="z-index: 99999">
+            <circle cx="10" cy="10" r="0"><animate attributeName="r" from="0" to="10" values="0;10;10;10;0" dur="1000ms" repeatCount="indefinite" /></circle>
+            <circle cx="35" cy="10" r="0"><animate attributeName="r" from="0" to="10" values="0;10;10;10;0" begin="200ms" dur="1000ms" repeatCount="indefinite" /></circle>
+            <circle cx="60" cy="10" r="0"><animate attributeName="r" from="0" to="10" values="0;10;10;10;0" begin="400ms" dur="1000ms" repeatCount="indefinite" /></circle>
+        </svg>
+    </div>
+    <br><br><br><br>
+</div>
+
+<div class="animate-fade" *ngIf="itemDetailDisplay">
+    <h1 style="font-weight: 700;">ITEM DETAILS</h1>
+    <br><br><br>
+
+    <div class="row" style="background: #f5f5ef;padding: 4% 3%;">
+        <div class="col-lg-6">
+            <table class="table">
+                <tr style="border-bottom: 2px solid #676464;">
+                    <td>
+                        <p style="font-size: 24px;font-weight: 700">ITEM CODE</p>
+                    </td>
+                    <td>
+                        <p style="font-size: 24px;font-weight: 700">: {{productDt.item_code}}</p>
+                    </td>
+                </tr>
+                <br><br>
+                <tr style="border-bottom: 2px solid #676464;">
+                    <td>
+                        <p style="font-size: 24px;font-weight: 700">ITEM NAME</p>
+                    </td>
+                    <td>
+                        <p style="font-size: 24px;font-weight: 700">: {{productDt.item_name}}</p>
+                    </td>
+                </tr>
+                <br><br>
+                <tr style="border-bottom: 2px solid #676464;">
+                    <td>
+                        <p style="font-size: 24px;font-weight: 700">ITEM BRAND</p>
+                    </td>
+                    <td>
+                        <p style="font-size: 24px;font-weight: 700">: {{productDt.item_brand}}</p>
+                    </td>
+                </tr>
+                <br><br>
+                <tr style="border-bottom: 2px solid #676464;">
+                    <td>
+                        <p style="font-size: 24px;font-weight: 700">ITEM COST-PRICE</p>
+                    </td>
+                    <td>
+                        <p style="font-size: 24px;font-weight: 700">: {{productDt.item_cp}}</p>
+                    </td>
+                </tr>
+                <br><br>
+                <tr style="border-bottom: 2px solid #676464;">
+                    <td>
+                        <p style="font-size: 24px;font-weight: 700">ITEM SELL-PRICE</p>
+                    </td>
+                    <td>
+                        <p style="font-size: 24px;font-weight: 700">: {{productDt.item_sp}}</p>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div class="col-lg-6">
+            <table class="table">
+                <tr style="border-bottom: 2px solid #676464;">
+                    <td>
+                        <p style="font-size: 24px;font-weight: 700">ITEM CATEGORY</p>
+                    </td>
+                    <td>
+                        <p style="font-size: 24px;font-weight: 700">: {{productDt.item_category}}</p>
+                    </td>
+                </tr>
+                <br><br>
+                <tr style="border-bottom: 2px solid #676464;">
+                    <td>
+                        <p style="font-size: 24px;font-weight: 700">ITEM SUB-CATEGORY</p>
+                    </td>
+                    <td>
+                        <p style="font-size: 24px;font-weight: 700">: {{productDt.item_subcategory}}</p>
+                    </td>
+                </tr>
+                <br><br>
+                <tr style="border-bottom: 2px solid #676464;">
+                    <td>
+                        <p style="font-size: 24px;font-weight: 700">ITEM NATURE</p>
+                    </td>
+                    <td>
+                        <p style="font-size: 24px;font-weight: 700">: {{productDt.item_nature}}</p>
+                    </td>
+                </tr>
+                <br><br>
+                <tr style="border-bottom: 2px solid #676464;">
+                    <td>
+                        <p style="font-size: 24px;font-weight: 700">ITEM MRP</p>
+                    </td>
+                    <td>
+                        <p style="font-size: 24px;font-weight: 700">: {{productDt.item_mrp}}</p>
+                    </td>
+                </tr>
+                <br><br>
+                <tr style="border-bottom: 2px solid #676464;">
+                    <td>
+                        <p style="font-size: 24px;font-weight: 700">ITEM TAX</p>
+                    </td>
+                    <td>
+                        <p style="font-size: 24px;font-weight: 700">: {{productDt.item_tax}}</p>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+    <br><br><br>
+    <div class="option-tab grow" id="cancel-option-tab" (click)="showList()">
+        <table width="100%">
+            <tr>
+                <td>
+                    <p class="option-tab-text">CLOSE</p>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>

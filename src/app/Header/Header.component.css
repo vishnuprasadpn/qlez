@@ -1,0 +1,220 @@
+.grow {
+    transition: 1s ease;
+}
+
+.grow:hover {
+    -webkit-transform: scale(1.1);
+    -ms-transform: scale(1.1);
+    transform: scale(1.1);
+    transition: 1s ease;
+}
+
+#updateFailedMessage,#credentialMissingMessage,#updateSuccessMessage,#passwordNotMatchingMessage{display: none;color: #fff}
+#headerStyle{padding: 5px;background: #2C3E50}
+#userNameValue{font-size: 30px;}
+.profileIcon{color:#fff;float: right;padding-top: 7px;font-size: 54px;}
+.home-button{color:#fff;float: left;cursor: pointer;padding-top: 6px;font-size: 54px;}
+#usernameStyle{color: #fff;font-size: 29px;text-align: right;padding: 10px;}
+.firstLetterStyle{color:#00BFF2;}
+#SDHeadingStyle{color:#fff;line-height: 0.4;font-weight: 600}
+.row{margin: 0px}
+#userMenu{color: #fff;position: absolute;right: 25px;z-index: 999;background: #0071BB;}
+.userMenuOption{padding:10px;cursor: pointer;margin: 0px}
+.userMenuOption:hover{background: #fff;color: #0071BB;}
+
+.overlay {
+    height: 0%;
+    width: 100%;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: rgb(0,0,0);
+    background-color: rgba(0,0,0, 0.9);
+    overflow-y: hidden;
+    transition: 0.5s;
+}
+
+.overlay-content {
+    position: relative;
+    top: 5%;
+    width: 100%;
+    text-align: center;
+    margin-top: 30px;
+}
+
+.overlay a {
+    padding: 8px;
+    text-decoration: none;
+    font-size: 36px;
+    color: #818181;
+    display: block;
+    transition: 0.3s;
+    cursor: pointer;
+}
+
+.overlay a:hover, .overlay a:focus {
+    color: #f1f1f1;
+}
+
+.overlay .closebtn {
+    position: absolute;
+    top: 20px;
+    right: 45px;
+    font-size: 60px;
+}
+
+@media screen and (max-height: 450px) {
+  .overlay {overflow-y: auto;}
+  .overlay a {font-size: 20px}
+  .overlay .closebtn {
+    font-size: 40px;
+    top: 15px;
+    right: 35px;
+  }
+}
+
+#savePassword{background:#05BBF1}
+/*;pointer-events: none;}*/
+#inputRePass{color: #fff}
+
+
+input{width: 100%;color: #000;height: 35px;text-align: center}
+
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+  -webkit-appearance: none; 
+  margin: 0; 
+}
+
+input[type=date]::-webkit-inner-spin-button, 
+input[type=date]::-webkit-outer-spin-button { 
+  -webkit-appearance: none; 
+  margin: 0; 
+}
+/* ANIMATIONS ================ */
+@-webkit-keyframes inputHighlighter {
+  from { background:#5264AE; }
+  to  { width:0; background:transparent; }
+}
+@-moz-keyframes inputHighlighter {
+  from { background:#5264AE; }
+  to  { width:0; background:transparent; }
+}
+@keyframes inputHighlighter {
+  from { background:#5264AE; }
+  to  { width:0; background:transparent; }
+}
+
+/* Material style */
+button {
+  border: none;
+  cursor: pointer;
+  color: white;
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, .4);
+}
+
+/* Ripple magic */
+button{
+  position: relative;
+  overflow: hidden;
+}
+
+button:after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 5px;
+  height: 5px;
+  background: rgba(255, 255, 255, .5);
+  opacity: 0;
+  border-radius: 100%;
+  transform: scale(1, 1) translate(-50%);
+  transform-origin: 50% 50%;
+}
+
+@keyframes ripple {
+  0% {
+    transform: scale(0, 0);
+    opacity: 1;
+    border-radius: 43px;
+
+  }
+  20% {
+    transform: scale(25, 25);
+    opacity: 1;
+    border-radius: 43px;
+
+  }
+  100% {
+    opacity: 0;
+    transform: scale(40, 40);
+    border-radius: 43px;
+
+  }
+}
+
+button:focus:not(:active)::after {
+  animation: ripple 1s ease-out;
+}
+
+input 				{
+  font-size:18px;
+  padding:10px 10px 10px 5px;
+  display:block;
+  width:100%;
+  border:none;
+  color:#999;
+}
+input:focus 		{ outline:none; }
+
+/* LABEL ======================================= */
+label 				 {
+  color:#999; 
+  font-size:18px;
+  font-weight:normal;
+  position:absolute;
+  pointer-events:none;
+  left:5px;
+  top:10px;
+  transition:0.2s ease all; 
+  -moz-transition:0.2s ease all; 
+  -webkit-transition:0.2s ease all;
+}
+
+/* active state */
+input:focus ~ label, input:valid ~ label{top:-20px;font-size:16px;color:#fff;}
+
+.loader {
+  border: 16px solid #f3f3f3;
+  border-radius: 50%;
+  border-top: 16px solid #105480;
+  border-bottom: 16px solid #105480;
+  width: 120px;
+  height: 120px;
+  -webkit-animation: spin 2s linear infinite;
+  animation: spin 2s linear infinite;
+}
+
+@-webkit-keyframes spin {
+  0% { -webkit-transform: rotate(0deg); }
+  100% { -webkit-transform: rotate(360deg); }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+#loaderDiv{display: none}
+svg {
+  position: fixed;
+    top: 60%;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+}
+svg circle {
+  fill: #76daff;
+}

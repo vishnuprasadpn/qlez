@@ -1,0 +1,398 @@
+<div class="row" id="editItemContainer">
+    <h3>Edit Item</h3>
+    <br>
+
+    <table class="table" align="center">
+
+        <tr>
+
+            <td>
+                <span>Item Name</span>
+                <input type="text" id="itemNameInput" class="form-control" #itemName value="{{itemname}}">
+
+                <span class="errorMessage" *ngIf="itemNameError">
+						Please enter Item Name!
+					</span>
+                <span class="errorMessage" *ngIf="itemNameSaveError">
+						Please save Item Name!
+					</span>
+            </td>
+
+            <td>
+                <i class="material-icons editIcons" *ngIf="editItemNameIcon" (click)="editItemName(itemName)">create</i>
+
+                <div class="row" style="width:125px">
+                    <div class="col-lg-6">
+                        <i class="material-icons editIcons" *ngIf="saveItemNameIcon" (click)="saveItemName(itemName)">done</i>
+                    </div>
+                    <div class="col-lg-6">
+                        <i class="material-icons editIcons" *ngIf="cancelItemNameIcon" (click)="cancelItemName(itemName)">cancel</i>
+                    </div>
+                </div>
+            </td>
+
+            <td>
+                <span>Item Brand</span>
+                <input type="text" id="itemBrandInput" class="form-control" #itemBrand (focusout)="validateItemBrand(itemBrand)" value="{{itembrand}}">
+
+                <span class="errorMessage" *ngIf="itemBrandError">
+						Please enter Item Brand!
+					</span>
+                <span class="errorMessage" *ngIf="itemBrandSaveError"> Please save Item Brand!
+					</span>
+            </td>
+
+            <td>
+                <i class="material-icons editIcons" *ngIf="editItemBrandIcon" (click)="editBrand(itemBrand)">create</i>
+
+                <div class="row" style="width:125px">
+                    <div class="col-lg-6">
+                        <i class="material-icons editIcons" *ngIf="saveItemBrandIcon" (click)="saveBrand(itemBrand)">done</i>
+                    </div>
+                    <div class="col-lg-6">
+                        <i class="material-icons editIcons" *ngIf="cancelItemBrandIcon" (click)="cancelItemBrand(itemBrand)">cancel</i>
+                    </div>
+                </div>
+            </td>
+
+            <td>
+                <span>Item Manufacturer</span>
+                <input type="text" id="itemManufacturerInput" class="form-control" #itemManufacturer value="{{itemmanufacturer}}">
+
+                <span class="errorMessage" *ngIf="itemManufactureError">
+						Please enter Item Manufacture!
+					</span>
+                <span class="errorMessage" *ngIf="itemManufactureSaveError">
+						Please save Item Manufacture!
+					</span>
+            </td>
+
+            <td>
+                <i class="material-icons editIcons" *ngIf="editItemManufacturerIcon" (click)="editManufacturer(itemManufacturer)">create</i>
+
+                <div class="row" style="width:125px">
+                    <div class="col-lg-6">
+                        <i class="material-icons editIcons" *ngIf="saveItemManufacturerIcon" (click)="saveManufacturer(itemManufacturer)">done</i>
+                    </div>
+                    <div class="col-lg-6">
+                        <i class="material-icons editIcons" *ngIf="cancelItemManufacturerIcon" (click)="cancelManufacturer(itemManufacturer)">cancel</i>
+                    </div>
+                </div>
+            </td>
+        </tr>
+
+        <br>
+
+        <tr>
+
+            <td>
+                <span>Item MRP</span>
+                <input type="text" id="itemMRPInput" class="form-control" #itemMRP value="{{itemMrp}}">
+
+                <span class="errorMessage" *ngIf="itemMrpLowError">
+						SP and CP should not exceed MRP 
+					</span>
+                <span class="errorMessage" *ngIf="itemMrpError">
+						Please enter Item MRP!
+					</span>
+                <span class="errorMessage" *ngIf="itemMrpSaveError">
+						Please Save Item MRP!
+					</span>
+            </td>
+
+            <td>
+                <i class="material-icons editIcons" *ngIf="editItemMrpIcon" (click)="editItemMrp(itemMRP)">create</i>
+
+                <div class="row" style="width:125px">
+                    <div class="col-lg-6">
+                        <i class="material-icons editIcons" *ngIf="saveItemMrpIcon" (click)="saveItemMrp(itemMRP)">done</i>
+                    </div>
+                    <div class="col-lg-6">
+                        <i class="material-icons editIcons" *ngIf="cancelItemMrpIcon" (click)="cancelItemMrp(itemMRP)">cancel</i>
+                    </div>
+                </div>
+            </td>
+
+            <td>
+                <span>Item CP</span>
+                <input type="text" id="itemCPInput" value="{{itemCp}}" #itemCP class="form-control">
+
+                <span *ngIf="itemCpError" class="errorMessage">
+						Please enter Item CP!
+					</span>
+                <span *ngIf="itemCpExceedMrp" class="errorMessage">
+						CP should not exceed MRP!
+					</span>
+                <span *ngIf="itemCpLessthanSp" class="errorMessage">
+						CP should  be below SP!
+					</span>
+                <span *ngIf="itemCpSaveError" class="errorMessage">
+						Please save Item CP!
+					</span>
+            </td>
+
+            <td>
+                <i class="material-icons editIcons" *ngIf="editItemCpIcon" (click)="editItemCp(itemCP)">create</i>
+
+                <div class="row" style="width:125px">
+                    <div class="col-lg-6">
+                        <i class="material-icons editIcons" *ngIf="saveItemCpIcon" (click)="saveItemCp(itemCP)">done</i>
+                    </div>
+                    <div class="col-lg-6">
+                        <i class="material-icons editIcons" *ngIf="cancelItemCpIcon" (click)="cancelItemCp(itemCP)">cancel</i>
+                    </div>
+                </div>
+            </td>
+
+            <td>
+                <span>Item SP</span>
+                <input type="text" class="form-control" id="itemSPInput" #itemSP value="{{itemSp}}">
+
+                <span *ngIf="itemSpError" class="errorMessage">
+						Please enter Item SP
+					</span>
+                <span *ngIf="itemSpExceedMrp" class="errorMessage">
+						SP should not Exceed MRP
+					</span>
+                <span *ngIf="itemSpLessthanCp" class="errorMessage">
+						CP should not Exceed SP
+					</span>
+                <span *ngIf="itemSpSaveError" class="errorMessage">
+						Please save Item SP!
+					</span>
+            </td>
+
+            <td>
+                <i class="material-icons editIcons" *ngIf="editItemSpIcon" (click)="editItemSp(itemSP)">create</i>
+
+                <div class="row" style="width:125px">
+                    <div class="col-lg-6">
+                        <i class="material-icons editIcons" *ngIf="saveItemSpIcon" (click)="saveItemSp(itemSP)">done</i>
+                    </div>
+                    <div class="col-lg-6">
+                        <i class="material-icons editIcons" *ngIf="cancelItemSpIcon" (click)="cancelItemSp(itemSP)">cancel</i>
+                    </div>
+                </div>
+            </td>
+        </tr>
+
+        <br>
+
+        <tr>
+
+            <td>
+                <span>Item Group</span>
+                <input type="text" *ngIf="groupInput" class="form-control" value="{{itemGroup}}" disabled>
+
+                <select class="form-control" *ngIf="groupSelect" #groupKey (change)="selectedItemEditGroup(groupKey)">
+						<option disabled="" selected="">Select Any Group</option>
+	    				<option value="Women">Women</option>
+	    				<option value="Men">Men</option>
+    				</select>
+
+                <span class="errorMessage" *ngIf="itemGroupSaveError">
+						Please save Group!
+					</span>
+            </td>
+
+            <td>
+                <i class="material-icons editIcons" *ngIf="editItemGroupIcon" (click)="editItemGroup(groupKey)">create</i>
+
+                <div class="row" style="width:125px">
+                    <div class="col-lg-6">
+                        <i class="material-icons editIcons" *ngIf="saveItemGroupIcon" (click)="saveItemGroup()">done</i>
+                    </div>
+                    <div class="col-lg-6">
+                        <i class="material-icons editIcons" *ngIf="cancelItemGroupIcon" (click)="cancelItemGroup()">cancel</i>
+                    </div>
+                </div>
+            </td>
+
+            <td>
+                <span>Item Category</span>
+                <input type="text" *ngIf="categoryInput" class="form-control" value="{{itemCategory}}" disabled>
+
+                <select class="form-control" *ngIf="categorySelect" #categoryKey (change)="selectedItemEditCategory(categoryKey)">
+						<option disabled="" selected="">
+						Select Any Category</option>
+		    			<option value="Tops">Tops</option>
+		    			<option value="Bottoms">Bottoms</option>
+		    			<option value="Shoes">Shoes</option>
+		    		</select>
+                <span class="errorMessage" *ngIf="itemCategorySaveError">
+						Please save category!
+					</span>
+            </td>
+
+            <td>
+                <i class="material-icons editIcons" *ngIf="editItemCategoryIcon" (click)="editItemCategory()">create</i>
+
+                <div class="row" style="width:125px">
+                    <div class="col-lg-6">
+                        <i class="material-icons editIcons" *ngIf="saveItemCategoryIcon" (click)="saveItemCategory()">
+							done</i>
+                    </div>
+                    <div class="col-lg-6">
+                        <i class="material-icons editIcons" *ngIf="cancelItemCategoryIcon" (click)="cancelItemCategory()">cancel</i>
+                    </div>
+                </div>
+            </td>
+
+            <td>
+                <span>Item Sub-Category </span>
+                <input type="text" *ngIf="subCategoryInput" class="form-control" value="{{itemSubCategory}}" disabled>
+                <select class="form-control" *ngIf="subCategorySelect" #subCategoryKey (change)="selectedItemEditSubCategory(subCategoryKey)">
+						<option disabled="" selected="">Select Any Sub-category</option>
+		    			<option value="T-Shirt" *ngIf="topCategoryStatus">T-Shirt</option>
+		    			<option value="Shirt" *ngIf="topCategoryStatus">Shirt</option>
+		    			<option value="Jacket" *ngIf="topCategoryStatus">Jacket</option>
+
+		    			<option value="Shorts" *ngIf="bottomsCategoryStatus">Shorts</option>
+		    			<option value="Trousers" *ngIf="bottomsCategoryStatus">Trousers</option>
+		    			<option value="Leggings" *ngIf="menGroupStatus && bottomsCategoryStatus">Leggings</option>
+
+		    			<option value="Shoes" *ngIf="shoesCategoryStatus">Shoes</option>
+		    			<option value="Shoes Accessories" *ngIf="shoesCategoryStatus">Shoes Accessories</option>
+		    			<option value="Skirts" *ngIf="womenGroupStatus && bottomsCategoryStatus">Skirts</option>
+
+		    		</select>
+
+                <span class="errorMessage" *ngIf="itemSubCategoryError">
+						Please enter Item Sub-Category!
+					</span>
+                <span class="errorMessage" *ngIf="itemSubCategorySaveError">
+						Please save Item Sub-Category!
+					</span>
+            </td>
+
+            <td>
+                <i class="material-icons editIcons" *ngIf="editItemSubCategoryIcon" (click)="editItemSubCategory()">
+					create</i>
+
+                <div class="row" style="width:125px">
+                    <div class="col-lg-6">
+                        <i class="material-icons editIcons" *ngIf="saveItemSubCategoryIcon" (click)="saveItemSubCategory()">
+							done</i>
+                    </div>
+                    <div class="col-lg-6">
+                        <i class="material-icons editIcons" *ngIf="cancelItemSubCategoryIcon" (click)="cancelItemSubCategory()">cancel</i>
+                    </div>
+                </div>
+            </td>
+        </tr>
+
+        <br>
+
+        <tr>
+
+            <td>
+                <span>Item Nature</span>
+                <input type="text" *ngIf="natureInput" class="form-control" value="{{itemNature}}" disabled>
+
+                <select class="form-control" *ngIf="natureSelect" #natureKey (change)="selectedItemEditNature(natureKey)">
+						<option disabled="" value="Select Any Nature">Select Any Nature</option>
+		    			<option value="Long-Sleeved T-Shirt" *ngIf="tShirtSubCategoryStatus"> Long-Sleeved T-Shirt</option>
+		    			<option value="Short-Sleeved T-Shirt" *ngIf="tShirtSubCategoryStatus"> Short-Sleeved T-Shirt</option>
+		    			<option value="Long-Sleeved Polo Shirt" *ngIf="shirtSubCategoryStatus">Long-Sleeved Polo Shirt</option>
+		    			<option value="Short-Sleeved Polo Shirt" *ngIf="shirtSubCategoryStatus">Short-Sleeved Polo Shirt</option>
+		    			<option value="Down Jacket" *ngIf="jacketSubCategoryStatus">Down Jacket</option>
+		    			<option value="Jacket" *ngIf="jacketSubCategoryStatus">Jacket</option>
+		    			<option value="Bermuda Shorts" *ngIf="shortsSubCategoryStatus">Bermuda Shorts</option>
+		    			<option value="Board Shorts" *ngIf="shortsSubCategoryStatus">Board Shorts</option>
+		    			<option value="Breeches" *ngIf="trousersSubCategoryStatus">Breeches</option>
+		    			<option value="Overtrousers" *ngIf="trousersSubCategoryStatus">Overtrousers</option>
+
+						<option value="Padded Cycling Shorts" *ngIf="leggingsSubCategoryStatus">Padded Cycling Shorts</option>
+		    			<option value="Running Shorts" *ngIf="leggingsSubCategoryStatus"> Running Shorts</option>
+		    			<option value="Shoes" *ngIf="shoesSubCategoryStatus">Shoes</option>
+		    			<option value="Slippers" *ngIf="shoesSubCategoryStatus">Slippers</option>
+						<option value="Insoles" *ngIf="shoeAccSubCategoryStatus">Insoles</option>
+		    			<option value="Laces" *ngIf="shoeAccSubCategoryStatus">Laces</option>
+		    			<option value="Crop Top" *ngIf="tShirtSubCategoryStatus && womenGroupStatus">Crop Top</option>
+		    			<option value="Trousers" *ngIf="nTrousersStatus">Trousers</option>
+		    			<option value="Skirt" *ngIf="skirtSubCategoryStatus">Skirt</option>
+		    			<option value="Skort" *ngIf="skirtSubCategoryStatus">Skort</option>
+		    		</select>
+                <span class="errorMessage" *ngIf="itemNatureError">
+						Please enter Item Nature!
+					</span>
+                <span class="errorMessage" *ngIf="itemNatureSaveError">
+						Please save Item Nature!
+					</span>
+            </td>
+
+            <td>
+                <i class="material-icons editIcons" *ngIf="editItemNatureIcon" (click)="editItemNature()">create</i>
+
+                <div class="row" style="width:125px">
+                    <div class="col-lg-6">
+                        <i class="material-icons editIcons" *ngIf="saveItemNatureIcon" (click)="saveItemNature()">done</i>
+                    </div>
+                    <div class="col-lg-6">
+                        <i class="material-icons editIcons" *ngIf="cancelItemNatureIcon" (click)="cancelItemNature()">cancel</i>
+                    </div>
+                </div>
+            </td>
+
+            <td>
+                <span>Item Tax</span>
+                <input id="itemTaxInput" class="form-control" type="number" #itemTax value="{{itemtax}}">
+                <span class="errorMessage" *ngIf="itemTaxError">
+						Please enter Item Tax
+					</span>
+                <span class="errorMessage" *ngIf="itemTaxExceededError">
+						Item tax should be below 100
+					</span>
+            </td>
+
+            <td>
+                <i class="material-icons editIcons" *ngIf="editItemTaxIcon" (click)="editItemTax(itemTax)">create</i>
+
+                <div class="row" style="width:125px">
+                    <div class="col-lg-6">
+                        <i class="material-icons editIcons" *ngIf="saveItemTaxIcon" (click)="saveItemTax(itemTax)">done</i>
+                    </div>
+                    <div class="col-lg-6">
+                        <i class="material-icons editIcons" *ngIf="cancelItemTaxIcon" (click)="cancelItemTax(itemTax)">cancel</i>
+                    </div>
+                </div>
+            </td>
+
+            <td>
+                <button id="editImagesButton" (click)="editImagesOverlayAction('open')">Edit Images</button>
+            </td>
+
+            <td></td>
+            <td></td>
+
+            <!-- <td align="center" *ngFor="let images of imageArray;let ind=index">
+					<span style="color: #fff">Item Color</span>
+					<input type="text" #inputColor id="colorsInput" class="form-control" value="{{images.color}}">
+					<select class="form-control" #selectColor id="colorsSelect" (change)="selectedItemEditColor(itemColor )" style="border-radius:0px">
+						<option disabled="" selected="">{{images.color}}</option>
+	    				<option *ngFor="let color of colorList" value="{{color}}">{{color}}</option>
+	    				
+    				</select>
+
+				</td>
+				<td width="30px">
+					<span>&nbsp;&nbsp;</span>
+					<i class="material-icons" #editColor id="editColor" style="color:#fff" (click)="editItemColor(editColor,saveColor,cancelColor,inputColor,selectColor) ">create</i>
+
+					<i class="material-icons" #saveColor id="saveColor" (click)="saveItemColor(itemColor)" style="color:#fff">done</i>
+				</td>
+				<td><i class="material-icons" #cancelColor id="cancelItemColor" (click)="cancelItemColor(itemColor) ">cancel</i></td> -->
+        </tr>
+
+    </table>
+
+</div>
+
+<div id="editImagesOverlay" class="overlay" style="z-index:999">
+    <a id="closebtn" class="closebtn" (click)="editImagesOverlayAction('close')" style="z-index: 99999999999">&times;</a>
+    <div class="overlay-content">
+        <div class="container">
+            <edit-images [item]="itemdt"></edit-images>
+        </div>
+    </div>
+</div>

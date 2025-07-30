@@ -1,0 +1,72 @@
+
+<div class="main-bg">
+	
+	<i class="material-icons md-48 close-button" (click)="backToQlezWelcome()">close</i>
+	<div class="row">
+		<div align="center" id="loginDiv">
+			<h2 id="SMMHeadingStyle">{{loginType}} Login Using Security Key</h2>
+			<table>
+				<tr>
+					<td class="iconTd">
+						<i class="material-icons iconStyle">face</i>
+					</td>
+					<td>
+						<div class="group">      
+					      <input type="text" required #username>
+					      <span class="highlight"></span>
+					      <span class="bar"></span>
+					      <label>user-name</label>
+					    </div>				    
+					</td>
+				</tr>
+				<br><br><br>	
+				<tr>
+					<td class="iconTd">
+						<i class="material-icons iconStyle">lock</i>
+					</td>
+					<td>
+						<div class="group">      
+					      <input type="text" required #keycode>
+					      <span class="highlight"></span>
+					      <span class="bar"></span>
+					      <label>Keycode</label>
+					    </div>
+					</td>
+				</tr>
+				
+			</table>
+			<br>
+			<br>
+			<button id="outer-button-ring" class="btn waves-effect 
+			waves-teal" (click)="loginValidation(username,keycode)">
+				<p id="inner-button-ring">login</p>
+			</button>
+		</div>
+		<div align="center" id="loaderDiv" style="margin-top: -5.8%;">
+			<div class="loader"></div>	
+		</div>
+		<br><br>
+		<div class="container">
+			<div class="row" id="loginFailedMessage">
+				<div class="col-lg-4"></div>
+				<div class="col-lg-4">
+					<div class="alert alert-danger" align="
+					center">
+					    <strong>Login Failed!</strong> Please retry! 
+					</div>		
+				</div>
+				<div class="col-lg-4"></div>
+			</div>
+			<div class="row" id="credentialMissingMessage">
+				<div class="col-lg-4"></div>
+				<div class="col-lg-4">
+					<div class="alert alert-danger" align="
+					center">
+					    Please Enter the credentials before submit! 
+					</div>		
+				</div>
+				<div class="col-lg-4"></div>
+			</div>
+		</div>
+	</div>
+</div>

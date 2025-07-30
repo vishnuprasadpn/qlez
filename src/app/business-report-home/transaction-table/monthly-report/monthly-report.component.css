@@ -1,0 +1,424 @@
+#cancelImageLink,#cancelCustomerName,#cancelCustomerEmail,#cancelCustomerPContact,#cancelCustomerSContact,#cancelCustomerSContact,#cancelCustomerAddress{display: none;}
+#searchNewCustomer,#viewTransactionsButton,#withDrawCashButton,#addQlezCashButton{width:200px;}
+.material-icons{font-size: 40px;}
+.detailSearchLabel{font-size: 19px;}
+#searchLabel{font-size: 23px;color: #fff;padding: 5px}
+#searchSelect{border-radius:0px;font-size: 20px;padding: 12px;height: 52px;}
+.searchActionButtons{height: 50px;font-size: 23px;background: #0072BB}
+::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+  font-size: 22px!important;
+}
+::-moz-placeholder { /* Firefox 19+ */
+  font-size: 20px!important;
+}
+:-ms-input-placeholder { /* IE 10+ */
+  font-size: 20px!important;
+}
+:-moz-placeholder { /* Firefox 18- */
+  font-size: 20px!important;
+}
+.loader {
+  border: 16px solid #f3f3f3;
+  border-radius: 50%;
+  border-top: 16px solid #105480;
+  border-bottom: 16px solid #105480;
+  width: 120px;
+  height: 120px;
+  -webkit-animation: spin 2s linear infinite;
+  animation: spin 2s linear infinite;
+}
+#customerFullDt{display: none;}
+@-webkit-keyframes spin {
+  0% { -webkit-transform: rotate(0deg); }
+  100% { -webkit-transform: rotate(360deg); }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+#loadIconContainer{display: none}
+.customerDetailText{font-size: 28px;margin:0px;}
+#saveCustomerMail{display: none!important}
+#editCustNameDiv,#saveCustomerName,#customerEmailInput,#customerPContactInput,#saveCustomerPContact,#saveCustomerSContact,#customerSContactInput,#customerAddressInput,#saveCustomerAddress,#customerAddressInput,#changeImageInput,#saveCustomerEmail{display: none;}
+#addQlezCashButton,#withDrawCashButton,#searchNewCustomer,#viewTransactionsButton{background: #0072BB;width: 285px;
+    height: 60px;
+    font-size: 20px;}
+#scanDiv,#detailSearchDiv,#pinErrorMessage,#rechargeErrorMessage{display: none;z-index: 9999999}
+#lNameErrorMessage,#contactErrorMessage,#dateSearchErrorMessage,#fNameSearchErrorMessage,#validateSearchfNameMessage{font-size: 16px;position: absolute;color:#fff;display: none;}
+#wrongDetailsMessage{font-size: 16px;color:#fff;display: none;}
+#fNameSearchErrorMessage,#validateSearchfNameMessage{display:none;}
+.content{overflow-y: scroll;}
+.content::-webkit-scrollbar {display: none;}
+#tableContent{height:420px;overflow:auto;}
+.transactionHeadStyle{text-align: center}
+#coinUpdateSuccessMessage{display: none;background: green;padding:10px;color: #fff}
+#amount{font-family: 20px}
+#noCustomerIDFound,#notRegisteredCustomer,#noIDFound,#noCustomerFound,#amountErrorMessage,#wrongPinMessage{display:none;background: red;color: #fff;}
+#rechargeButton,#withDrawButton{background: #0072BB;}
+.main-bg{background: #282828;position: absolute;bottom: 0;top: 0;right: 0;left:0;}
+.profileIcon{color:#fff;float: right;}
+.home-button{color:#fff;float: left;cursor: pointer}
+#usernameStyle{color: #fff;font-size: 29px;text-align: right;padding: 10px;}
+#SDHeadingStyle{color:#fff;line-height: 0.4;font-weight: 600}
+.iconTd{background: #00BFF5;color: #fff;padding: 0px 10px;}
+.bookmarkIcon{padding-top: 2px}
+.labelTdStyle{    background: #00BFF5;color: #fff;padding: 6px;}
+.editIcon{color:#fff!important;font-size: 28px!important;padding:0px 10px!important;}
+.row{margin:0px;}
+
+#headerStyle{padding: 10px;background: #0072BB}
+.iconStyle{padding-top: 4px;}
+#forgotPasswordStyle{color: #fff;font-size: 12px;padding: 5px;}
+#outer-button-ring{display: inline-block;background: #0071BB;color: #fff;padding: 21px 20px;border-radius: 54px;}
+#inner-button-ring{background: #00BFF2;padding: 16px 13px;border-radius: 27px;margin:0px;font-weight: 700}
+.SSAHeading{padding: 16px 5px!important;}
+.coloumnHeadStyle{    background: #363636;
+    color: #eee;padding: 13px 3px;}
+.coloumnValueStyle{background: #fff;padding: 5px;}
+.productColoumnValueStyle{    text-align: center;
+    font-size: 27px;
+    font-weight: 600;}
+.productColoumnHeadStyle{    text-align: center;}
+#searchLabelStyle{background: #fff;
+    border-radius: 50px;
+    padding: 3px 7px;
+    display: inline-block;
+    padding-top: 6px;
+    padding-bottom: 1px;
+  margin: 0px 22px;}
+#scanButtonStyle{background: #0072BB!important;color:#fff!important;}
+#scanIDButtonStyle{width: 400px;height: 52px;font-size: 23px;background: #0072BB!important;color:#fff!important;}
+.homeButtonTextStyles{color: #fff;padding: 7px;font-size: 16px;}
+.outer {display: table;position: absolute;height: 85%;width: 100%;}
+
+.middle {display: table-cell;vertical-align: middle;}
+button{
+    background:#0072BB;
+}
+.close-button{color:#05BBF1;float: right;padding:15px;cursor: pointer;}
+.close-button:hover{color: #fff}
+.inner {
+    margin-left: auto;
+    margin-right: auto; 
+    width: /*whatever width you want*/;
+}
+table{
+  width: 100%;
+}
+
+/* th,td {
+  width: 200px;
+  font-size: 18px;
+} */
+/*
+When creating your CSS selector,
+change "brown" to something of your choosing
+*/
+.waves-effect.waves-brown .waves-ripple {
+ /* The alpha value allows the text and background color
+ of the button to still show through. */
+  background-color: rgba(121, 85, 72, 0.65);
+}
+              
+/* form starting stylings ------------------------------- */
+.group        { 
+  position:relative; 
+}
+input{
+    font-size: 20px;
+    padding: 4px 10px 4px 5px;
+    display: block;
+    width: 326px;
+    border: none;
+    height: 40px;
+    color: #000;
+}
+button{
+  line-height: 40px;
+  font-size: 20px;
+}
+input:focus     { outline:none; }
+
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+  -webkit-appearance: none; 
+  margin: 0; 
+}
+
+input[type=date]::-webkit-inner-spin-button, 
+input[type=date]::-webkit-outer-spin-button { 
+  -webkit-appearance: none; 
+  margin: 0; 
+}
+/* LABEL ======================================= */
+label          {
+  color:#999; 
+  font-size:20px;;
+  font-weight:normal;
+  position:absolute;
+  pointer-events:none;
+  left:36px;
+  top:5px;
+  transition:0.2s ease all; 
+  -moz-transition:0.2s ease all; 
+  -webkit-transition:0.2s ease all;
+}
+
+/* active state */
+input:focus ~ label, input:valid ~ label    {
+  top:-20px;
+  font-size:16px;
+  color:#fff;
+}
+
+/* BOTTOM BARS ================================= */
+.bar  { position:relative; display:none; width:300px; }
+.bar:before, .bar:after   {
+  content:'';
+  height:2px; 
+  width:0;
+  bottom:1px; 
+  position:absolute;
+  background:#5264AE; 
+  transition:0.2s ease all; 
+  -moz-transition:0.2s ease all; 
+  -webkit-transition:0.2s ease all;
+}
+.bar:before {
+  left:50%;
+}
+.bar:after {
+  right:50%; 
+}
+
+/* active state */
+input:focus ~ .bar:before, input:focus ~ .bar:after {
+  width:50%;
+}
+body{
+  font-size: 20px;
+}
+/* HIGHLIGHTER ================================== */
+.highlight {
+  position:absolute;
+  height:60%; 
+  width:100px; 
+  top:25%; 
+  left:0;
+  pointer-events:none;
+  opacity:0.5;
+}
+
+/* active state */
+input:focus ~ .highlight {
+  -webkit-animation:inputHighlighter 0.3s ease;
+  -moz-animation:inputHighlighter 0.3s ease;
+  animation:inputHighlighter 0.3s ease;
+}
+
+/* ANIMATIONS ================ */
+@-webkit-keyframes inputHighlighter {
+  from { background:#5264AE; }
+  to  { width:0; background:transparent; }
+}
+@-moz-keyframes inputHighlighter {
+  from { background:#5264AE; }
+  to  { width:0; background:transparent; }
+}
+@keyframes inputHighlighter {
+  from { background:#5264AE; }
+  to  { width:0; background:transparent; }
+}
+
+/* Material style */
+button {
+  border: none;
+  cursor: pointer;
+  color: white;
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, .4);
+}
+
+/* Ripple magic */
+button{
+  position: relative;
+  overflow: hidden;
+}
+
+button:after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 5px;
+  height: 5px;
+  background: rgba(255, 255, 255, .5);
+  opacity: 0;
+  border-radius: 100%;
+  transform: scale(1, 1) translate(-50%);
+  transform-origin: 50% 50%;
+}
+
+@keyframes ripple {
+  0% {
+    transform: scale(0, 0);
+    opacity: 1;
+    border-radius: 43px;
+
+  }
+  20% {
+    transform: scale(25, 25);
+    opacity: 1;
+    border-radius: 43px;
+
+  }
+  100% {
+    opacity: 0;
+    transform: scale(40, 40);
+    border-radius: 43px;
+
+  }
+}
+
+button:focus:not(:active)::after {
+  animation: ripple 1s ease-out;
+}
+
+
+.overlay {
+    height: 0%;
+    width: 100%;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: rgb(0,0,0);
+    background-color: rgba(0,0,0, 0.9);
+    overflow-y: hidden;
+    transition: 0.5s;
+}
+
+.overlay-content {
+    position: relative;
+    top: 5%;
+    width: 100%;
+    text-align: center;
+    margin-top: 30px;
+}
+
+.overlay a {
+    padding: 8px;
+    text-decoration: none;
+    font-size: 36px;
+    color: #818181;
+    display: block;
+    transition: 0.3s;
+    cursor: pointer;
+}
+
+.overlay a:hover, .overlay a:focus {
+    color: #f1f1f1;
+}
+
+.overlay .closebtn {
+    position: absolute;
+    top: 20px;
+    right: 45px;
+    font-size: 60px;
+}
+
+@media screen and (max-height: 450px) {
+  .overlay {overflow-y: auto;}
+  .overlay a {font-size: 20px}
+  .overlay .closebtn {
+    font-size: 40px;
+    top: 15px;
+    right: 35px;
+  }
+}
+
+.animate-bottom {
+  position: relative;
+  -webkit-animation-name: animatebottom;
+  -webkit-animation-duration: 1s;
+  animation-name: animatebottom;
+  animation-duration: 1s
+}
+
+@-webkit-keyframes animatebottom {
+  from { bottom:-120px; opacity:0 } 
+  to { bottom:0px; opacity:1 }
+}
+
+@keyframes animatebottom { 
+  from{ bottom:-120px; opacity:0 } 
+  to{ bottom:0px; opacity:1 }
+}
+p {
+    margin: 5px 0 0px;
+}
+svg {
+  position: fixed;
+    top: 65%;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+}
+svg circle {
+  fill: #76daff;
+}
+.text{
+  font-size: 20px;
+}
+.close{color:#05BBF1;float: right;padding:5px;cursor: pointer;}
+.close{color: #fff}
+#wrongDetailsMessage{width: 50%;background:red!important;color:#fff;display: none;}
+
+#successMessageSave{width: 50%;background: green;color: #fff;display: none;}
+
+#messageContainer{position: absolute;left: 0px;right: 0px;bottom: 200px;}
+
+.animate-bottom {
+  position: relative;
+  -webkit-animation-name: animatebottom;
+  -webkit-animation-duration: 1s;
+  animation-name: animatebottom;
+  animation-duration: 1s
+}
+
+@-webkit-keyframes animatebottom {
+  from { bottom:-200px; opacity:0 } 
+  to { bottom:0px; opacity:1 }
+}
+
+@keyframes animatebottom { 
+  from{ bottom:-200px; opacity:0 } 
+  to{ bottom:0px; opacity:1 }
+}
+ th{
+  width: 165px;
+    text-align: center;
+}
+td{
+   width: 160px;
+   text-align: center;
+}
+
+#tableContent{height:398px;overflow:auto;}
+
+svg {
+  position: fixed;
+    top: 60%;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+}
+svg circle {
+  fill: #76daff;
+}
+.white{
+  color: white;
+}

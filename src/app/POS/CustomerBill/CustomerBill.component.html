@@ -1,0 +1,645 @@
+<table class="table">
+    <tr>
+        <td width="75%">
+            <div align="center" style="padding:20px">
+                <img src="https://s3-us-west-2.amazonaws.com/qlezboothimages/Qulez.png" width="150px" />
+            </div>
+
+            <div class="row" id="productDetailContainer">
+                <div class="table-responsive" id="itemListContainer">
+                    <table class="table content">
+                        <thead id="itemHeaderLabels">
+                            <tr>
+                                <th>Wrap</th>
+                                <th>Sl</th>
+                                <th>Name</th>
+                                <th>Color</th>
+                                <th>Size</th>
+                                <th>MRP</th>
+                                <th>Quantity</th>
+                                <th>Discount</th>
+                                <th>Total Cost</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let item of billItems;let sl = index;" class="itemList">
+                                <td>
+                                    <mat-checkbox #checkBox value="start" (click)="addWrapper(checkBox)" class="wrapperCheckBox" id="{{sl+1}}"></mat-checkbox>
+                                </td>
+                                <td>{{sl+1}}</td>
+                                <td>{{item.itemName}}</td>
+                                <td>{{item.itemColor}}</td>
+                                <td>{{item.itemSize}}</td>
+                                <td>{{item.itemMRP}}</td>
+                                <td>{{item.quantity}}</td>
+                                <td>{{item.discount}}</td>
+                                <td style="color:#6bb66f">{{item.totAmount}}</td>
+
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </td>
+        <td style="padding: 30px 20px">
+            <div id="amountDetails">
+                <table class="table" id="customerDtTable">
+                    <tr>
+                        <td style="padding-top: 11%;padding-bottom: 11%;">
+                            <img src="{{customerImage}}" height="100px" width="100px" id="customerImageV">
+                        </td>
+                        <td style="padding-top: 11%;text-align:left">
+                            <b style="font-size: 23px;">{{customerName}}</b>
+                            <br>
+                            <br>
+                            <i class="fa fa-mobile" aria-hidden="true" style="font-size: 24px;"></i>
+                            <b style="font-size: 21px;"> &nbsp;{{customerContact}}</b>
+                        </td>
+                    </tr>
+                </table>
+                <table class="table" id="amountList">
+                    <br>
+                    <tr>
+                        <td class="priceLabel">
+                            <b>Bill Amount</b>
+                        </td>
+                        <td><b>: </b></td>
+                        <td style="text-align:left;">
+                            <b>{{initialBillAmount}}</b>
+                        </td>
+                    </tr>
+                    <tr *ngIf="carryBagCost!=0">
+                        <td class="priceLabel">
+                            Carry Bag Cost
+                        </td>
+                        <td><b>: </b></td>
+                        <td style="text-align:left;">
+                            {{carryBagCost}}
+                        </td>
+                    </tr>
+                    <tr *ngIf="wrapperCost!=0">
+                        <td class="priceLabel">
+                            Wrapper Cost
+                        </td>
+                        <td><b>: </b></td>
+                        <td style="text-align:left;">
+                            {{wrapperCost}}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="priceLabel">
+                            Reward Redeemed
+                        </td>
+                        <td><b>: </b></td>
+                        <td style="text-align: left;">
+                            <b style="color:black">
+                                <span *ngIf="usedRewardPoints!='0'"> - </span>{{usedRewardPoints}}
+                            </b>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="priceLabel">
+                            Qlez Coin Redeemed
+                        </td>
+                        <td><b>: </b></td>
+                        <td style="text-align: left;">
+                            <b style="color:black">
+                                <span *ngIf="usedRewardPoints!='0'"> - </span>{{usedQlezCashCoin}}
+                            </b>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="priceLabel">General Offer Discount</td>
+                        <td><b> : </b></td>
+                        <td style="text-align: left;">
+                            <b style="color:black">{{generalOfferDiscount}}</b>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="priceLabel">
+                            <b style="font-size:22px;">Payable Amount</b>
+                        </td>
+                        <td><b>: </b></td>
+                        <td style="text-align: left;">
+                            <b style="color:black;font-size:23px;font-weight:700;border-bottom: 1px solid black; border-top: 1px solid;">₹ {{totalBillAmount}}</b>
+                        </td>
+                    </tr>
+                </table>
+
+                <div id="UseQlezCoinDiv" style="background: white;">
+                    <table class="table" style="-webkit-box-shadow: 0px 7px 5px -3px rgba(0,0,0,0.75);-moz-box-shadow: 0px 7px 5px -3px rgba(0,0,0,0.75);box-shadow: 0px 7px 5px -3px rgba(0,0,0,0.75);">
+                        <tr>
+                            <td style="text-align: left">
+                                <br>
+                                <p><b style="font-size:23px;">Use Qlez Cash Coins</b></p>
+                                <p style="font-size: 20px;font-weight: 700;">
+                                    <span style="color:black">Balance : </span>
+                                    <span style="color:black">{{balanceCashDeposit}} Coins</span>
+                                </p>
+
+                                <p id="notRequiredMessage">Not Required to Apply</p>
+
+                            </td>
+
+                            <td width="35%">
+
+                                <br><br>
+
+                                <div class="selectorDiv" id="Div" (click)="isChecked = !isChecked;applyQlezCashCoin(qlezCoin)"><i style="color:white;    font-size: 39px;" *ngIf="checked" class="fa fa-check" aria-hidden="true"></i></div>
+
+                                <mat-checkbox #qlezCoin (click)="applyQlezCashCoin(qlezCoin)" [(ngModel)]="isChecked" style="display:none"></mat-checkbox>
+
+                            </td>
+
+                        </tr>
+
+                    </table>
+
+                </div>
+
+                <table class="table" style="background: #fff">
+
+                    <tr>
+
+                        <td style="padding: 30px;">
+                            <br>
+                            <div class="option-tab grow" id="pay-option-tab" (click)="systemPayment()">
+                                <table width="100%">
+                                    <tr>
+                                        <td>
+                                            <p class="option-tab-text">PAY HERE</p>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+
+
+                            <br><br>
+
+                            <div class="option-tab grow" id="pay-option-tab" (click)="sendPaymentLinkToCustomer()">
+                                <table width="100%">
+                                    <tr>
+                                        <td>
+                                            <p class="option-tab-text">PAY THROUGH MOBILE</p>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+
+                        </td>
+
+                    </tr>
+
+                </table>
+
+            </div>
+        </td>
+    </tr>
+</table>
+
+<!-- <input id="testInput" type="text" name="" value="" style="visibility: hidden;"> -->
+
+<div id="billFooter">
+
+    <div class="row">
+
+        <div class="col-lg-5">
+
+            <table>
+
+                <tr>
+
+                    <td width="50%">
+                        <div class="option-tab grow" id="cancelPurchase-option-tab" (click)="cancelPurchase()">
+                            <table width="100%">
+                                <tr>
+                                    <td>
+                                        <p class="option-tab-text">CANCEL PURCHASE</p>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </td>
+
+                    <td>&nbsp;&nbsp;&nbsp;</td>
+
+                    <td>
+                        <div class="option-tab grow reCalculate-option-tab" (click)="reCalculateBill()">
+                            <table width="100%">
+                                <tr>
+                                    <td>
+                                        <p class="option-tab-text">RECALCULATE</p>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </td>
+
+                </tr>
+
+            </table>
+
+        </div>
+
+        <div class="col-lg-3">
+
+            <p style="    color: #fff;
+            font-size: 26px;font-weight: 600">GIFT WRAPS COUNT : {{giftWrapCount}} <i class="fa fa-gift" aria-hidden="true" style="color:red"></i></p>
+
+        </div>
+
+        <div class="col-lg-4">
+
+            <table>
+
+                <tr>
+
+                    <td>
+
+                        <p style="font-size: 26px;color: #fff;font-weight: 600;padding: 0px 20px;">
+                            CARRY BAGS COUNT : {{carryBagCount}}</p>
+
+                    </td>
+
+                    <td>
+
+                        <div class="row">
+
+                            <div class="col-lg-6">
+
+                                <div>
+
+                                    <i class="material-icons" (click)="addCarryBag()" style="font-size:37px;color: #fff;">add_box</i>
+
+                                </div>
+
+                            </div>
+
+                            <div class="col-lg-6">
+
+                                <div>
+
+                                    <i class="material-icons" (click)="removeCarryBag()" style="font-size: 37px;color: #fff;">indeterminate_check_box</i>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </td>
+
+                </tr>
+
+            </table>
+
+        </div>
+
+    </div>
+
+</div>
+
+<div *ngIf="paymentLinkSendWait" class="pop-bg">
+    <table style="height: 100%;width: 100%;padding: 5%">
+        <tr>
+            <td style="width:100%">
+                <table>
+                    <tr>
+                        <td width="45%" *ngIf="QRCodeTD">
+                            <h1 style="font-weight: 700">SCAN FOR PAYMENT URL</h1>
+                            <br><br>
+                            <qr-code [value]="payurl" [size]="400"></qr-code>
+                        </td>
+                        <td align="center" width="40%">
+                            <table>
+                                <tr>
+                                    <td>
+                                        <h1 style="font-weight: 700">PAYMENT LINK HAS BEEN SEND TO CUSTOMER</h1>
+                                        <br><br>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <input class="inputField" id="payemntLinkContact" type="text" #customerPContact value="{{customerContact}}" (keyup)="validateContact(customerPContact)" (focusout)="validateContact(customerPContact)" style="width: 50%;text-align: center">
+                                        <br>
+                                        <span *ngIf="customerContactErrorMessage" class="warning-message">In-valid Contact Number</span >
+                                        <br><br>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="row">
+                                            <div class="col-lg-3"></div>
+                                            <div class="col-lg-6">
+                                                <div class="option-tab grow" id="product-option-tab" (click)="sendPaymentLinkToCustomer()">
+                                                    <table width="100%">
+                                                        <tr>
+                                                            <td>
+                                                                <p class="option-tab-text">RESEND URL</p>
+                                                            </td>
+                                                        </tr>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-3"></div>
+                                        </div>
+                                        <br><br>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <h2 style="font-weight: 700;line-height: 48px">PLEASE CONFIRM AFTER CHECKING WITH CUSTOMER PAYMENT COMPLETION</h2>
+                                        <br><br>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <table class="table" align="center">
+                                            <tr>
+                                                <td width="50%" align="center">
+                                                    <div class="option-tab grow" id="product-option-tab" (click)="confirmCompletedTransaction()">
+                                                        <table width="100%">
+                                                            <tr>
+                                                                <td>
+                                                                    <p class="option-tab-text">CONFIRM</p>
+                                                                </td>
+                                                            </tr>
+                                                        </table>
+                                                    </div>
+                                                </td>
+                                                <td width="50%" align="center">
+                                                    <div class="option-tab grow" id="product-option-tab" (click)="cancelTransaction()">
+                                                        <table width="100%">
+                                                            <tr>
+                                                                <td>
+                                                                    <p class="option-tab-text">CANCEL</p>
+                                                                </td>
+                                                            </tr>
+                                                        </table>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                </tr>
+                            </table>
+                            <br><br>
+                            
+                        </td>
+                        <td width="10%"></td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+</div>
+
+<div *ngIf="recalculateConfirmDialog" class="pop-bg">
+
+    <table style="height: 100%;width: 100%">
+        <tr>
+            <td style="width:100%">
+                <h1 style="font-weight: 700;">IF PLEASE REMOVE UNWANTED PRODUCTS BEFORE RECALCULATE</h1>
+                <br><br>
+                <table class="table" align="center">
+                    <tr>
+                        <td width="50%" align="center">
+                            <div class="option-tab grow" id="product-option-tab" (click)="confirmRecalculate()" style="width:50%;float: right;">
+                                <table width="100%">
+                                    <tr>
+                                        <td>
+                                            <p class="option-tab-text">PROCEED WITH RE-CALCULATE</p>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </td>
+                        <td width="50%" align="center">
+                            <div class="option-tab grow" id="product-option-tab" (click)="cancelRecalculate()" style="width:50%">
+                                <table width="100%">
+                                    <tr>
+                                        <td>
+                                            <p class="option-tab-text">CANCEL RE-CALCULATE</p>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+                <br><br><br><br><br>
+            </td>
+        </tr>
+    </table>
+
+</div>
+
+<div *ngIf="recalculateProgress" class="pop-bg">
+
+    <table style="height: 100%;width: 100%">
+        <tr>
+            <td style="width:100%">
+                <h1 style="font-weight: 700;">Your Bill is Being Re-calculated</h1>
+
+                <br><br>
+
+                <p class="faa-flash animated" style="font-size: 25px;">Please wait</p>
+
+                <br><br>
+
+                <svg width="70" height="20">
+            
+                        <circle cx="10" cy="10" r="0">
+            
+                            <animate attributeName="r" from="0" to="10" values="0;10;10;10;0" dur="1000ms" repeatCount="indefinite" />
+            
+                        </circle>
+            
+                        <circle cx="35" cy="10" r="0">
+            
+                            <animate attributeName="r" from="0" to="10" values="0;10;10;10;0" begin="200ms" dur="1000ms" repeatCount="indefinite" />
+            
+                        </circle>
+            
+                        <circle cx="60" cy="10" r="0">
+            
+                            <animate attributeName="r" from="0" to="10" values="0;10;10;10;0" begin="400ms" dur="1000ms" repeatCount="indefinite" />
+            
+                        </circle>
+            
+                    </svg>
+                <br><br><br>
+            </td>
+        </tr>
+    </table>
+
+</div>
+
+
+<div *ngIf="purchaseCancelled" class="pop-bg" style="background: #fff">
+
+    <table style="height: 100%;width: 100%">
+        <tr>
+            <td style="width:100%">
+                <h1 style="font-weight: 700;">YOUR PURCHASE WAS CANCELLED.</h1>
+                <br><br>
+
+                <h1 style="font-weight: 700;">YOU ARE ALWAYS WELCOME FOR PURCHASING WITH US.</h1>
+                <br><br>
+                <h2>Please Consult with the Store Management for any Concerns.</h2>
+                
+                <br><br><br><br><br><br>
+            </td>
+        </tr>
+    </table>
+</div>
+
+<div *ngIf="noItemsFound" class="pop-bg" style="background: #fff">
+
+    <table style="height: 100%;width: 100%">
+        <tr>
+            <td style="width:100%">
+                <h1 style="font-weight: 700">Sorry ! No Items were found for Billing</h1><br>
+
+                <h2>Please Retry or Cancel Purchase</h2>
+
+                <br><br>
+
+                <table class="table" align="center">
+                    <tr>
+                        <td width="50%" align="center">
+                            <div class="option-tab grow" id="product-option-tab" (click)="confirmRecalculate()" style="width:50%;float: right;">
+                                <table width="100%">
+                                    <tr>
+                                        <td>
+                                            <p class="option-tab-text">RE-CALCULATE AGAIN</p>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </td>
+                        <td width="50%" align="center">
+                            <div class="option-tab grow" id="product-option-tab" (click)="cancelPurchase()" style="width:50%">
+                                <table width="100%">
+                                    <tr>
+                                        <td>
+                                            <p class="option-tab-text">CANCEL PURCHASE</p>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+                <br><br><br><br><br><br>
+            </td>
+        </tr>
+    </table>
+</div>
+
+
+<div *ngIf="loadingProgress" class="pop-bg">
+
+    <table style="height: 100%;width: 100%">
+        <tr>
+            <td style="width:100%">
+
+                <h1 style="font-weight: 700;">Please wait while we update the data</h1>
+
+                <br><br>
+
+                <div align="center">
+
+                    <svg width="70" height="20" style="z-index: 99999">
+
+                            <circle cx="10" cy="10" r="0">
+
+                                <animate attributeName="r" from="0" to="10" values="0;10;10;10;0" dur="1000ms" repeatCount="indefinite" />
+
+                            </circle>
+
+                            <circle cx="35" cy="10" r="0">
+
+                                <animate attributeName="r" from="0" to="10" values="0;10;10;10;0" begin="200ms" dur="1000ms" repeatCount="indefinite" />
+
+                            </circle>
+
+                            <circle cx="60" cy="10" r="0">
+
+                                <animate attributeName="r" from="0" to="10" values="0;10;10;10;0" begin="400ms" dur="1000ms" repeatCount="indefinite" />
+
+                            </circle>
+
+                        </svg>
+
+                </div>
+                <br><br><br><br><br><br>
+
+            </td>
+        </tr>
+    </table>
+</div>
+
+<div *ngIf="paymentSuccess" class="pop-bg">
+    <table style="height: 100%;width: 100%">
+        <tr>
+            <td style="width:100%">
+                <h1 style="font-weight: 700">Congrats Your Payment Was Successful</h1>
+                <br><br>
+                <h2>Thank your for Shopping with us.Have a Good time</h2>
+                <br><br>
+            </td>
+        </tr>
+    </table>
+</div>
+
+<div *ngIf="edcActivated" class="pop-bg">
+    <table style="height: 100%;width: 100%">
+        <tr>
+            <td style="width:100%">
+                <h1 style="font-weight: 700">Please Complete your Payment through the EDC Terminal Attached</h1>
+                <br><br>
+                <h2>Please follow instructions on EDC</h2>
+                <h2>Please try again if you payment was not Successful</h2>
+                <br><br>
+                <table class="table" align="center">
+                    <tr>
+                        <td width="50%" align="center">
+                            <div class="option-tab grow" id="product-option-tab" (click)="systemPayment()" style="width:50%;float: right;">
+                                <table width="100%">
+                                    <tr>
+                                        <td>
+                                            <p class="option-tab-text">RETRY AGAIN</p>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </td>
+                        <td width="50%" align="center">
+                            <div class="option-tab grow" id="product-option-tab" (click)="cancelEDCPayment()" style="width:50%">
+                                <table width="100%">
+                                    <tr>
+                                        <td>
+                                            <p class="option-tab-text">CANCEL PROCESS</p>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+</div>
+
+<div *ngIf="connectionError" class="pop-bg">
+    <table style="height: 100%;width: 100%">
+        <tr>
+            <td style="width:100%">
+                <h1 style="font-weight: 700">Sorry Something went wrong. Please Try Again</h1>
+                <br><br><br><br><br><br>
+            </td>
+        </tr>
+    </table>
+</div>

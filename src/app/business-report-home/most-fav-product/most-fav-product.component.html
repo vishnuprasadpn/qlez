@@ -1,0 +1,45 @@
+<header>
+</header>
+<i class="material-icons md-48 close-button" (click)="backToBRHome()">close</i>
+<br>
+<br>
+<div *ngIf="MFPTableStatus" id="tableContainer" class="container">
+    <table style="width:100%;margin-top:150px" id="tableHead" class="tableHeadings">
+        <tr>
+            <th class="coloumnHeadStyle ">Sl.no</th>
+            <!-- (click)="sort('item_code','IconUpDownitemCode')" -->
+            <th class="coloumnHeadStyle">
+                Item Code
+                <br>
+            </th>
+            <!-- (click)="sort('item_name','IconUpDownitemName')" -->
+            <th class="coloumnHeadStyle ">
+                Favourite hits
+                <br>
+            </th>
+
+            <tr id="loadTr" *ngFor="let product of MFPArray|orderBy:Otype:Oby;let itemIdx = index">
+                <td class="coloumnValueStyle ">{{itemIdx+1}}</td>
+                <td class="coloumnValueStyle ">{{product.item_code}}</td>
+                <td class="coloumnValueStyle ">{{product.count}}</td>
+
+
+            </tr>
+    </table>
+</div>
+
+
+<svg id="loaderDiv" width="70" height="20" *ngIf="loading">
+
+    <circle cx="10" cy="10" r="0">
+      <animate attributeName="r" from="0" to="10" values="0;10;10;10;0" dur="1000ms" repeatCount="indefinite" />
+    </circle>
+
+    <circle cx="35" cy="10" r="0">
+      <animate attributeName="r" from="0" to="10" values="0;10;10;10;0" begin="200ms" dur="1000ms" repeatCount="indefinite" />
+    </circle>
+
+    <circle cx="60" cy="10" r="0">
+      <animate attributeName="r" from="0" to="10" values="0;10;10;10;0" begin="400ms" dur="1000ms" repeatCount="indefinite" />
+    </circle>
+  </svg>

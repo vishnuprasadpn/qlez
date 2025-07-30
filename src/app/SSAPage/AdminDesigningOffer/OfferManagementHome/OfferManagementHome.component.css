@@ -1,0 +1,48 @@
+#SD-heading {
+    font-size: 47px;
+    font-weight: 700;
+}
+
+#sd-intro-td {
+    color: #fff;
+    padding: 5%;
+}
+
+#qlez_intro {
+    line-height: 38px;
+    font-size: 19px;
+    font-weight: 600;
+    text-align: justify;
+}
+
+.option-tab {
+    padding: 37px 24px;
+    border-radius: 100px;
+}
+
+.option-tab:hover {
+    cursor: pointer;
+}
+
+#item-option-tab {
+    background: #14A850;
+}
+
+#product-option-tab {
+    background: #F0582F
+}
+
+#goto-option-tab {
+    position: absolute;
+    top: 5%;
+    right: 3%;
+    padding: 8px 20px;
+    background: #a6a6a6;
+}
+
+.option-tab-text {
+    font-size: 25px;
+    color: #fff;
+    font-weight: 600;
+    text-align: center;
+}

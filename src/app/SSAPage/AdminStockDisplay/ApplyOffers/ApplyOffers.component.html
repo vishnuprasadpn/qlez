@@ -1,0 +1,75 @@
+<div class="container">
+	<table class="table">
+		<tr>
+			<td></td>
+			<td>
+				<select id="applyToAllSelector" class="form-control" #applyToAllOfferSelect style="color: #000;border-radius: 0px" (change)="selectOfferToApplyAll(applyToAllOfferSelect)">
+					<option selected="" value="Select any Offer">Select any Offer to Apply to All Below Items</option>
+					<option *ngFor="let offer of offers" value="{{offer.offer_code}}">
+						<table class="table" *ngIf="offer.offer_type=='Item Specific' || offer.offer_type=='Combo Offer'">
+							<tr>
+								<td width="50%">{{offer.offer_code}}</td>
+								<td width="50%">{{offer.offer_type}}</td>
+							</tr>
+						</table>
+					</option>
+				</select>
+			</td>
+			<td>
+				<button id="applyOfferSubmit" mat-raised-button (click)="applyOfferToAll(applyToAllOfferSelect)">Apply Offer to All</button>
+			</td>
+		</tr>
+	</table>
+	<table class="table table-bordered" style="color: #fff">
+		<tr>
+			<th>Item</th>
+			<th>Offers</th>
+		</tr>
+		<tr *ngFor="let itemOffer of offerItems;let itemNo = index" >
+			<td style="text-align: center;padding:16px">{{itemOffer.item_name}}</td>
+			<td>
+				<table style="background: none;margin:0px;width: 50%;" align="left" *ngFor="let off of itemOffer.offer_id;let offerNo = index">
+					<tr>
+						<td style="padding: 3px;" id="offerCode{{itemNo}}{{offerNo}}">
+							<input class="form-control" type="text" name="" value="{{off}}" #existingOffer style="border-radius: 0px" disabled="">
+						</td>
+						<td style="padding: 3px;">
+							<select id="offersSelect{{itemNo}}{{offerNo}}" class="form-control offerSelect" #offerSelect style="color: #000;border-radius: 0px" (change)="selectNewOffer(existingOffer,itemOffer,offerNo,offerSelect,offerSelectMessage,offersSelectItemMessage,offerSelectComboMessage,saveButton)">
+								<option selected="" value="Select any Offer" disabled>Select any Offer</option>
+								<option value="No Offer">No offer</option>
+								<option *ngFor="let offer of offers" value="{{offer.offer_code}}">
+									<table class="table" *ngIf="offer.offer_type!='General Offers'">
+										<tr>
+											<td width="50%">{{offer.offer_code}}</td>
+											<td width="50%">{{offer.offer_type}}</td>
+										</tr>
+									</table>
+								</option>
+							</select>
+							<span id="offersSelectMessage{{itemNo}}{{offerNo}}" class="offerSelectMessage" #offerSelectMessage>
+								Please Select Another Offer !
+							</span>
+							<span id="offersSelectItemMessage{{itemNo}}{{offerNo}}" class="offerSelectMessage" #offersSelectItemMessage>
+								Please Select A Item Specific Offer !
+							</span>
+							<span id="offerSelectComboMessage{{itemNo}}{{offerNo}}" class="offerSelectMessage" #offerSelectComboMessage>
+								Please Select A Combo Offer !
+							</span>
+						</td>
+						<td width="30px">
+							<i class="material-icons" id="editOffer{{itemNo}}{{offerNo}}" style="color:#fff" (click)="editOffer(itemNo,offerNo)">create</i>
+							<i class="material-icons" id="saveOffer{{itemNo}}{{offerNo}}" (click)="saveOffer(itemOffer,itemNo,offerNo)" #saveButton style="color:#fff;display: none" >done</i>
+						</td>
+						<td>&nbsp;&nbsp;</td>
+					</tr>
+				</table>
+			</td> 
+		</tr>
+	</table>
+	<div align="center">
+		<div class="alert animate-bottom" id="offerAddedMessage" style="background: green">
+	  		<strong>Offer Has Been Applied to All Items</strong>
+		</div>
+	</div>
+
+</div>

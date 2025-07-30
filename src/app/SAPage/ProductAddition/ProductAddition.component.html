@@ -1,0 +1,275 @@
+<div id="productEntryForm" #productEntryForm>
+    <h1 style="font-weight: 700; text-align:center">PRODUCT ENTRY FORM</h1>
+    <br><br>
+    <br>
+    <table class="table">
+        <tr>
+            <td width="50%">
+                <table class="table">
+                    <tr>
+                        <td>
+                            <input class="inputField" type="text" id="firstName" required #itemCode (focusout)="validateItemCode(itemCode)" (click)="resetValue()" placeholder="ENTER ITEM-CODE">
+
+                            <span *ngIf="itemcodeErrorMessage" class="warning-message">Please Enter Item Code.</span>
+
+                            <span *ngIf="wrongItemcodeMessage" class="warning-message">Not a valid Item Code.Please enter a valid Item Code to continue..</span>
+                            <br>
+
+                            <i *ngIf="spinRefreshIcon" class="fa fa-refresh fa-spin"></i>
+                            <a *ngIf="refreshText" (click)="refreshItemList(itemCode)" id="refreshText" class="animate-fade"> REFRESH LIST &nbsp;&nbsp;<i class="fa fa-refresh"></i>
+                        </a>
+                        </td>
+                    </tr>
+                    <br>
+                    <tr>
+                        <td>
+                            <select id="selectEColor" class="inputField" #productColor (change)="selectColor(productColor)">
+                                <option disabled="" autofocus selected="true" value="Select Color">Select Color</option>
+                                <option *ngFor="let color of colors" value="{{color}}">
+                                    {{color}}
+                                </option>
+                                <option value="addNewColor">Add New Color</option>
+                            </select>
+                            <br>
+
+                            <span *ngIf="selectNewColorLabel" class="warning-msg">Please select a New Color</span>
+
+                            <select id="newColorSelector" class="inputField" #allColor (change)="selectColor(allColor)">
+                                <option disabled="" autofocus selected="true" value="Select Color">Select Color</option>
+                                <option *ngFor="let acolor of allcolors" value="{{acolor}}">
+                                    {{acolor}}
+                                </option>
+                            </select>
+
+                            <span *ngIf="itemColorErrorMessage" class="warning-msg">Please Select a Color</span>
+                        </td>
+                    </tr>
+                    <br><br>
+                    <tr>
+                        <td>
+                            <select id="clothSizeSelector" class="inputField" #clothSize (change)="clothSizeSelected(clothSize)">
+                                <option disabled="" value="Select Size" selected="true" autofocus>Select Size</option>
+                                <option value="S">S</option>
+                                <option value="M">M</option>
+                                <option value="L">L</option>
+                                <option value="XL">XL</option>
+                                <option value="XXL">XXL</option>
+                            </select>
+
+                            <select id="shoeSizeSelector" class="inputField" #shoeSize style="border-radius: 0px;" (change)="shoeSizeSelected(shoeSize)">
+                                <option disabled="" value="Select Size" autofocus selected="true">Select Size</option>
+                                <option value="6">6</option>
+                                <option value="7">7</option>
+                                <option value="8">8</option>
+                                <option value="9">9</option>
+                                <option value="10">10</option>
+                            </select>
+
+                            <span *ngIf="sizeErrorMessage" class="warning-msg">Please Select a Size</span>
+                        </td>
+                    </tr>
+                    <br><br>
+                    <tr>
+                        <td>
+                            <input id="productExpiryInput" required="" type="date" class="inputField" #expiryDate (change)="validateDate(expiryDate)" />
+                            <span *ngIf="dateErrorMessage" class="warning-msg">Please enter a valid Expiry date</span>
+
+                            <div class="group">
+                                <span class="highlight"></span>
+                                <span class="bar"></span>
+                                <label>Expiry Date</label>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+            <td width="50%" align="center">
+                <div class="option-tab grow" id="product-option-tab" (click)="addProduct(itemCode,productColor,allColor,clothSize,shoeSize,expiryDate)">
+                    <table width="100%">
+                        <tr>
+                            <td>
+                                <p class="option-tab-text">SINGLE ENTRY</p>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+
+                <!-- <button id="singleEntryButton" mat-raised-button (click)="addProduct(itemCode,productColor,allColor,clothSize,shoeSize,expiryDate)">Single Entry</button> -->
+                <br><br><br>
+                <div class="option-tab grow" id="product-option-tab" (click)="bulkEntry()">
+                    <table width="100%">
+                        <tr>
+                            <td>
+                                <p class="option-tab-text">BULK ENTRY</p>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+
+                <!-- <button id="bulkEntryButton" mat-raised-button >Bulk Entry</button> -->
+                <br><br><br>
+
+                <div class="option-tab grow" id="product-option-tab" (click)="clearAll(itemCode,productColor,clothSize,shoeSize,expiryDate)">
+                    <table width="100%">
+                        <tr>
+                            <td>
+                                <p class="option-tab-text">RESET ENTRIES</p>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                <!-- <button id="scanButtonStyle" mat-raised-button (click)="clearAll(itemCode,productColor,clothSize,shoeSize,expiryDate)">Clear all</button> -->
+            </td>
+        </tr>
+    </table>
+
+</div>
+<div *ngIf="loadingProgress" class="animate-fade">
+
+    <h1 style="font-weight: 700">Please Wait While We Update Save your Item</h1>
+    <br><br><br>
+    <svg width="70" height="20">
+        <circle cx="10" cy="10" r="0">
+            <animate attributeName="r" from="0" to="10" values="0;10;10;10;0" dur="1000ms" repeatCount="indefinite" />
+        </circle>
+
+        <circle cx="35" cy="10" r="0">
+            <animate attributeName="r" from="0" to="10" values="0;10;10;10;0" begin="200ms" dur="1000ms" repeatCount="indefinite" />
+        </circle>
+
+        <circle cx="60" cy="10" r="0">
+            <animate attributeName="r" from="0" to="10" values="0;10;10;10;0" begin="400ms" dur="1000ms" repeatCount="indefinite" />
+        </circle>
+    </svg>
+</div>
+
+<div id="bulkEntryOverlay" class="overlay">
+    <a class="closebtn" (click)="bulkEntry()">&times;</a>
+    <div class="overlay-content">
+        <div class="container" align="center">
+            <h1 style="color: #fff">Bulk Product Entry</h1>
+            <br><br>
+            <div class="row">
+                <div class="col-lg-3"></div>
+                <div class="col-lg-6" align="center">
+                    <table class="table" style="color:#fff">
+                        <tr>
+                            <td style="text-align: center;background: #00BFF5;height: 52px;font-size: 22px;">Number of ID's Required</td>
+                            <td style="text-align: center;padding: 0px">
+                                <input type="text" #productCount name="" (focusout)="validateCount(productCount)" style="height: 52px;font-size: 22px;" value="">
+                                <span style="color: #fff;" *ngIf="bulkCountValue">Please Enter a Valid count</span>
+                            </td>
+                        </tr>
+                        <br><br><br>
+                        <tr>
+                            <td style="text-align: center;">
+                                <button id="addBulkItemButton" mat-raised-button (click)="addBulkItems(productCount,itemCode,productColor,allColor,clothSize,shoeSize,expiryDate)">Add Products</button>
+                            </td>
+                            <td style="text-align: center;">
+                                <button id="cancelButtonStyle" mat-raised-button (click)="bulkEntry()">Cancel</button>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="col-lg-3"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div *ngIf="successMessage" class="animate-fade">
+
+    <h1 style="font-weight: 700">Congrats your Item has been Saved successfully.</h1>
+
+    <br><br><br>
+    <div class="option-tab grow" id="product-option-tab" style="width: 50%">
+        <table width="100%">
+            <tr>
+                <td>
+                    <p class="option-tab-text">ADD NEW PRODUCT</p>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+</div>
+
+
+<div *ngIf="countErrorMessage" class="animate-fade">
+
+    <h1 style="font-weight: 700">Sorry ID Count Not Matching with the request Count ! Please Check Retry.</h1>
+
+    <br><br><br>
+    <table class="table">
+        <tr>
+            <td style="width: 50%;padding: 20px">
+
+                <div class="option-tab grow" id="product-option-tab">
+                    <table width="100%">
+                        <tr>
+                            <td>
+                                <p class="option-tab-text">ADD NEW PRODUCT</p>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+
+            </td>
+
+            <td style="width: 50%;padding: 20px">
+
+                <div class="option-tab grow" id="product-option-tab">
+                    <table width="100%">
+                        <tr>
+                            <td>
+                                <p class="option-tab-text">TRY AGAIN</p>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+
+            </td>
+        </tr>
+    </table>
+
+</div>
+
+
+<div *ngIf="failedMessage" class="animate-fade">
+
+    <h1 style="font-weight: 700">Sorry something went Wrong. Please Try Again.</h1>
+
+    <br><br><br>
+    <table class="table">
+        <tr>
+            <td style="width: 50%;padding: 20px">
+
+                <div class="option-tab grow" id="product-option-tab">
+                    <table width="100%">
+                        <tr>
+                            <td>
+                                <p class="option-tab-text">ADD NEW PRODUCT</p>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+
+            </td>
+
+            <td style="width: 50%;padding: 20px">
+
+                <div class="option-tab grow" id="product-option-tab">
+                    <table width="100%">
+                        <tr>
+                            <td>
+                                <p class="option-tab-text">TRY AGAIN</p>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+
+            </td>
+        </tr>
+    </table>
+</div>

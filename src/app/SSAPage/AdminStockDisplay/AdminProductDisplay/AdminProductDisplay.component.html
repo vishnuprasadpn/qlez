@@ -1,0 +1,134 @@
+<div align="center" bgcolor="#fff">
+	<br><br>
+	<button id="scanButtonStyle" mat-raised-button color="primary" (click)="getProductDetails()" >SCAN</button>
+	<br><br>
+	<svg    id="loadingProduct"  width="70" height="20">
+		
+		<circle cx="10" cy="10" r="0">
+			<animate attributeName="r" from="0" to="10" values="0;10;10;10;0" dur="1000ms" repeatCount="indefinite" />
+		</circle>
+	
+		<circle cx="35" cy="10" r="0">
+			<animate attributeName="r" from="0" to="10" values="0;10;10;10;0" begin="200ms" dur="1000ms" repeatCount="indefinite" />
+		</circle>
+	
+		<circle cx="60" cy="10" r="0">
+			<animate attributeName="r" from="0" to="10" values="0;10;10;10;0" begin="400ms" dur="1000ms" repeatCount="indefinite" />
+		</circle>
+
+	</svg>
+	<!--<div align="center"class="content" style="position: absolute;top: 30%;left: 47%">
+		<div class="loader"></div>	
+	</div>-->
+	<br><br>
+	<div class="container" id="productTable" style="background: #fff;padding:20px 10px">
+		<table class="table" width="100%" align="center" style="margin-bottom: 0px">
+			<tr>
+				<td class="productColoumnHeadStyle">Product ID</td>
+
+				<td class="productColoumnHeadStyle">Item Code</td>
+				
+				<td class="productColoumnHeadStyle">Invoice Date</td>
+
+				<td class="productColoumnHeadStyle">Product Color</td>
+
+				<td class="productColoumnHeadStyle">Product Size</td>
+
+				<td class="productColoumnHeadStyle">Product Expiry</td>
+			</tr>
+			<tr id="contentSection" (click)="editProduct()">
+				<td class="productColoumnValueStyle">{{productDt.pId}}</td>
+				<td class="productColoumnValueStyle">{{productDt.item_code}}</td>
+				<td class="productColoumnValueStyle">{{productDt.invoice| date}}</td>
+				<td class="productColoumnValueStyle">{{productDt.color}}</td>
+				<td class="productColoumnValueStyle">{{productDt.size}}</td>
+				<td class="productColoumnValueStyle">{{productDt.expiry}}</td>
+			</tr>
+		</table>
+	</div>
+
+	<div style="height: 380px">
+		<div class="alert animate-bottom" id="failedMessage">
+		  <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+		  <strong>Sorry!</strong> No product was found!.
+		</div>
+	</div>
+	<div id="productEditOverlay" class="overlay">
+	  	<a id="closebtn" class="closebtn" (click)="editProduct()" style="z-index: 99999999999">&times;</a>
+	  	<div class="overlay-content">
+	  		<div class="container">
+	  			<div class="row">
+	  				<div class="col-lg-2"></div>
+	  				<div class="col-lg-8">
+	  					<br>
+	  					<h3 style="color:#fff">Edit Product</h3>
+			  			<br><br>
+			  			<table class="table" align="center">
+			  				<tr>
+
+			  					<td>
+			  						<span style="color:#fff">Item Code</span>
+			  						<input type="text" id="productItemCode" #productItemCode (keyup)="validateItemcode(productItemCode)" class="form-control"  value="{{productItemcode}}" style="border-radius: 0px">
+			  					</td>
+			  					<td width="30px">
+			  						<span>&nbsp;&nbsp;</span>
+			  						<i class="material-icons" id="editItemcode" style="color:#fff" (click)="editItemcode()">create</i>
+			  						<i class="material-icons" id="saveItemcode" (click)="saveItemcode()" style="color:#fff" >done</i>
+			  					</td>
+			  					<td>&nbsp;&nbsp;&nbsp;</td>
+			  					
+			  					<td>
+			  						<span style="color: #fff">Product Color</span>
+			  						<input id="productColor" class="form-control" type="text" #productColor (keyup)="validateColor(productColor)" value="{{pdtColor}}"
+			  						style="border-radius: 0px">
+			  					</td>
+			  					<td width="30px">
+			  						<span>&nbsp;&nbsp;</span>
+			  						<i class="material-icons" id="editColor" style="color:#fff" (click)="editColor()">create</i>
+
+			  						<i class="material-icons" id="saveColor" (click)="saveColor()" style="color:#fff" >done</i>
+			  					</td>
+			  				</tr>
+			  				<br>
+			  				<tr>
+			  					<td>
+			  						<span style="color: #fff">Product Size</span>
+			  						<Select id="productSize" class="form-control" #productSize style="border-radius: 0px" id="productSize" (change)="changeSize(productSize)">
+			  							<option selected="{{xsStatus}}">XS</option>
+			  							<option selected="{{sStatus}}">S</option>
+			  							<option selected="{{mStatus}}">M</option>
+			  							<option selected="{{lStatus}}">L</option>
+			  							<option selected="{{xlStatus}}">XL</option>
+
+			  							<option selected="{{xxlStatus}}">XXL</option>
+			  						</Select>
+			  					</td>
+			  					<td width="30px">
+			  						<span>&nbsp;&nbsp;</span>
+			  						<i class="material-icons" id="editSize" style="color:#fff" (click)="editSize()">create</i>
+
+			  						<i class="material-icons" id="saveSize" (click)="saveSize()" style="color:#fff" >done</i>
+			  					</td>
+			  					<td>&nbsp;&nbsp;&nbsp;</td>
+			  					<td>
+			  						<span style="color: #fff">Product Expiry</span>
+			  						<input id="productExpiry" type="date" required #productExpiryDate
+					      			(change)="validateDate(productExpiryDate)" min="new Date()" [value]="productExpiry">
+					      
+			  					</td>
+			  					<td width="30px">
+			  						<span>&nbsp;&nbsp;</span>
+			  						<i class="material-icons" id="editExpiryDate" style="color:#fff" (click)="editExpiryDate()">create</i>
+
+			  						<i class="material-icons" id="saveExpiryDate" (click)="saveExpiryDate()" style="color:#fff" >done</i>
+			  					</td>
+			  				</tr>
+			  				<br>
+			  			</table>
+	  				</div>
+	  				<div class="col-lg-2"></div>
+	  			</div>
+	  		</div>
+	  	</div>
+	</div>
+</div>

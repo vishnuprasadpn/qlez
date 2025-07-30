@@ -1,0 +1,94 @@
+<div class="row">
+    <div class="col-lg-4"></div>
+    <div class="col-lg-4">
+        <h1 align="center" style="font-weight:600;color:#124860">{{CurrentPage}}</h1>
+    </div>
+    <div class="col-lg-4" style="    position: absolute;
+    top: 6%;
+    right: 8%;
+    width: 290px;">
+        <div (click)="logout()">
+            <p style="    margin: 9px;
+			padding: 15px 20px;
+			font-size: 22px;
+			background: red;
+			color: #fff;
+			border-radius: 99px;
+			cursor: pointer;">LOGOUT</p>
+            <!-- <img class="grow" src="https://s3.ap-south-1.amazonaws.com/popees-data-bucket/images/logout.png" style="    position: absolute;
+			top: 0;right: 0;width: 80px;padding: 20px;cursor:pointer" data-toggle="tooltip" title="Logout"> -->
+        </div>
+    </div>
+</div>
+
+<!-- <div id="changePasswordOverlay" class="overlay" style="z-index: 99999999999">
+	<a id="closebtn" class="closebtn" (click)="changePassword('close')" style="z-index: 99999999999">&times;</a>
+	<div class="overlay-content">
+		<div class="container">
+			<div class="row" style="color: #fff;margin-top: 5%">
+				<h3 style="text-align: center">Change Password</h3>
+				<br><br>
+				<div class="col-lg-4"></div>
+				<div class="col-lg-4" align="center	">
+					<input type="password" id="inputPass" required #password (focusout)="validatePassword(password)" placeholder="New Password"
+					 width="100%" style="color: #000">
+					<br>
+					<br>
+					<input type="password" id="inputRePass" required #rePassword (focusout)="validateReTypePassword(rePassword)" placeholder="Re-Type Password"
+					 style="color: #000">
+					<br>
+					<br>
+					<button id="savePassword" mat-raised-button color="primary" (click)="savePassword()">Save Password</button>
+				</div>
+				<div class="col-lg-4"></div>
+			</div>
+			<br><br>
+
+			<svg id="loaderDiv" width="70" height="20">
+
+				<circle cx="10" cy="10" r="0">
+					<animate attributeName="r" from="0" to="10" values="0;10;10;10;0" dur="1000ms" repeatCount="indefinite" />
+				</circle>
+
+				<circle cx="35" cy="10" r="0">
+					<animate attributeName="r" from="0" to="10" values="0;10;10;10;0" begin="200ms" dur="1000ms" repeatCount="indefinite" />
+				</circle>
+
+				<circle cx="60" cy="10" r="0">
+					<animate attributeName="r" from="0" to="10" values="0;10;10;10;0" begin="400ms" dur="1000ms" repeatCount="indefinite" />
+				</circle>
+
+			</svg>
+			<div class="row" id="updateSuccessMessage">
+				<div class="col-lg-4"></div>
+				<div class="col-lg-4">
+					<div class="alert alert-success" align="
+					center">
+						<strong>Password Updated !</strong>
+					</div>
+				</div>
+				<div class="col-lg-4"></div>
+			</div>
+			<div class="row" id="updateFailedMessage">
+				<div class="col-lg-4"></div>
+				<div class="col-lg-4">
+					<div class="alert alert-danger" align="
+					center">
+						<strong>Password Update Failed!</strong> Please retry!
+					</div>
+				</div>
+				<div class="col-lg-4"></div>
+			</div>
+			<div class="row" id="passwordNotMatchingMessage">
+				<div class="col-lg-4"></div>
+				<div class="col-lg-4">
+					<div class="alert alert-danger" align="
+					center">
+						<strong>Passwords are not matching Failed!</strong> Please retry!
+					</div>
+				</div>
+				<div class="col-lg-4"></div>
+			</div>
+		</div>
+	</div>
+</div> -->

@@ -1,0 +1,173 @@
+<div class="row" id="welcome_main_div">
+    <table style="height:100%">
+        <tr>
+            <td width="30%" id="bg-td">
+                <div id="cs-intro-td">
+                    <p id="CS-heading">BUSINESS REPORTS</p>
+                    <br>
+                    <p id="qlez_intro">
+                        Qlez is the project with an aim to craft Retail Store's Future. Artificial Intelligence and Machine Learning combined altogether to redefine customer experience, and operations for retail stores by providing end to end integrated solution right from stock
+                        addition to sales.
+                    </p>
+                    <br><br><br>
+
+
+                    <br><br><br>
+                    <p id="backButton" class="grow" (click)="backToHome()">GO BACK</p>
+                </div>
+            </td>
+            <td></td>
+            <td width="60%" align="center">
+                <div *ngIf="!defaultSection">
+                    <div class="option-tab grow" id="close-option-tab" (click)="backToMenu()">
+                        <table width="100%">
+                            <tr>
+                                <td>
+                                    <p id="close-text" class="option-tab-text">X</p>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+                <div *ngIf="defaultSection">
+                    <h1 style="color:#000;font-size:46px;font-weight: 700;margin-top: 0px;">BUSINESS REPORTS MODULE</h1>
+                    <br><br>
+                    <p style="font-size: 28px;line-height: 55px;">
+                        Please select any of the follwing Reports :
+                    </p>
+                    <br><br>
+                    <div class="row">
+                        <div class="col-lg-5">
+                            <div class="option-tab grow" id="T-option-tab" (click)="goToTransactionDetails()">
+                                <table width="100%">
+                                    <tr>
+                                        <td>
+                                            <p class="option-tab-text">TRANSACTIONS</p>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="col-lg-2"></div>
+                        <div class="col-lg-5">
+                            <div class="option-tab grow" id="FSP-option-tab" (click)="goToFSP()">
+                                <table width="100%">
+                                    <tr>
+                                        <td>
+                                            <p class="option-tab-text">FASTEST SELLING PRODUCT</p>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                    <br><br><br>
+
+                    <div class="row">
+                        <div class="col-lg-5">
+                            <div class="option-tab grow" id="MVC-option-tab" (click)="goToMVC()">
+                                <table width="100%">
+                                    <tr>
+                                        <td>
+                                            <p class="option-tab-text">MOST VALUABLE CUSTOMER</p>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="col-lg-2"></div>
+                        <div class="col-lg-5">
+                            <div class="option-tab grow" id="UI-option-tab" (click)="gotoUS()">
+                                <table width="100%">
+                                    <tr>
+                                        <td>
+                                            <p class="option-tab-text">UNDERSTOCK ITEMS</p>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                    <br><br><br>
+
+                    <div class="row">
+                        <div class="col-lg-5">
+                            <div class="option-tab grow" id="MFI-option-tab" (click)="goToMFP()">
+                                <table width="100%">
+                                    <tr>
+                                        <td>
+                                            <p class="option-tab-text">MOST FAVORITE ITEMS</p>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="col-lg-2"></div>
+                        <div class="col-lg-5">
+                            <div class="option-tab grow" id="CB-option-tab" (click)="goToCustBD()">
+                                <table width="100%">
+                                    <tr>
+                                        <td>
+                                            <p class="option-tab-text">CUSTOMER BIRTHDAYS</p>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                    <br><br><br>
+                    <div class="row">
+
+                        <div class="col-lg-3"></div>
+                        <div class="col-lg-6">
+                            <div class="option-tab grow" id="MOP-option-tab" (click)="goToMOP()">
+                                <table width="100%">
+                                    <tr>
+                                        <td>
+                                            <p class="option-tab-text">MOST OBSELETE PRODUCTS</p>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="col-lg-3"></div>
+                    </div>
+
+                </div>
+                <div *ngIf="MOPStatus">
+                    <app-obp-report></app-obp-report>
+                </div>
+
+                <div *ngIf="CBStatus">
+                    <app-customer-bday></app-customer-bday>
+                </div>
+
+                <div *ngIf="MFIStatus">
+                    <app-most-fav-product></app-most-fav-product>
+                </div>
+
+                <div *ngIf="UIStatus">
+                    <app-understock></app-understock>
+                </div>
+
+                <div *ngIf="MVCStatus">
+                    <app-mvcpage></app-mvcpage>
+                </div>
+
+                <div *ngIf="FSPStatus">
+                    <app-fsp-page></app-fsp-page>
+                </div>
+
+
+                <div *ngIf="TStatus">
+                    <app-transaction-table></app-transaction-table>
+                </div>
+
+            </td>
+            <td></td>
+        </tr>
+    </table>
+</div>X

@@ -1,0 +1,67 @@
+#welcome_main_div {
+    margin-right: 0px;
+    margin-left: 0px;
+    background: #fff;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
+#logo-td {
+    background-image: url('../../assets/images/backgrounds/bg1.jpg');
+    background-size: cover;
+}
+
+#QSS-heading {
+    font-size: 44px;
+    font-weight: 700;
+}
+
+#intro-td {
+    color: #fff;
+    padding: 5%;
+}
+
+#qlez_intro {
+    line-height: 38px;
+    font-size: 19px;
+    font-weight: 600;
+    text-align: justify;
+}
+
+.option-tab {
+    padding: 13px 24px;
+    border-radius: 100px;
+}
+
+.option-tab:hover {
+    cursor: pointer;
+}
+
+#pos-option-tab {
+    background: #14A850;
+}
+
+#smm-option-tab {
+    background: #F0582F
+}
+
+.option-tab-text {
+    font-size: 25px;
+    color: #fff;
+    font-weight: 600;
+    text-align: center;
+}
+
+.grow {
+    transition: 1s ease;
+}
+
+.grow:hover {
+    -webkit-transform: scale(1.1);
+    -ms-transform: scale(1.1);
+    transform: scale(1.1);
+    transition: 1s ease;
+}

@@ -1,0 +1,318 @@
+.inputField {
+    text-transform: uppercase;
+    font-size: 24px!important;
+    width: 100%;
+    font-family: inherit;
+    padding: 11px;
+    line-height: inherit;
+    border-bottom: 3px solid #eee;
+}
+
+input[type="date"]:before {
+    content: attr(placeholder) !important;
+    color: #aaa;
+    margin-right: 0.5em;
+}
+
+input[type="date"]:focus:before,
+input[type="date"]:valid:before {
+    content: "";
+}
+
+.mat-dialog-container {
+    background: #fff
+}
+
+.cdk-overlay-pane {
+    max-width: 100%
+}
+
+body {
+    font-family: 'Open Sans', sans-serif;
+    background: #ECEDEF;
+}
+
+.grow {
+    transition: 1s ease;
+}
+
+.warning-msg {
+    font-size: 18px;
+    color: orangered;
+}
+
+.grow:hover {
+    -webkit-transform: scale(1.1);
+    -ms-transform: scale(1.1);
+    transform: scale(1.1);
+    transition: 1s ease;
+}
+
+p {
+    margin: 0px;
+}
+
+svg circle {
+    fill: #0072BB;
+}
+
+body {
+    zoom: 75%;
+}
+
+.option-tab {
+    padding: 13px 24px;
+    border-radius: 100px;
+}
+
+.option-tab:hover {
+    cursor: pointer;
+}
+
+#item-option-tab {
+    background: #14A850;
+}
+
+#product-option-tab {
+    background: #F0582F
+}
+
+.option-tab-text {
+    font-size: 25px;
+    color: #fff;
+    font-weight: 600;
+    text-align: center;
+}
+
+.row {
+    margin-left: 0px;
+    margin-right: 0px
+}
+
+mat-tab-label mat-ripple mat-tab-label-active {
+    background: red!important
+}
+
+
+/* You can add global styles to this file, and also import other style files */
+
+.cdk-overlay-container {
+    position: absolute!important;
+    z-index: 999!important;
+    top: 86%!important
+}
+
+snack-bar-container {
+    background: #F39C12!important
+}
+
+.main-bg {
+    position: absolute;
+    bottom: 0;
+    top: 0;
+    right: 0;
+    left: 0;
+    z-index: -99
+}
+
+
+/* Rules for sizing the icon. */
+
+.mat-checkbox-input {
+    pointer-events: none
+}
+
+.material-icons.md-18 {
+    font-size: 18px;
+}
+
+.material-icons.md-24 {
+    font-size: 24px;
+}
+
+.material-icons.md-36 {
+    font-size: 36px;
+}
+
+.material-icons.md-48 {
+    font-size: 48px;
+}
+
+.mat-checkbox-frame {
+    background: #282828!important;
+}
+
+
+/* Rules for using icons as black on a light background. */
+
+.material-icons.md-dark {
+    color: rgba(0, 0, 0, 0.54);
+}
+
+.material-icons.md-dark.md-inactive {
+    color: rgba(0, 0, 0, 0.26);
+}
+
+
+/* Rules for using icons as white on a dark background. */
+
+.material-icons.md-light {
+    color: rgba(255, 255, 255, 1);
+}
+
+.material-icons.md-light.md-inactive {
+    color: rgba(255, 255, 255, 0.3);
+}
+
+.mat-tab-header-pagination {
+    display: none!important
+}
+
+.mat-tab-label {
+    color: #fff!important;
+    width: 50%;
+    font-weight: 600!important;
+    font-size: 20px!important;
+    background: #0072BB!important
+}
+
+.mat-tab-label:active {
+    background: #272B34!important;
+    color: green!important;
+    border-bottom: 5px solid #fff!important
+}
+
+.md-tab-group {
+    margin: 0px 20px!important
+}
+
+textarea {
+    width: 300px!important
+}
+
+.table>tbody>tr>td,
+.table>tbody>tr>th,
+.table>tfoot>tr>td,
+.table>tfoot>tr>th,
+.table>thead>tr>td,
+.table>thead>tr>th {
+    border-top: none!important;
+}
+
+.overlay {
+    height: 0%;
+    width: 100%;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: rgb(0, 0, 0);
+    background-color: rgba(0, 0, 0, 0.9);
+    overflow-y: hidden;
+    transition: 0.5s;
+}
+
+.overlay-content {
+    position: relative;
+    top: 12%;
+    width: 100%;
+    text-align: center;
+    margin-top: 30px;
+}
+
+.overlay a {
+    padding: 8px;
+    text-decoration: none;
+    font-size: 36px;
+    color: #818181;
+    display: block;
+    transition: 0.3s;
+    cursor: pointer;
+}
+
+.overlay a:hover,
+.overlay a:focus {
+    color: #f1f1f1;
+}
+
+.overlay .closebtn {
+    position: absolute;
+    top: 20px;
+    right: 45px;
+    font-size: 60px;
+}
+
+@media screen and (max-height: 450px) {
+    .overlay {
+        overflow-y: auto;
+    }
+    .overlay a {
+        font-size: 20px
+    }
+    .overlay .closebtn {
+        font-size: 40px;
+        top: 15px;
+        right: 35px;
+    }
+}
+
+.loader {
+    border: 16px solid #f3f3f3;
+    border-radius: 50%;
+    border-top: 16px solid #105480;
+    border-bottom: 16px solid #105480;
+    width: 120px;
+    height: 120px;
+    -webkit-animation: spin 2s linear infinite;
+    animation: spin 2s linear infinite;
+}
+
+@-webkit-keyframes spin {
+    0% {
+        -webkit-transform: rotate(0deg);
+    }
+    100% {
+        -webkit-transform: rotate(360deg);
+    }
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.animate-fade {
+    position: relative;
+    -webkit-animation-name: animatefade;
+    -webkit-animation-duration: 1s;
+    animation-name: animatefade;
+    animation-duration: 1s
+}
+
+@-webkit-keyframes animatefade {
+    from {
+        opacity: 0
+    }
+    to {
+        opacity: 1
+    }
+}
+
+@keyframes animatefade {
+    from {
+        opacity: 0
+    }
+    to {
+        opacity: 1
+    }
+}
+
+#keyboard {
+    width: 72%;
+    background: #2C3E50;
+    padding: 24px 33px;
+}

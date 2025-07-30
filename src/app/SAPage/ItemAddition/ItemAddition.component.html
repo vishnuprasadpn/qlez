@@ -1,0 +1,427 @@
+<div id="itemEntryForm" class="animate-fade" #itemEntryForm>
+    <h1 style="font-weight:700">ITEM ADDITION</h1>
+    <br>
+    <table class="table">
+        <tr>
+            <td width="50%">
+                <input class="inputField" type="text" id="itemCode" required #itemCode placeholder="ENTER ITEM CODE" (change)="validateItemCode(itemCode)" (focus)="selectItemCode()">
+                <span *ngIf="itemCodeErrorMessage" class="warning-msg">Please Enter Item code</span>
+
+            </td>
+            <td>
+                <input class="inputField" type="text" id="itemBrand" required #itemBrand placeholder="ENTER ITEM BRAND" (focusout)="validateItemBrand(itemBrand)" (focus)="selectItemBrand()">
+                <span *ngIf="itemBrandErrorMessage" class="warning-msg">Please Enter Item Brand Name</span>
+            </td>
+        </tr>
+        <br>
+        <br>
+        <tr>
+            <td width="50%">
+                <input class="inputField" type="text" id="itemName" required #itemName placeholder="ENTER ITEM NAME" (focusout)="validateItemName(itemName)" (focus)="selectItemName()">
+                <span *ngIf="itemNameErrorMessage" class="warning-msg">Please Enter Item Name</span>
+            </td>
+            <td>
+                <input class="inputField" type="text" id="itemManufacturer" required #itemManufact placeholder="ENTER ITEM MANUFACTURER" (focusout)="validateItemManufacturer(itemManufact)" (focus)="selectItemManufacturer()">
+                <span *ngIf="itemManufacturerErrorMessage" class="warning-msg">Please Enter Item Manufacturer Name</span>
+            </td>
+        </tr>
+        <br>
+        <br>
+        <tr>
+            <td width="50%">
+                <input class="inputField" type="text" id="itemMRP" required #itemMRP placeholder="ENTER ITEM MRP" (focusout)="validateItemMRP(itemMRP)" (focus)="selectItemMRP()">
+                <span *ngIf="itemMRPErrorMessage" class="warning-msg">Please Enter Item MRP</span>
+                <span *ngIf="itemMRPLowMessage" class="warning-msg">MRP Should be Greater than SP and CP</span>
+            </td>
+            <td>
+                <input class="inputField" type="text" id="itemCostP" value="" required #itemCP placeholder="ENTER ITEM COST PRICE" (focusout)="validateItemCP(itemCP)" (focus)="selectItemCP()">
+                <span *ngIf="itemCPErrorMessage" class="warning-msg">Please Enter Item Cost Price.</span>
+                <span *ngIf="itemCPExceedMRPMessage" class="warning-msg">Cost Price should not exceed MRP.</span>
+                <span *ngIf="itemCPLessthanSPMessage" class="warning-msg">Cost Price should be below Sell Price.</span>
+            </td>
+        </tr>
+        <br><br>
+        <tr>
+            <td width="50%">
+                <input class="inputField" type="text" id="itemSaleP" required #itemSP placeholder="ENTER ITEM SP" (focusout)="validateItemSP(itemSP)" (focus)="selectItemSP()">
+                <span *ngIf="itemSPErrorMessage" class="warning-msg">Please Enter Item SP</span>
+                <span *ngIf="itemSPExceedMRPMessage" class="warning-msg">SP should not Exceed MRP</span>
+                <span *ngIf="itemSPLessthanCPMessage" class="warning-msg">CP should not Exceed SP</span>
+            </td>
+            <td>
+                <select class="inputField" id="itemTax" #itemTax (change)="validateItemTax(itemTax)" (focus)="selectItemTax()">
+                    <option disabled value="DEFAULT">SELECT ITEM TAX</option>
+                    <option value="0">GST - 0%</option>
+                    <option value="5">GST - 5%</option>
+                    <option value="12">GST - 12%</option>
+                    <option value="18">GST - 18%</option>
+                    <option value="28">GST - 28%</option>
+                </select>
+                <!-- <input class="inputField" type="text" id="itemTax" #itemTax required placeholder="ENTER ITEM TAX" (focusout)="validateItemTax(itemTax)"> -->
+                <span *ngIf="itemTaxErrorMessage" class="warning-msg">Please Enter Item Tax</span>
+                <span *ngIf="itemTaxExceededMessage" class="warning-msg">Item tax should be below 100</span>
+            </td>
+        </tr>
+        <br><br>
+        <tr>
+            <td width="50%">
+                <select class="inputField" id="groupKey" #groupKey (change)="validateGroup(groupKey,categoryKey,subCategoryKey,nature)" (focus)="selectGroup()">
+                    <option disabled="" selected="" value="Select Any Group">Select Any Group</option>
+                    <option value="Women">Women</option>
+                    <option value="Men">Men</option>
+                </select>
+                <span *ngIf="selectGroupMessage" class="warning-msg">Please Select any Group</span>
+            </td>
+            <td>
+                <select class="inputField" id="categoryKey" #categoryKey (change)="validateCategory(categoryKey,subCategoryKey,nature)" (focus)="selectCategory()">
+                    <option disabled="" selected="" value="Select Any Category">Select Any Category</option>
+                    <option value="Tops">Tops</option>
+                    <option value="Bottoms">Bottoms</option>
+                    <option value="Shoes">Shoes</option>
+                </select>
+                <span *ngIf="selectCatgeoryMessage" class="warning-msg">Please Select any Category</span>
+            </td>
+        </tr>
+        <br><br>
+        <tr>
+            <td width="50%">
+                <select class="inputField" id="subCategoryKey" #subCategoryKey (change)="validateSubCategory(subCategoryKey,nature)" (focus)="selectSubCategory()">
+                    <option disabled="" selected="" value="Select Any Sub-category">Select Any Sub-category</option>
+                    <option value="T-Shirt" *ngIf="topStatus">T-Shirt</option>
+                    <option value="Shirt" *ngIf="topStatus">Shirt</option>
+                    <option value="Jacket" *ngIf="topStatus">Jacket</option>
+                    <option value="Shorts" *ngIf="bottomStatus">Shorts</option>
+                    <option value="Trousers" *ngIf="bottomStatus">Trousers</option>
+                    <option value="Leggings" *ngIf="menStatus && bottomStatus">Leggings</option>
+                    <option value="Shoes" *ngIf="shoeStatus">Shoes</option>	
+                    <option value="Shoes Accessories" *ngIf="shoeStatus">Shoes Accessories</option>
+                    <option value="Skirts" *ngIf="womenStatus && bottomStatus">Skirts</option>
+                </select>
+                <span *ngIf="selectSubCatgeoryMessage" class="warning-msg">Please Select any Sub-Category</span>
+            </td>
+            <td>
+                <select class="inputField" id="natureKey" #nature (change)="validateNature(nature)" (focus)="selectNature()">
+                    <option disabled="" value="Select Any Nature"  value="Select Any Nature">Select Any Nature</option>
+                    <option value="Long-Sleeved T-Shirt" *ngIf="tShirtStatus"> Long-Sleeved T-Shirt</option>
+                    <option value="Short-Sleeved T-Shirt" *ngIf="tShirtStatus"> Short-Sleeved T-Shirt</option>
+                    <option value="Long-Sleeved Polo Shirt" *ngIf="shirtStatus">Long-Sleeved Polo Shirt</option>
+                    <option value="Short-Sleeved Polo Shirt" *ngIf="shirtStatus">Short-Sleeved Polo Shirt</option>
+                    <option value="Down Jacket" *ngIf="jacketStatus">Down Jacket</option>
+                    <option value="Jacket" *ngIf="jacketStatus">Jacket</option>
+                    <option value="Bermuda Shorts" *ngIf="shortsStatus">Bermuda Shorts</option>
+                    <option value="Board Shorts" *ngIf="shortsStatus">Board Shorts</option>
+                    <option value="Breeches" *ngIf="trousersStatus">Breeches</option>
+                    <option value="Overtrousers" *ngIf="trousersStatus">Overtrousers</option>
+                    <option value="Padded Cycling Shorts" *ngIf="leggingsStatus">Padded Cycling Shorts</option>
+                    <option value="Running Shorts" *ngIf="leggingsStatus"> Running Shorts</option>
+                    <option value="Shoes" *ngIf="shoesStatus">Shoes</option>
+                    <option value="Slippers" *ngIf="shoesStatus" >Slippers</option>
+                    <option value="Insoles" *ngIf="shoeAccStatus">Insoles</option>
+                    <option value="Laces" *ngIf="shoeAccStatus">Laces</option>
+                    <option value="Crop Top" *ngIf="cropStatus">Crop Top</option>
+                    <option value="Trousers" *ngIf="nTrousersStatus">Trousers</option>
+                    <option value="Skirt" *ngIf="skirtsStatus">Skirt</option>
+                    <option value="Skort" *ngIf="skirtsStatus">Skort</option>
+                </select>
+                <span *ngIf="selectNatureMessage" class="warning-msg">Please Select any Nature</span>
+            </td>
+        </tr>
+    </table>
+    <br>
+    <table class="table">
+        <tr>
+            <td style="width: 25%;padding: 10px">
+                <!-- (click)="addFeatures(mainHeadFeature,subHeadFeature,featureDescription,itemEntryForm)" -->
+                <div class="option-tab grow" id="product-option-tab" (click)="addFeatures(itemEntryForm)">
+                    <table width=" 100% ">
+                        <tr>
+                            <td>
+                                <p class="option-tab-text ">ADD FEATURES</p>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                <span *ngIf="noFeaturesMessage " class="warning-msg ">Please Enter Descriptions for Item</span>
+            </td>
+            <td style="width: 25%;padding: 10px ">
+                <div class="option-tab grow " id="product-option-tab" (click)="addImages(itemEntryForm) ">
+                    <table width="100% ">
+                        <tr>
+                            <td>
+                                <p class="option-tab-text ">ADD IMAGES</p>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                <span *ngIf="noImagesMessage " class="warning-msg ">Please Update Images for Item</span>
+            </td>
+            <td style="width: 25%;padding: 10px ">
+                <div class="option-tab grow " id="product-option-tab" (click)="saveItem(itemCode,itemBrand,itemName,itemManufact,itemMRP,itemCP,itemSP,itemTax,groupKey,categoryKey,subCategoryKey,nature,itemEntryForm) ">
+                    <table width="100% ">
+                        <tr>
+                            <td>
+                                <p class="option-tab-text ">SAVE ITEM</p>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </td>
+            <td style="width: 25%;padding: 10px ">
+                <div class="option-tab grow " id="product-option-tab" (click)="clearAll(itemCode,itemBrand,itemName,itemManufact,itemMRP,itemCP,itemSP,itemTax,groupKey,categoryKey,subCategoryKey,nature,itemEntryForm) ">
+                    <table width="100% ">
+                        <tr>
+                            <td>
+                                <p class="option-tab-text ">CLEAR ALL</p>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </td>
+        </tr>
+    </table>
+</div>
+
+<div *ngIf="loadingProgress " class="animate-fade ">
+
+    <h1 style="font-weight: 700 ">Please Wait While We Update Save your Item</h1>
+    <br><br><br>
+    <svg width="70 " height="20 ">
+        <circle cx="10 " cy="10 " r="0 ">
+            <animate attributeName="r " from="0 " to="10 " values="0;10;10;10;0 " dur="1000ms " repeatCount="indefinite " />
+        </circle>
+
+        <circle cx="35 " cy="10 " r="0 ">
+            <animate attributeName="r " from="0 " to="10 " values="0;10;10;10;0 " begin="200ms " dur="1000ms " repeatCount="indefinite " />
+        </circle>
+
+        <circle cx="60 " cy="10 " r="0 ">
+            <animate attributeName="r " from="0 " to="10 " values="0;10;10;10;0 " begin="400ms " dur="1000ms " repeatCount="indefinite " />
+        </circle>
+    </svg>
+</div>
+
+<div *ngIf="addFeatureOverlayStatus " class="animate-fade " style="position: relative;right:0;top:0; ">
+    <h1 style="font-weight: 700 ">Add Product Features</h1>
+    <br><br>
+    <table class="table ">
+        <tr>
+            <td>
+                <p class="labelText ">Add Main Feature Heading</p>
+            </td>
+            <td>
+                <input class="inputField " type="text " id="mainHead " #mainHeadFeature name=" " (focusout)="validateMainHeadFeature(mainHeadFeature) ">
+                <span *ngIf="mainHeadErrorMessage " class="warning-msg warn-update ">Please Enter Main Heading</span>
+            </td>
+        </tr>
+        <br><br>
+
+        <tr>
+            <td>
+                <p class="labelText ">Add Sub-Heading Feature</p>
+            </td>
+            <td>
+                <input class="inputField " type="text " id="subHead " #subHeadFeature name=" " (focusout)="validateSubHeadFeature(subHeadFeature) " style="height: 52px; ">
+                <span *ngIf="subHeadErrorMessage " class="warning-msg warn-update ">Please Enter a Sub-Heading</span>
+            </td>
+        </tr>
+        <br><br>
+        <tr>
+            <td>
+                <p class="labelText ">Add Feature Description</p>
+            </td>
+            <td>
+                <textarea class="inputField " id="featureDesc " #featureDescription (focusout)="validateDescription(featureDescription) " rows="5 " value=" " style="width: 100%!important;border-radius:0px;height: 100px; "></textarea>
+                <span *ngIf="descriptionErrorMessage " class="warning-msg warn-update ">Please Enter Description</span>
+            </td>
+        </tr>
+        <br>
+    </table>
+    <table class="table ">
+        <tr>
+            <td style="width: 50%;padding: 20px ">
+                <div class="option-tab grow " id="product-option-tab" (click)="saveFeature(mainHeadFeature,subHeadFeature,featureDescription, 'close', 'no-sub',itemEntryForm) ">
+                    <table width="100% ">
+                        <tr>
+                            <td>
+                                <p class="option-tab-text ">SAVE AND CLOSE</p>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                <!-- <button id="saveFeatureButton " mat-raised-button (click)="saveFeature(mainHeadFeature,subHeadFeature,featureDescription, 'close', 'no-sub') ">Save and Close</button> -->
+            </td>
+            <td style="width: 50%;padding: 20px ">
+                <div class="option-tab grow " id="product-option-tab" (click)="saveFeature(mainHeadFeature,subHeadFeature,featureDescription, 'add', 'new-sub') ">
+                    <table width="100% ">
+                        <tr>
+                            <td>
+                                <p class="option-tab-text ">ADD NEW SUB-FEATURE</p>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                <!-- <button id="addNewSubFeatureButton " mat-raised-button (click)="saveFeature(mainHeadFeature,subHeadFeature,featureDescription, 'add', 'new-sub') ">Add New Sub Feature</button> -->
+            </td>
+        </tr>
+        <br>
+        <tr>
+            <td style="width: 50%;padding: 20px ">
+                <div class="option-tab grow " id="product-option-tab" (click)="saveFeature(mainHeadFeature,subHeadFeature,featureDescription, 'new-main', 'no-sub') ">
+                    <table width="100% ">
+                        <tr>
+                            <td>
+                                <p class="option-tab-text ">SAVE AND ADD NEW</p>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                <!-- <button id="saveAndAddFeatureButton " mat-raised-button (click)="saveFeature(mainHeadFeature,subHeadFeature,featureDescription, 'new-main', 'no-sub') ">Save and Add New Main Feature</button> -->
+            </td>
+            <td style="width: 50%;padding: 20px ">
+                <div class="option-tab grow " id="product-option-tab" (click)="addFeatures(mainHeadFeature,subHeadFeature,featureDescription,itemEntryForm) ">
+                    <table width="100% ">
+                        <tr>
+                            <td>
+                                <p class="option-tab-text ">CANCEL ENTRY</p>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </td>
+        </tr>
+    </table>
+</div>
+
+<div *ngIf="addImagesOverlayStatus " class="animate-fade ">
+    <h1 style="font-weight: 700 ">Add Product Images</h1>
+    <br><br>
+    <table class="table ">
+        <tr>
+            <td>
+                <p class="labelText ">Add Product Color</p>
+            </td>
+            <td>
+                <select class="inputField selectBox " #itemColor (change)="validateItemColor(itemColor) ">
+                    <option disabled=" ">Select Color</option>
+                    <option *ngFor="let color of colors " value="{{color}} ">
+                        {{color}}
+                    </option>
+                </select>
+                <span *ngIf="colorErrorMessage " class="warning-msg warn-update ">Please Select a Color</span>
+            </td>
+        </tr>
+        <br><br>
+        <br>
+        <tr>
+            <td>
+                <p class="labelText ">Add Image Links</p>
+            </td>
+            <td>
+                <textarea class="inputField " id="imgLinks " #imageLinks (focusout)="validateLinks(imageLinks) " rows="4 "></textarea>
+                <span *ngIf="imageLinksErrorMessage " class="warning-msg warn-update ">Please Enter links for the Images</span>
+            </td>
+        </tr>
+        <br>
+    </table>
+    <br>
+    <table class="table ">
+        <tr>
+            <td style="width: 32%;padding: 20px ">
+                <div class="option-tab grow " id="product-option-tab" (click)="saveProductImages(itemColor,imageLinks, 'close',itemEntryForm) ">
+                    <table width="100% ">
+                        <tr>
+                            <td>
+                                <p class="option-tab-text ">SAVE AND CLOSE</p>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                <!-- <button id="saveImagesButton " mat-raised-button (click)="saveProductImages(itemColor,imageLinks, 'close') ">Save and Close</button> -->
+            </td>
+            <td style="width: 2% "></td>
+            <td style="width: 32%;padding: 20px ">
+                <div class="option-tab grow " id="product-option-tab" (click)="saveProductImages(itemColor,imageLinks, 'open',itemEntryForm) ">
+                    <table width="100% ">
+                        <tr>
+                            <td>
+                                <p class="option-tab-text ">ADD NEW COLOR-IMAGES</p>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                <!-- <button id="addNewColorButton " mat-raised-button (click)="saveProductImages(itemColor,imageLinks, 'open') ">Add New Color Images</button> -->
+            </td>
+            <td style="width: 2% "></td>
+            <td style="width: 32%;padding: 20px ">
+                <div class="option-tab grow " id="product-option-tab" (click)="cancelImageEntry(itemEntryForm) ">
+                    <table width="100% ">
+                        <tr>
+                            <td>
+                                <p class="option-tab-text ">CANCEL ENTRY</p>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                <!-- <button id="addNewColorButton " mat-raised-button (click)="saveProductImages(itemColor,imageLinks, 'open') ">Add New Color Images</button> -->
+            </td>
+        </tr>
+    </table>
+
+</div>
+
+<div *ngIf="successMessage " class="animate-fade ">
+
+    <h1 style="font-weight: 700 ">Congrats your Item has been Saved successfully.</h1>
+
+    <br><br><br>
+    <div class="option-tab grow " id="product-option-tab" (click)="clearAll(itemCode,itemBrand,itemName,itemManufact,itemMRP,itemCP,itemSP,itemTax,groupKey,categoryKey,subCategoryKey,nature,itemEntryForm) " style="width: 50% ">
+        <table width="100% ">
+            <tr>
+                <td>
+                    <p class="option-tab-text ">ADD NEW ITEM</p>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+</div>
+
+<div *ngIf="failedMessage " class="animate-fade ">
+
+    <h1 style="font-weight: 700 ">Sorry something went Wrong. Please Try Again.</h1>
+
+    <br><br><br>
+    <table class="table ">
+        <tr>
+            <td style="width: 50%;padding: 20px ">
+
+                <div class="option-tab grow " id="product-option-tab" (click)="clearAll(itemCode,itemBrand,itemName,itemManufact,itemMRP,itemCP,itemSP,itemTax,groupKey,categoryKey,subCategoryKey,nature,itemEntryForm) ">
+                    <table width="100% ">
+                        <tr>
+                            <td>
+                                <p class="option-tab-text ">ADD NEW ITEM</p>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+
+            </td>
+
+            <td style="width: 50%;padding: 20px ">
+
+                <div class="option-tab grow " id="product-option-tab" (click)="saveItem(itemCode,itemBrand,itemName,itemManufact,itemMRP,itemCP,itemSP,itemTax,groupKey,categoryKey,subCategoryKey,nature,itemEntryForm) ">
+                    <table width="100% ">
+                        <tr>
+                            <td>
+                                <p class="option-tab-text ">TRY AGAIN</p>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+
+            </td>
+        </tr>
+
+    </table>
+
+</div>

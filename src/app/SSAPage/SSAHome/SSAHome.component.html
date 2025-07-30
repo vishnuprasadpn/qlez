@@ -1,0 +1,234 @@
+<header>
+</header>
+<div class="row" id="welcome_main_div">
+    <table style="height:100%;width: 100%">
+        <tr>
+            <td width="30%" id="bg-td">
+                <table width="100%">
+                    <tr>
+                        <td>
+                            <h1 style="font-weight: 700;color: #fff;padding-bottom: 5%;text-align: center">
+                                DASHBOARD MENU
+                            </h1>
+                        </td>
+                    </tr>
+                    <br><br>
+                    <tr>
+                        <td>
+                            <div class="option-tab grow" id="return-option-tab" (click)="checkStockReturn()">
+                                <table width="100%">
+                                    <tr>
+                                        <td>
+                                            <p class="option-tab-text">VIEW RETURNED STOCK</p>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </td>
+                    </tr>
+                    <br><br>
+                    <tr>
+                        <td>
+                            <div class="option-tab grow" id="staff-option-tab" (click)="showStaffManagementView()">
+                                <table width="100%">
+                                    <tr>
+                                        <td>
+                                            <p class="option-tab-text">STAFF MANAGEMENT</p>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </td>
+                    </tr>
+                    <br><br>
+                    <tr>
+                        <td>
+                            <div class="option-tab grow" id="stock-option-tab" (click)="showStockManagementView()">
+                                <table width="100%">
+                                    <tr>
+                                        <td>
+                                            <p class="option-tab-text">STOCK MANAGEMENT</p>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </td>
+                    </tr>
+                    <br><br>
+                    <tr>
+                        <td>
+                            <div class="option-tab grow" id="offer-option-tab" (click)="showOfferManagementView()">
+                                <table width="100%">
+                                    <tr>
+                                        <td>
+                                            <p class="option-tab-text">OFFER MANAGEMENT</p>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </td>
+                    </tr>
+
+                </table>
+                <br><br><br>
+                <p id="backButton" class="grow" (click)="backToHome()">GO BACK</p>
+            </td>
+            <td></td>
+            <td width="60%" align="center">
+                <div *ngIf="defaultSection">
+                    <h1 style="color:#000;font-size:46px;font-weight: 700;margin-top: 0px;">STOCK / STORE ADMIN MODULE</h1>
+                    <br><br>
+                    <p style="font-size: 28px;line-height: 55px;">
+                        Qlez is the project with an aim to craft Retail Store's Future. Artificial Intelligence and Machine Learning combined altogether to redefine customer experience, and operations for retail stores by providing end to end integrated solution right from stock
+                        addition to sales.
+                    </p>
+                </div>
+
+                <div *ngIf="returnedStockView">
+                    <admin-return-exchange></admin-return-exchange>
+                </div>
+                <div *ngIf="staffManagementView">
+                    <div *ngIf="staffManagementMenuView">
+                        <h1 style="font-size:41px;font-weight:600;">STAFF MANAGEMENT MODULE</h1>
+                        <br>
+                        <p style="font-size: 25px;line-height: 44px;padding: 10px;">
+                            Staff Managment in this module includes <b>New Staff Addition</b> and <b>Existing Staff List</b> More Managment options will be added in the later releases.
+                        </p>
+                        <br><br><br>
+
+                        <table width="100%">
+                            <tr>
+                                <td width="45%">
+                                    <div class="animate-fade option-tab grow" id="add-staff-option-tab" (click)="addNewStaff()">
+                                        <table width="100%">
+                                            <tr>
+                                                <td>
+                                                    <p class="option-tab-text">ADD NEW STAFF</p>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                </td>
+                                <td width="10%"></td>
+                                <td width="45%">
+                                    <div class="option-tab grow" id="view-staffs-option-tab" (click)="showStaffList()">
+                                        <table width="100%">
+                                            <tr>
+                                                <td>
+                                                    <p class="option-tab-text">VIEW STAFF LIST</p>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div *ngIf="staffAdditionView">
+                        <employee-addition></employee-addition>
+                    </div>
+
+                    <div *ngIf="staffListView">
+                        <employee-display></employee-display>
+                    </div>
+                </div>
+
+                <div *ngIf="stockManagementView">
+                    <admin-stock-display-home></admin-stock-display-home>
+                </div>
+                <div *ngIf="offerManagementView">
+                    <app-OfferManagementHome></app-OfferManagementHome>
+                </div>
+            </td>
+            <td></td>
+        </tr>
+    </table>
+</div>
+
+<!-- <div class="main-bg" style="font-size: 20px;">
+	<header></header>
+
+	<ul id="maintabs" class="nav nav-tabs" role="tablist" style="width:100% ; background:#0071BB">
+		<li role="presentation" class="active " style="width:33.3%"><a href="#general" role="tab" data-toggle="tab">General</a></li>
+		<li role="presentation" style="width:33.3%"><a href="#AdminStockDisplay" role="tab" data-toggle="tab">Admin Stock Display</a></li>
+		<li role="presentation" style="width:33.3%"><a href="#designOffer" role="tab" data-toggle="tab">Designing Offers</a></li>
+	</ul>
+
+	<div class="tab-content">
+
+		<div role="tabpanel" class="tab-pane fade in active" id="general">
+
+			<ul id="subtabs1" class="nav nav-tabs" role="tablist" style="width:100% ; background:#0071BB">
+				<li role="presentation" class="active " style="width:33.3%"><a href="#adminreturn" role="tab" data-toggle="tab">Admin Level Return/Exchange</a></li>
+				<li role="presentation" style="width:33.3%"><a href="#staffAddition" role="tab" data-toggle="tab">Staff Addition</a></li>
+				<li role="presentation" style="width:33.3%"><a href="#staffDisplay" role="tab" data-toggle="tab">Staff Display</a></li>
+			</ul>
+
+			<div class="tab-content">
+				<div role="tabpanel" class="tab-pane fade in active" id="adminreturn">
+					<admin-return-exchange></admin-return-exchange>
+				</div>
+
+				<div role="tabpanel" class="tab-pane fade" id="staffAddition">
+					<employee-addition></employee-addition>
+				</div>
+
+				<div role="tabpanel" class="tab-pane fade" id="staffDisplay">
+					<employee-display></employee-display>
+				</div>
+			</div>
+
+		</div>
+
+
+		
+		<div role="tabpanel" class="tab-pane fade" id="AdminStockDisplay">
+							
+			<ul id="tabs" class="nav nav-tabs" role="tablist" style="width:100% ; background:#0071BB" >
+					<li role="presentation" class="active "  style="width:50%"><a href="#AID" role="tab" data-toggle="tab">Admin Item Display</a></li>
+					<li role="presentation" style="width:50%"><a href="#APD" role="tab" data-toggle="tab" >Admin Product Display</a></li>
+				</ul>
+
+				<div class="tab-content">
+					
+					<div role="tabpanel" class="tab-pane fade in active" id="AID">
+						<admin-item-display></admin-item-display>
+					</div>
+
+					<div role="tabpanel" class="tab-pane fade" id="APD">
+						<admin-product-display></admin-product-display>
+					</div>
+				
+				</div>
+
+		</div>
+
+
+		
+
+		<div role="tabpanel" class="tab-pane fade in" id="designOffer">
+
+			<ul id="subtabs2" class="nav nav-tabs" role="tablist" style="width:100% ; background:#0071BB">
+				<li role="presentation" class="active " style="width:33.3%"><a href="#GeneralOffers" role="tab" data-toggle="tab">General Offers</a></li>
+				<li role="presentation" style="width:33.3%"><a href="#BrandOffers" role="tab" data-toggle="tab">Brand Offers</a></li>
+				<li role="presentation" style="width:33.3%"><a href="#ComboOffers" role="tab" data-toggle="tab">Combo Offers</a></li>
+			</ul>
+
+			<div class="tab-content">
+				<div role="tabpanel" class="tab-pane fade in active" id="GeneralOffers">
+					<general-offers></general-offers>
+				</div>
+
+				<div role="tabpanel" class="tab-pane fade" id="BrandOffers">
+						<brand-offers></brand-offers>
+				</div>
+
+				<div role="tabpanel" class="tab-pane fade" id="ComboOffers">
+					<combo-offers></combo-offers>
+				</div>
+			</div>
+	
+		</div>
+	
+
+	</div> -->

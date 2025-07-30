@@ -1,0 +1,661 @@
+<div *ngIf="itemDisplayMenu" class="animate-fade" align="center">
+
+    <h1 style="font-weight: 700">STOCK DISPLAY SEARCH</h1>
+    <br><br>
+    <h2>Please Select any of the Following option for Item Detail Search</h2>
+    <br><br><br>
+
+    <div class="row">
+        <div class="col-lg-5">
+            <div class="option-tab grow" id="scanProduct-option-tab" (click)="selectSearchByID()">
+                <table width="100%">
+                    <tr>
+                        <td>
+                            <p class="option-tab-text">SCAN PRODUCT</p>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <div class="col-lg-2"></div>
+        <div class="col-lg-5">
+            <div class="option-tab grow" id="itemNameSearch-option-tab" (click)="selectSearchByItemName()">
+                <table width="100%">
+                    <tr>
+                        <td>
+                            <p class="option-tab-text">SEARCH BY ITEM NAME</p>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <br><br><br>
+
+    <div class="row">
+        <div class="col-lg-5">
+            <div class="option-tab grow" id="itemCodeSearch-option-tab" (click)="selectSearchByItemCode()">
+                <table width="100%">
+                    <tr>
+                        <td>
+                            <p class="option-tab-text">SEARCH BY ITEM CODE</p>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <div class="col-lg-2"></div>
+        <div class="col-lg-5">
+            <div class="option-tab grow" id="itemBrandSearch-option-tab" (click)="selectSearchByBrandName()">
+                <table width="100%">
+                    <tr>
+                        <td>
+                            <p class="option-tab-text">SEARCH BY BRAND NAME</p>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <br><br><br>
+
+    <div class="row">
+
+        <div class="col-lg-3"></div>
+        <div class="col-lg-6">
+            <div class="option-tab grow" id="categorySearch-option-tab" (click)="selectSearchByCategory()">
+                <table width="100%">
+                    <tr>
+                        <td>
+                            <p class="option-tab-text">SEARCH BY CATGEORY</p>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <div class="col-lg-3"></div>
+    </div>
+
+</div>
+
+<div *ngIf="searchByIDSection" class="animate-fade" align="center">
+    <h1 style="font-weight: 700">Please place the product near the Reader section before starting scan</h1>
+    <br><br><br>
+    <div class="row">
+        <div class="col-lg-5">
+            <div class="option-tab grow" id="scanProduct-option-tab" (click)="scanProductID()">
+                <table width="100%">
+                    <tr>
+                        <td>
+                            <p class="option-tab-text">SCAN PRODUCT</p>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <div class="col-lg-2"></div>
+        <div class="col-lg-5">
+            <div class="option-tab grow" id="product-option-tab" (click)="goTOMenu()">
+                <table width="100%">
+                    <tr>
+                        <td>
+                            <p class="option-tab-text">BACK TO MENU</p>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div *ngIf="searchByValue" class="animate-fade" align="center">
+    <h1 style="font-weight: 700">Please Enter Following Details for fetching Item Data</h1>
+    <br><br><br>
+    <input id="itemSearchInputField" class="inputField" placeholder="Enter Value" #searchKeyValue required (keyup)="keyInputUpdating(searchKeyValue)">
+    <br>
+
+    <span *ngIf="noSearchKeyError" class="inputErrorMessage animate-fade">Please enter a valid Input </span>
+    <br><br><br>
+
+    <div class="row">
+        <div class="col-lg-5">
+            <div class="option-tab grow" id="itemSearchSubmit-option-tab" (click)="searchProducts()">
+                <table width="100%">
+                    <tr>
+                        <td>
+                            <p class="option-tab-text">SEARCH BY {{searchType}}</p>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <div class="col-lg-2"></div>
+        <div class="col-lg-5">
+            <div class="option-tab grow" id="product-option-tab" (click)="goTOMenu()">
+                <table width="100%">
+                    <tr>
+                        <td>
+                            <p class="option-tab-text">BACK TO MENU</p>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div *ngIf="searchByCategory" class="animate-fade" align="center">
+    <h1 style="font-weight: 700">Please Provide Following Details for fetching Item Data</h1>
+    <br><br><br>
+    <table class="table">
+        <tr>
+            <td style="padding: 20px">
+                <span *ngIf="selectGroup" class="inputInfoMessage animate-fade">Selected Group </span>
+                <select class="inputField selectBox" id="groupKey" #groupKey (change)="selectedGroup(groupKey,categoryKey)">
+						<option disabled="" selected="" value="Select Any Group">Select Any Group</option>
+						<option value="GIRLS">GIRLS</option>
+						<option value="BOYS">BOYS</option>
+						<option value="UNISEX">UNISEX</option>
+					</select>
+            </td>
+            <td *ngIf="categorySelectTD" style="width: 50%;padding: 20px">
+                <span *ngIf="selectCategory" class="inputInfoMessage animate-fade">Selected Category</span>
+                <select class="inputField selectBox" id="categoryKey" #categoryKey (change)="selectedCategory(categoryKey,subCategoryKey)">
+							<option disabled="" selected="" value="Select Any Category">Select Any Category</option>
+							<option value="PANT">PANT</option>
+							<option value="PANTEES">PANTEES</option>
+							<option value="3/4th PANT">3/4th PANT</option>
+							<option value="MIDDI">MIDDI</option>
+							<option value="NICKER">NICKER</option>
+							<option value="DUNGRES">DUNGRES</option>
+							<option value="ROMPER">ROMPER</option>
+							<option value="NICKER -denim">NICKER -denim</option>
+							<option value="SHORTY">SHORTY</option>
+							<option value="CHESS PRINT/STRIPE">CHESS PRINT/STRIPE</option>	
+						</select>
+            </td>
+        </tr>
+        <br><br>
+        <tr>
+            <td *ngIf="SubCategorySelectTD" style="width: 50%;padding: 20px">
+                <span *ngIf="selectSubCategory" class="inputInfoMessage animate-fade">Selected Sub-Category </span>
+                <select class="inputField selectBox" id="subCategoryKey" #subCategoryKey (change)="selectedSubCategory(subCategoryKey,nature)">
+						<option disabled="" value="Select Any Sub-category">Select Any Sub-category</option>
+						<option value="SLEEVELESS">SLEEVELESS</option>
+						<option value="STRAP">STRAP</option>
+						<option value="HALF-SLEEVE">HALF-SLEEVE</option>
+						<option value="FULL-SLEEVE">FULL-SLEEVE</option>
+					</select>
+            </td>
+            <td *ngIf="AOPSelectTD" style="width: 50%;padding: 20px">
+                <span *ngIf="selectAOP" class="inputInfoMessage animate-fade">Selected AOP</span>
+                <select class="inputField selectBox" id="nature" #nature (change)="selectedNature(nature)">
+							<option disabled="" value="Select Any Nature" value="Select Any Nature">Select Any AOP</option>
+							<option value="S-FLOWER">S-FLOWER</option>
+							<option value="DAIMOND">DIAMOND</option>
+							<option value="DOT">DOT</option>
+							<option value="HEART">HEART</option>
+							<option value="PLAIN">PLAIN</option>
+							<option value="CHESS-PRINT/STRIPE">CHESS-PRINT/STRIPE</option>
+							<option value="EMBROIDERY">EMBROIDERY</option>
+							<option value="CHESS-PRINT">CHESS-PRINT</option>
+							<option value="GREY MILANCH">GREY-MILANCH</option>
+							<option value="B-FLOWER">B-FLOWER</option>
+							<option value="CAR-PRINT">CAR-PRINT</option>
+							<option value="STRIPE">STRIPE</option>
+							<option value="PRINTED">PRINTED</option>
+							<option value="FLOWER">FLOWER</option>
+						</select>
+            </td>
+        </tr>
+        <br><br>
+    </table>
+    <table class="table">
+        <tr>
+            <td style="width: 50%;padding: 20px">
+                <div class="option-tab grow" id="product-option-tab" (click)="getItemsByCategory()">
+                    <table width="100%">
+                        <tr>
+                            <td>
+                                <p class="option-tab-text">SEARCH PRODUCT</p>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </td>
+            <td style="width: 50%;padding: 20px">
+                <div class="option-tab grow" id="product-option-tab" (click)="goTOMenu()">
+                    <table width="100%">
+                        <tr>
+                            <td>
+                                <p class="option-tab-text">BACK TO MENU</p>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </td>
+        </tr>
+    </table>
+</div>
+
+<div *ngIf="loadingProgress" class="animate-fade" align="center">
+
+    <h1 style="font-weight: 700">Please Wait While we Fetch Details of the Item</h1>
+    <br><br><br>
+    <svg width="70" height="20">
+			<circle cx="10" cy="10" r="0">
+				<animate attributeName="r" from="0" to="10" values="0;10;10;10;0" dur="1000ms" repeatCount="indefinite" />
+			</circle>
+	
+			<circle cx="35" cy="10" r="0">
+				<animate attributeName="r" from="0" to="10" values="0;10;10;10;0" begin="200ms" dur="1000ms" repeatCount="indefinite" />
+			</circle>
+	
+			<circle cx="60" cy="10" r="0">
+				<animate attributeName="r" from="0" to="10" values="0;10;10;10;0" begin="400ms" dur="1000ms" repeatCount="indefinite" />
+			</circle>
+		</svg>
+
+</div>
+
+<div id="myModal" class="modal container animate-fade" align="center" onclick="document.getElementById('myModal').style.display='none'" style="background-color: rgba(0,0,0,0.9);">
+
+    <span class="close" onclick="document.getElementById('myModal').style.display='none'">
+			<i class="fa fa-times-circle" style="top:0"></i>
+		</span>
+
+    <img id="img01" style="width: 33%;">
+    <div id="caption"></div>
+
+</div>
+
+<div *ngIf="noItemFound">
+
+    <h1 style="font-weight: 700">Sorry No Items were Found Please Try Again !</h1>
+
+    <br><br><br>
+    <table class="table">
+        <tr>
+            <td style="width: 50%;padding: 20px">
+
+                <div class="option-tab grow" id="back-option-tab" (click)="tryAgain()">
+                    <table width="100%">
+                        <tr>
+                            <td>
+                                <p class="option-tab-text">TRY AGAIN</p>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+
+            </td>
+            <td style="width: 50%;padding: 20px">
+
+                <div class="option-tab grow" id="back-option-tab" (click)="goTOMenu()">
+                    <table width="100%">
+                        <tr>
+                            <td>
+                                <p class="option-tab-text">BACK TO MENU</p>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+
+            </td>
+        </tr>
+    </table>
+
+</div>
+
+<div *ngIf="connectionError">
+
+    <h1 style="font-weight: 700">Sorry Something Went Wrong ! Please Try Again</h1>
+
+    <br><br><br>
+    <table class="table">
+        <tr>
+            <td style="width: 50%;padding: 20px">
+
+                <div class="option-tab grow" id="back-option-tab" (click)="tryAgain()">
+                    <table width="100%">
+                        <tr>
+                            <td>
+                                <p class="option-tab-text">TRY AGAIN</p>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+
+            </td>
+            <td style="width: 50%;padding: 20px">
+
+                <div class="option-tab grow" id="back-option-tab" (click)="goTOMenu()">
+                    <table width="100%">
+                        <tr>
+                            <td>
+                                <p class="option-tab-text">BACK TO MENU</p>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+
+            </td>
+        </tr>
+    </table>
+
+</div>
+
+<div *ngIf="dataView">
+
+    <div style="padding: 26px">
+
+        <h1 style="font-weight: 700">Search Result</h1>
+        <br><br>
+        <table class="table">
+            <tr>
+                <td>
+                    <p style="padding: 10px; font-size: 24px; text-align: left;padding-bottom: 30px;">
+                        Search Key : {{searchType}} : {{searchKey}}
+                    </p>
+                </td>
+                <td>
+                    <p style="padding: 10px; font-size: 24px; text-align: right;padding-bottom: 30px;">
+                        Total Items Found : {{totalCount}}
+                    </p>
+                </td>
+            </tr>
+        </table>
+        <table id="tableHead" class="tableHeadings">
+            <tr>
+                <!-- <th class="coloumnHeadStyle" style="min-width: 50px">
+                    <div id="allSelector" #allSelection (click)="selectAll(allSelection)"></div>
+                </th> -->
+                <th class="coloumnHeadStyle" style="min-width: 50px">Sl.no</th>
+                <th class="coloumnHeadStyle" (click)="sort('item_code','IconUpDownitemCode')">
+                    Item code
+                    <br>
+                    <i class=" fa fa-caret-down" id="IconUpDownitemCode" aria-hidden="true"></i>
+                </th>
+                <th class="coloumnHeadStyle" (click)="sort('item_name','IconUpDownitemName')">
+                    Name
+                    <br>
+                    <i class=" fa fa-caret-down" id="IconUpDownitemName" aria-hidden="true"></i>
+                </th>
+                <th class="coloumnHeadStyle" (click)="sort('item_group','IconUpDownitemGroup')">
+                    Group
+                    <br>
+                    <i class=" fa fa-caret-down" id="IconUpDownit emGroup" aria-hidden="true"></i>
+                </th>
+                <th class="coloumnHeadStyle" (click)="sort('item_category','IconUpDownitemCategory')">
+                    Category
+                    <br>
+                    <i class=" fa fa-caret-down" id="IconUpDownitemCategory" aria-hidden="true"></i>
+                </th>
+                <th class="coloumnHeadStyle" (click)="sort('item_subcategory','IconUpDownitemSubCategory')">
+                    Sub-Category
+                    <br>
+                    <i class=" fa fa-caret-down" id="IconUpDownitemSubCategory" aria-hidden="true"></i>
+                </th>
+                <th class="coloumnHeadStyle" (click)="sort('item_brand','IconUpDownitemBrand')">
+                    Brand
+                    <br>
+                    <i class=" fa fa-caret-down" id="IconUpDownitemBrand" aria-hidden="true"></i>
+                </th>
+                <th class="coloumnHeadStyle" (click)="sort('item_mrp','IconUpDownitemmrp')">
+                    MRP
+                    <br>
+                    <i class=" fa fa-caret-down" id="IconUpDownitemmrp" aria-hidden="true"></i>
+                </th>
+                <th class="coloumnHeadStyle" (click)="sort('item_sp','IconUpDownitemSp')">
+                    SP
+                    <br>
+                    <i class=" fa fa-caret-down" id="IconUpDownitemSp" aria-hidden="true"></i>
+                </th>
+                <!-- <th class="coloumnHeadStyle" (click)="sort('item_manufacturer','IconUpDownitemManufacture')"> Manufacture
+						<br>
+						<i class=" fa fa-caret-down" id="IconUpDownitemManufacture" aria-hidden="true"></i>
+					</th> -->
+                <th class="coloumnHeadStyle">ACTION</th>
+            </tr>
+        </table>
+
+        <div class="content " id="tableContent" class="table content">
+            <table id="tableValues" class="content tableValues">
+                <tr *ngFor="let item of scannedItemDt|orderBy:Otype:Oby;let itemIdx = index">
+                    <table>
+                        <tr id="loadTr">
+
+                            <!-- <td class="coloumnValueStyle" id="selectTd{{itemIdx}}" style="min-width: 50px" align="center">
+                                <div #selector class="selectorDiv" id="selector{{itemIdx}}" (click)="select(selector,allSelection,item)">
+                                </div>
+                            </td> -->
+                            <td class="coloumnValueStyle" style="min-width: 50px">{{itemIdx+1}}</td>
+                            <td class="coloumnValueStyle" (click)="showCountDetails(item,itemIdx)">{{item.item_code}}</td>
+                            <td class="coloumnValueStyle">{{item.item_name}}</td>
+                            <td class="coloumnValueStyle">{{item.item_group}}</td>
+                            <td class="coloumnValueStyle">{{item.item_category}}</td>
+                            <td class="coloumnValueStyle">{{item.item_subcategory}}</td>
+                            <td class="coloumnValueStyle">{{item.item_brand}}</td>
+                            <td class="coloumnValueStyle">{{item.item_mrp}}</td>
+                            <td class="coloumnValueStyle">{{item.item_sp}}</td>
+                            <!-- <td class="coloumnValueStyle">{{item.item_manufacturer}}</td> -->
+                            <td class="coloumnValueStyle content" id="imageTd" (click)="viewItem(item)">
+                                <span id="myImg" target="_blank" style="color:#fff">View Details</span>
+                            </td>
+                        </tr>
+                    </table>
+                    <div id="{{itemIdx}}" style="display: none">
+                        <table class="table">
+                            <tr>
+                                <th class="coloumnHeadStyle">Product Color</th>
+                                <th class="coloumnHeadStyle">Product Sizes Available</th>
+                                <th class="coloumnHeadStyle">Product Count</th>
+                            </tr>
+                            <tr>
+                                <td class="coloumnValueStyle">
+                                    <a class="productColor" *ngFor="let color of item.colors;let colorIdx = index" id="{{itemIdx}}{{colorIdx}}" #productColor></a>
+                                </td>
+                                <td class="coloumnValueStyle">
+                                    <table class="table" style="background: transparent;margin-bottom: 0px;">
+                                        <tr>
+                                            <td *ngFor="let size of item.sizes" style="background: grey;border:2px solid #363636; ">{{size}}</td>
+                                        </tr>
+                                    </table>
+                                </td>
+                                <td class="coloumnValueStyle">
+                                    {{item.productCount}}
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </tr>
+            </table>
+        </div>
+
+        <br><br><br>
+        <table class="table">
+            <tr>
+                <td style="width: 50%;padding: 20px">
+
+                    <div class="option-tab grow" id="searchNew-option-tab" (click)="tryAgain()">
+                        <table width="100%">
+                            <tr>
+                                <td>
+                                    <p class="option-tab-text">SEARCH NEW</p>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+
+                </td>
+                <td style="width: 50%;padding: 20px">
+
+                    <div class="option-tab grow" id="resultPageBack-option-tab" (click)="goTOMenu()">
+                        <table width="100%">
+                            <tr>
+                                <td>
+                                    <p class="option-tab-text">BACK TO MENU</p>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+
+                </td>
+            </tr>
+        </table>
+
+
+    </div>
+
+</div>
+
+<div *ngIf="itemFullDetail">
+    <h1>ITEM DETAILS</h1>
+    <edit-item></edit-item>
+    <button (click)="testClick()">Click here</button>
+</div>
+
+<!-- <br>
+<div class="container" style="width:97%">
+	
+
+	<div class="content" id="headingTable">	
+		<table width="100%" >
+			<tr>
+				<th class="coloumnHeadStyle sno" align="center">
+					<div id="allSelector" #allSelection (click)="selectAll(allSelection)"></div>
+				</th>
+				<th class="coloumnHeadStyle sno">Sl.no</th>
+				<th class="coloumnHeadStyle" (click)="sort('item_code','IconUpDownitemCode')">
+					Item code <i class=" fa fa-caret-down" id="IconUpDownitemCode" aria-hidden="true"></i>
+				</th>
+				<th class="coloumnHeadStyle" (click)="sort('item_name','IconUpDownitemName')">Name
+					<i class=" fa fa-caret-down" id="IconUpDownitemName" aria-hidden="true"></i>
+				</th>
+				<th class="coloumnHeadStyle" (click)="sort('item_group','IconUpDownitemGroup')">Group
+					<i class=" fa fa-caret-down" id="IconUpDownitemGroup" aria-hidden="true"></i></th>
+				<th class="coloumnHeadStyle" (click)="sort('item_category','IconUpDownitemCategory')">Category
+					<i class=" fa fa-caret-down" id="IconUpDownitemCategory" aria-hidden="true"></i>
+				</th>
+				<th class="coloumnHeadStyle" (click)="sort('item_subcategory','IconUpDownitemSubCategory')">Sub-Category
+					<i class=" fa fa-caret-down" id="IconUpDownitemSubCategory" aria-hidden="true"></i>
+				</th>
+				<th class="coloumnHeadStyle" (click)="sort('item_brand','IconUpDownitemBrand')">
+					Brand<i class=" fa fa-caret-down" id="IconUpDownitemBrand" aria-hidden="true"></i>
+				</th>
+				<th class="coloumnHeadStyle" (click)="sort('item_mrp','IconUpDownitemmrp')">MRP
+					<i class=" fa fa-caret-down" id="IconUpDownitemmrp" aria-hidden="true"></i>
+				</th>
+				<th class="coloumnHeadStyle" (click)="sort('item_sp','IconUpDownitemSp')">SP
+					<i class=" fa fa-caret-down" id="IconUpDownitemSp" aria-hidden="true"></i>
+				</th>
+				<th class="coloumnHeadStyle" (click)="sort('item_manufacturer','IconUpDownitemManufacture')"> Manufacture
+					<i class=" fa fa-caret-down" id="IconUpDownitemManufacture" aria-hidden="true"></i>
+				</th>
+				<th class="coloumnHeadStyle">Image</th>
+				<th class="coloumnHeadStyle sno" style="padding: 5px 0px"><i class="material-icons">mode_edit</i></th>
+			</tr>
+		</table>
+	</div>
+
+	<div class="content" id="valueTable">
+		<table width="100%" style="border: 1px solid #fff!important;">
+			<tr *ngFor="let item of scannedItemDt|orderBy:Otype:Oby;let itemIdx = index">
+				<table width="100%">
+					<tr id="loadTr{{itemIdx}}" bgcolor="none" style="background-color: black;">
+						<td class="coloumnValueStyle sno"  id="selectTd{{itemIdx}}"  align="center">
+
+							<div #selector class="selectorDiv" id="selector{{itemIdx}}" 
+							(click)="select(selector,allSelection,item)">
+							</div>
+						</td>
+						<td class="coloumnValueStyle sno" (click)="selectItem(item,itemIdx)">{{itemIdx+1}}</td>
+						<td class="coloumnValueStyle" (click)="showCountDetails(item,itemIdx)"><a style="color:white">{{item.item_code}}</a></td>
+						<td class="coloumnValueStyle">{{item.item_name}}</td>
+						<td class="coloumnValueStyle">{{item.item_group}}</td>
+						<td class="coloumnValueStyle">{{item.item_category}}</td>
+						<td class="coloumnValueStyle">{{item.item_subcategory}}</td>
+						<td class="coloumnValueStyle">{{item.item_brand}}</td>
+						<td class="coloumnValueStyle">{{item.item_mrp}}</td>
+						<td class="coloumnValueStyle">{{item.item_sp}}</td>
+						<td class="coloumnValueStyle">{{item.item_manufacturer}}</td>
+						<td class="coloumnValueStyle content " id="imageTd">
+							<div (click)="imagePopup(item.image) ">
+								<a id="myImg" target="_blank" style="color:#fff">open image</a>
+							</div>
+						</td>
+						<td class="coloumnValueStyle sno ">
+							<i class="material-icons" (click)="editItem(item)">mode_edit</i>
+						</td>
+					</tr>
+				</table>
+				<div id="{{itemIdx}}" style="display: none">
+					<table class="table">
+						<tr>
+							<th class="coloumnHeadStyle">Product Color</th>
+							<th class="coloumnHeadStyle">Product Sizes Available</th>
+							<th class="coloumnHeadStyle">Product Count</th>
+						</tr>
+						<tr>
+							<td class="coloumnValueStyle">
+								<a class="productColor" *ngFor="let color of item.colors;let colorIdx = index" id="{{itemIdx}}{{colorIdx}}" #productColor></a>
+							</td>
+							<td class="coloumnValueStyle">
+								<table class="table" style="background: transparent;margin-bottom: 0px;">
+									<tr>
+										<td *ngFor="let size of item.sizes" style="background: grey;border:2px solid #363636; ">{{size}}</td>
+									</tr>
+								</table>
+
+							</td>
+							<td class="coloumnValueStyle">
+								{{item.productCount}}
+							</td>
+						</tr>
+					</table>
+				</div>
+			</tr>
+		</table>
+	</div>
+
+
+	<br>
+
+	<div class="row" id="actionButtonDiv">
+		<div class="col-lg-4"></div>
+		<div class="col-lg-4"></div>
+		<div class="col-lg-4">
+			<table class="table">
+				<tr>
+					<td>
+						<button class="buttonStyle" id="applyOfferButton" mat-raised-button  (click)="applyOffers('open')">Apply Offers</button>
+					</td>
+				</tr>
+			</table>
+		</div>
+	</div>
+
+	<div id="itemEditOverlay" class="overlay">
+		<a id="closebtnEdit" class="closebtn" (click)="editItem('close')" style="z-index: 99">&times;</a>
+		<div class="overlay-content">
+			<edit-item [itemdt]="selecteditem"></edit-item>
+		</div>
+	</div>
+
+	<div id="applyOfferOverlay" class="overlay">
+		<a id="closebtn" class="closebtn" (click)="applyOffers('close')" style="z-index: 99999999999">&times;</a>
+		<div class="overlay-content">
+			<apply-offers [offerItems]="selectedItems" (offerUpdates)="updatedOfferItems =$event"></apply-offers>
+		</div>
+	</div>
+
+	<div id="placeOrderOverlay" class="overlay">
+		<a id="closebtn" class="closebtn" (click)="placeOrder('close')" style="z-index: 99999999999">&times;</a>
+		<div class="overlay-content">
+			<place-order [offerItems]="selectedItems"></place-order>
+		</div>
+	</div>
+
+</div> -->

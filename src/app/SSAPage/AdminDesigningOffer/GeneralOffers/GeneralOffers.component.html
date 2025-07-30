@@ -1,0 +1,339 @@
+<div *ngIf="defaultSection">
+    <h1 style="color:#000;font-size:46px;font-weight: 700;margin-top: 0px;">GENERAL OFFER DESIGN MODULE</h1>
+    <br><br>
+    <p style="font-size: 28px;line-height: 55px;">
+        Qlez is the project with an aim to craft Retail Store's Future. Artificial Intelligence and Machine Learning combined altogether to redefine customer experience, and operations for retail stores by providing end to end integrated solution right from stock
+        addition to sales.
+    </p>
+    <br><br><br>
+    <table class="table">
+        <tr>
+            <td>
+                <div class="option-tab grow" id="item-option-tab" (click)="goToPurchaseSpecific()">
+                    <table width="100%">
+                        <tr>
+
+                            <td>
+                                <p class="option-tab-text">PURCHASE-SPECIFIC OFFERS</p>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </td>
+            <td></td>
+            <td>
+                <div class="option-tab grow" id="product-option-tab" (click)="goToPaymentSpecific()">
+                    <table width="100%">
+                        <tr>
+                            <td>
+                                <p class="option-tab-text">PAYMENT-SPECIFIC OFFERS</p>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </td>
+        </tr>
+    </table>
+    <br><br><br>
+</div>
+
+<div *ngIf="purchaseSpecific">
+    <div class="option-tab grow" id="back-button-option-tab" (click)="goTOGeneralMenu()">
+        <table width="100%">
+            <tr>
+                <td>
+                    <p class="option-tab-text">
+                        <i class="fa fa-arrow-left" aria-hidden="true"></i>
+                    </p>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <h1>Purchase Specific</h1>
+    <br>
+    <table class="table">
+        <tr>
+            <td width="50%">
+                <input type="text" class="inputField" required #purchaseAmount (focusout)="validatePurchaseAmount(purchaseAmount)" (keyup)="validatePurchaseAmount(purchaseAmount)" placeholder="ENTER MINIMUM PURCHASE AMOUNT">
+
+                <span class="warning-msg" *ngIf="purchaseAmountErrorMessage">
+					Please enter the minimum Purchase Amount !
+				</span>
+            </td>
+            <td>
+                <input type="text" class="inputField" required #discountPercent (focusout)="validatePurchasePercentage(discountPercent)" (keyup)="validatePurchasePercentage(discountPercent)" placeholder="ENTER DISCOUNT PERCENTAGE">
+
+                <span class="warning-msg" *ngIf="purchasePercentErrorMessage">
+					Please enter the percentage Discount !
+				</span>
+            </td>
+        </tr>
+
+        <br>
+        <tr>
+            <td>
+                <input type="text" class="inputField" required #point (focusout)="validatePurchasePoint(point)" (keyup)="validatePurchasePoint(point)" placeholder="ENTER PURCHASE POINT">
+
+                <span class="warning-msg" *ngIf="pointErrorMessage">
+					Please enter the Reward or QlezCC Point !
+				</span>
+            </td>
+            <td>
+                <input type="date" class="inputField" required #expiryDate [min]="today" (change)="validatePurchaseDate(expiryDate)" onfocus="(this.type='date')" onload="if(!this.value)this.type='text'" placeholder="EXPIRY DATE : ">
+
+                <span class="warning-msg" *ngIf="dateErrorMessage">
+					Please enter Expiry Date !
+				</span>
+            </td>
+        </tr>
+        <br>
+        <tr>
+            <td>
+                <textarea class="inputField" #comment (focusout)="validatePurchaseComment(comment)" (keyup)="validatePurchaseComment(comment)" rows="4" placeholder="COMMENTS ON THE OFFER"></textarea>
+
+                <span class="warning-msg" *ngIf="commentErrorMessage">
+					Please enter Comment on Offer !
+				</span>
+            </td>
+
+            <td>
+                <textarea class="inputField" #description placeholder="BRIEF DESCRIPTION ON THE OFFER" rows="4" (focusout)="validatePurchaseDescription(description)" (keyup)="validatePurchaseDescription(description)"></textarea>
+
+                <span class="warning-msg" *ngIf="descriptionErrorMessage">
+					Please enter Offer Description !
+				</span>
+            </td>
+        </tr>
+        <br>
+        <tr>
+            <td style="text-align: center;">
+                <div class="option-tab grow" id="product-option-tab" (click)="savePurchaseOffer(purchaseAmount,discountPercent,point,expiryDate,comment,description)">
+                    <table width="100%">
+                        <tr>
+                            <td>
+                                <p class="option-tab-text">SAVE OFFER</p>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </td>
+            <td style="text-align: center;">
+                <div class="option-tab grow" id="product-option-tab" (click)="clearPurchase(purchaseAmount,discountPercent,point,expiryDate,comment,description)">
+                    <table width="100%">
+                        <tr>
+                            <td>
+                                <p class="option-tab-text">CANCEL OFFER</p>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </td>
+        </tr>
+    </table>
+</div>
+
+<div *ngIf="paymentSpecific">
+    <div class="option-tab grow" id="back-button-option-tab" (click)="goTOGeneralMenu()">
+        <table width="100%">
+            <tr>
+                <td>
+                    <p class="option-tab-text">
+                        <i class="fa fa-arrow-left" aria-hidden="true"></i>
+                    </p>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <h1>Payment Related</h1>
+    <br>
+    <table class="table">
+        <tr>
+            <td width="50%">
+                <input type="text" class="inputField" required #paymentAmount (focusout)="validatePaymentAmount(paymentAmount)" placeholder="ENTER MINIMUM AMOUNT">
+
+                <span class="warning-msg" *ngIf="paymentAmountErrorMessage">
+					Please enter the minimum Payment Amount !
+				</span>
+            </td>
+            <td>
+                <input type="text" class="inputField" required #pDiscountPercent (focusout)="validatePaymentPercentage(pDiscountPercent)" placeholder="ENTER DISCOUNT PERCENTAGE">
+
+                <span class="warning-msg" *ngIf="paymentPercentErrorMessage">
+					Please enter the percentage Discount !
+				</span>
+            </td>
+        </tr>
+
+        <br>
+        <tr>
+            <td>
+                <select class="inputField" (change)="selectMethod(method)" #method>
+						<option selected="" disabled="" value="DEFAULT">
+							SELECT ANY PAYMENT METHOD
+						</option>
+						<option value="CRE">CREDIT CARD</option>
+						<option value="DEB">DEBIT CARD</option>
+						<option value="INB">ONLINE BANKING</option>
+						<option value="QCC">QLEZ CASH COIN</option>
+					</select>
+                <span *ngIf="methodErrorMessage" class="warning-msg">
+					Please select Any Payment Mode !
+				</span>
+            </td>
+            <td>
+                <select class="inputField" (change)="selectBank(bank)" #bank>
+						<option selected="" disabled="" value="DEFAULT">
+							SELECT ANY BANK
+						</option>
+						<option value="BOB">Bank of Baroda</option>
+						<option value="CAB">Canara Bank</option>
+						<option value="BOI">Bank of India</option>
+						<option value="COB">Corporation Bank</option>
+					</select>
+                <span *ngIf="bankErrorMessage" class="warning-msg">
+					Please select a bank !
+				</span>
+            </td>
+
+        </tr>
+        <br>
+        <tr>
+            <td>
+                <textarea class="inputField" #pcomment (focusout)="validatePaymentComment(pcomment)" rows="4" placeholder="ENTER COMMENTS ON OFFER"></textarea>
+
+                <span class="warning-msg" *ngIf="paymentCommentErrorMessage">
+					Please enter Comment on Offer !
+				</span>
+            </td>
+
+            <td>
+                <textarea class="inputField" #pdescription placeholder="ENTER BRIEF DESCRIPTION ON THE OFFER" rows="4" (focusout)="validatePaymentDescription(pdescription)"></textarea>
+
+                <span class="warning-msg" *ngIf="paymentDescriptionErrorMessage">
+					Please enter Offer Description !
+				</span>
+            </td>
+        </tr>
+        <br>
+        <tr>
+
+            <td>
+                <input type="date" class="inputField" required #pexpiryDate (change)="validateExPaymentDate(pexpiryDate)" (focusout)="validateExPaymentDate(pexpiryDate)" placeholder="EXPIRY DATE : ">
+                <span class="warning-msg" *ngIf="paymentDateErrorMessage">
+					Please enter Expiry Date !
+				</span>
+            </td>
+            <td>
+                <table class="table">
+                    <tr>
+                        <td style="text-align: center;">
+                            <div class="option-tab grow" id="product-option-tab" style="padding: 13px 24px;" (click)="savePaymentOffer(paymentAmount,pDiscountPercent,method,bank,pcomment,pdescription,pexpiryDate)">
+                                <table width="100%">
+                                    <tr>
+                                        <td>
+                                            <p class="option-tab-text">SAVE OFFER</p>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </td>
+                        <td style="text-align: center;">
+                            <div class="option-tab grow" id="product-option-tab" style="padding: 13px 24px;" (click)="clearPaymentFields(paymentAmount,pDiscountPercent,method,bank,pcomment,pdescription,pexpiryDate)">
+                                <table width="100%">
+                                    <tr>
+                                        <td>
+                                            <p class="option-tab-text">CANCEL OFFER</p>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+
+</div>
+
+<div *ngIf="loader">
+
+    <h1>Please Wait...</h1>
+    <br><br><br><br>
+    <svg width="70" height="20">
+
+		<circle cx="10" cy="10" r="0">
+			<animate attributeName="r" from="0" to="10" values="0;10;10;10;0" dur="1000ms" repeatCount="indefinite" />
+		</circle>
+
+		<circle cx="35" cy="10" r="0">
+			<animate attributeName="r" from="0" to="10" values="0;10;10;10;0" begin="200ms" dur="1000ms" repeatCount="indefinite" />
+		</circle>
+
+		<circle cx="60" cy="10" r="0">
+			<animate attributeName="r" from="0" to="10" values="0;10;10;10;0" begin="400ms" dur="1000ms" repeatCount="indefinite" />
+		</circle>
+
+	</svg>
+    <br><br><br>
+    <div class="option-tab" id="confirm-option-tab" style="width: 300px" (click)="closeMessage()">
+        <table width="100%">
+            <tr>
+                <td>
+                    <p class="option-tab-text">COMPLETE</p>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+</div>
+
+<div *ngIf="success">
+
+    <br><br>
+
+    <h1 style="margin-top: 12%;font-weight: 700;">CONGRATS ! OFFER HAS BEEN CREATED SUCCESSFULLY</h1>
+
+    <br><br>
+    <h1><b>{{OfferCode}}</b>has been added Successfully.</h1>
+    <br><br>
+    <div class="option-tab" id="confirm-option-tab" style="width: 300px" (click)="closeMessage()">
+        <table width="100%">
+            <tr>
+                <td>
+                    <p class="option-tab-text">COMPLETE</p>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <br><br><br>
+    <br><br><br>
+    <br><br><br>
+
+</div>
+
+<div *ngIf="failed">
+
+    <br><br>
+
+    <h1 style="margin-top: 12%;font-weight: 700;">SORRY ! NO OFFER CODE WAS CREATED</h1>
+
+    <br><br>
+    <h2>Please Retry</h2>
+    <br><br>
+    <div class="option-tab" id="confirm-option-tab" style="width: 300px" (click)="closeMessage()">
+        <table width="100%">
+            <tr>
+                <td>
+                    <p class="option-tab-text">COMPLETE</p>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <br><br><br>
+    <br><br><br>
+    <br><br><br>
+
+</div>

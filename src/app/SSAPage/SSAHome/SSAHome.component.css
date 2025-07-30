@@ -1,0 +1,370 @@
+#welcome_main_div {
+    margin-right: 0px;
+    margin-left: 0px;
+    background: #fff;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
+#backButton {
+    text-align: center;
+    font-size: 25px;
+    color: #fff;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+#bg-td {
+    background-image: url('../../../assets/images/backgrounds/bg1.jpg');
+    background-size: cover;
+    padding: 2%;
+}
+
+#CS-heading {
+    font-size: 47px;
+    font-weight: 700;
+}
+
+#cs-intro-td {
+    color: #fff;
+    padding: 5%;
+}
+
+#qlez_intro {
+    line-height: 38px;
+    font-size: 19px;
+    font-weight: 600;
+    text-align: justify;
+}
+
+.option-tab {
+    border: 2px solid #fff;
+    border-radius: 5px;
+    padding: 25px;
+}
+
+.option-tab:hover {
+    cursor: pointer;
+}
+
+#return-option-tab {
+    background: rgba(20, 168, 80, 0.52);
+}
+
+#stock-option-tab {
+    background: rgba(72, 47, 240, 0.52);
+}
+
+#staff-option-tab {
+    background: rgba(240, 88, 47, 0.52);
+}
+
+#offer-option-tab {
+    background: rgba(240, 190, 47, 0.52);
+}
+
+#add-staff-option-tab {
+    background: rgba(240, 190, 47);
+    padding: 24px;
+    border-radius: 100px;
+}
+
+#view-staffs-option-tab {
+    background: rgba(240, 190, 47);
+    padding: 24px;
+    border-radius: 100px;
+}
+
+.option-tab-text {
+    font-size: 25px;
+    color: #fff;
+    font-weight: 600;
+    text-align: center;
+}
+
+.grow {
+    transition: 1s ease;
+}
+
+.grow:hover {
+    -webkit-transform: scale(1.1);
+    -ms-transform: scale(1.1);
+    transform: scale(1.1);
+    transition: 1s ease;
+}
+
+
+/* .main-bg{background: #282828;position: absolute;bottom: 0;top: 0;right: 0;left:0;}
+.profileIcon{color:#fff;float: right;}
+.home-button{color:#fff;float: left;cursor: pointer}
+#usernameStyle{color: #fff;font-size: 29px;text-align: right;padding: 10px;}
+.firstLetterStyle{color:#00BFF2;}
+#SDHeadingStyle{color:#fff;line-height: 0.4;font-weight: 600}
+.iconTd{background: #00BFF5;color: #fff;padding: 0px 10px;}
+.bookmarkIcon{padding-top: 2px}
+.labelTdStyle{    background: #00BFF5;
+    color: #fff;padding: 6px;}
+.row{margin:0px;}
+#headerStyle{padding: 10px;background: #0072BB}
+.iconStyle{padding-top: 4px;}
+#forgotPasswordStyle{color: #fff;font-size: 12px;padding: 5px;}
+#outer-button-ring{display: inline-block;background: #0071BB;color: #fff;padding: 21px 20px;border-radius: 54px;}
+#inner-button-ring{background: #00BFF2;padding: 16px 13px;border-radius: 27px;margin:0px;font-weight: 700}
+.SSAHeading{padding: 16px 5px!important;}
+.coloumnHeadStyle{    background: #363636;
+    color: #eee;padding: 5px 3px;}
+.coloumnValueStyle{background: #fff;padding: 5px;}
+.productColoumnValueStyle{    text-align: center;
+    font-size: 27px;
+    font-weight: 600;}
+.productColoumnHeadStyle{    text-align: center;}
+#searchLabelStyle{background: #fff;
+    border-radius: 50px;
+    padding: 3px 7px;
+    display: inline-block;
+    padding-top: 6px;
+    padding-bottom: 1px;
+  margin: 0px 22px;}
+#scanButtonStyle{background: #0072BB!important;color:#fff!important;width: 200px!important}
+.homeButtonTextStyles{color: #fff;
+    padding: 7px;
+    font-size: 16px;}
+.outer {
+    display: table;
+    position: absolute;
+    height: 85%;
+    width: 100%;
+}
+
+.middle {
+    display: table-cell;
+    vertical-align: middle;
+}
+              
+/* form starting stylings ------------------------------- */
+
+
+/* 
+.group        { 
+  position:relative; 
+}
+input         {
+  font-size:17px;
+  padding:4px 10px 4px 5px;
+  display:block;
+  width:300px;
+  border:none;
+  color:#999;
+}
+input:focus     { outline:none; }
+
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+  -webkit-appearance: none; 
+  margin: 0; 
+}
+
+input[type=date]::-webkit-inner-spin-button, 
+input[type=date]::-webkit-outer-spin-button { 
+  -webkit-appearance: none; 
+  margin: 0; 
+}
+/* LABEL ======================================= */
+
+label {
+    color: #999;
+    font-size: 20px;
+    font-weight: normal;
+    position: absolute;
+    pointer-events: none;
+    left: 36px;
+    top: 5px;
+    transition: 0.2s ease all;
+    -moz-transition: 0.2s ease all;
+    -webkit-transition: 0.2s ease all;
+}
+
+
+/* active state */
+
+input:focus~label,
+input:valid~label {
+    top: -20px;
+    font-size: 14px;
+    color: #fff;
+}
+
+
+/* BOTTOM BARS ================================= */
+
+.bar {
+    position: relative;
+    display: none;
+    width: 300px;
+}
+
+.bar:before,
+.bar:after {
+    content: '';
+    height: 2px;
+    width: 0;
+    bottom: 1px;
+    position: absolute;
+    background: #5264AE;
+    transition: 0.2s ease all;
+    -moz-transition: 0.2s ease all;
+    -webkit-transition: 0.2s ease all;
+}
+
+.bar:before {
+    left: 50%;
+}
+
+.bar:after {
+    right: 50%;
+}
+
+
+/* active state */
+
+input:focus~.bar:before,
+input:focus~.bar:after {
+    width: 50%;
+}
+
+
+/* HIGHLIGHTER ================================== */
+
+.highlight {
+    position: absolute;
+    height: 60%;
+    width: 100px;
+    top: 25%;
+    left: 0;
+    pointer-events: none;
+    opacity: 0.5;
+}
+
+
+/* active state */
+
+input:focus~.highlight {
+    -webkit-animation: inputHighlighter 0.3s ease;
+    -moz-animation: inputHighlighter 0.3s ease;
+    animation: inputHighlighter 0.3s ease;
+}
+
+
+/* ANIMATIONS ================ */
+
+@-webkit-keyframes inputHighlighter {
+    from {
+        background: #5264AE;
+    }
+    to {
+        width: 0;
+        background: transparent;
+    }
+}
+
+@-moz-keyframes inputHighlighter {
+    from {
+        background: #5264AE;
+    }
+    to {
+        width: 0;
+        background: transparent;
+    }
+}
+
+@keyframes inputHighlighter {
+    from {
+        background: #5264AE;
+    }
+    to {
+        width: 0;
+        background: transparent;
+    }
+}
+
+
+/* Material style */
+
+button {
+    border: none;
+    cursor: pointer;
+    color: white;
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, .4);
+}
+
+
+/* Ripple magic */
+
+button {
+    position: relative;
+    overflow: hidden;
+}
+
+button:after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 5px;
+    height: 5px;
+    background: rgba(255, 255, 255, .5);
+    opacity: 0;
+    border-radius: 100%;
+    transform: scale(1, 1) translate(-50%);
+    transform-origin: 50% 50%;
+}
+
+@keyframes ripple {
+    0% {
+        transform: scale(0, 0);
+        opacity: 1;
+        border-radius: 43px;
+    }
+    20% {
+        transform: scale(25, 25);
+        opacity: 1;
+        border-radius: 43px;
+    }
+    100% {
+        opacity: 0;
+        transform: scale(40, 40);
+        border-radius: 43px;
+    }
+}
+
+button:focus:not(:active)::after {
+    animation: ripple 1s ease-out;
+}
+
+.nav-tabs>li.active>a,
+.nav-tabs>li.active>a:focus,
+.nav-tabs>li.active>a:hover {
+    color: #0071BB;
+    cursor: default;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-bottom-color: transparent;
+}
+
+.nav-tabs>li>a {
+    margin-right: 2px;
+    color: #fff;
+    line-height: 1.42857143;
+    text-align: center;
+}
+
+.nav-tabs>li {
+    background: #0071BB;
+}
+
+body {
+    font-size: 20px;
+}

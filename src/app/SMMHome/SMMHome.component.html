@@ -1,0 +1,74 @@
+<header></header>
+<div class="row" style="margin-top:10%">
+
+    <div class="col-lg-1"></div>
+    <div class="col-lg-2 grow" (click)="goToCSHome()">
+        <div align="center" class="tab" id="CStab">
+            <h1 class="tab-text">CS</h1>
+        </div>
+        <div class="tab-content-div">
+            <p class="tab-head-text">
+                CUSTOMER <br> SERVICE</p>
+            <p class="tab-descrp">
+                Handles Customer <br> Related Working</p>
+        </div>
+    </div>
+    <div class="col-lg-2 grow" (click)="goToSDHome()">
+        <div align="center" class="tab" id="SDtab">
+            <h1 class="tab-text">SD</h1>
+        </div>
+        <div class="tab-content-div">
+            <p class="tab-head-text">
+                STOCK<br> DISPLAY</p>
+            <p class="tab-descrp">
+                Stock Details Checking <br> done Here.</p>
+        </div>
+    </div>
+    <div class="col-lg-2 grow" (click)="goToSSAHome()">
+        <div align="center" class="tab" id="SSAtab">
+            <h1 class="tab-text">SSA</h1>
+        </div>
+        <div class="tab-content-div">
+            <p class="tab-head-text">
+                STOCK / STORE<br> ADMIN</p>
+            <p class="tab-descrp">
+                Store Product , Staff and Offer <br> Management.</p>
+        </div>
+    </div>
+    <div class="col-lg-2 grow" (click)="goToSAHome()">
+        <div align="center" class="tab" id="SAtab">
+            <h1 class="tab-text">SA</h1>
+        </div>
+        <div class="tab-content-div">
+            <p class="tab-head-text">
+                STOCK<br> ADDITION</p>
+            <p class="tab-descrp">
+                Single / Bulk Stock <br> Addition handling</p>
+        </div>
+    </div>
+    <div class="col-lg-2 grow" (click)="goToBRHome()">
+        <div align="center" class="tab" id="BRtab">
+            <h1 class="tab-text">BR</h1>
+        </div>
+        <div class="tab-content-div">
+            <p class="tab-head-text">
+                BUSINESS<br> REPORT</p>
+            <p class="tab-descrp">
+                Business Reports <br> are Generated Here</p>
+        </div>
+    </div>
+    <div class="col-lg-1"></div>
+
+</div>
+<br>
+<div class="row animate-fade" *ngIf="noAccessMsg">
+    <div class="col-lg-4"></div>
+    <div class="col-lg-4">
+        <div>
+            <p id="noAccessMsgTextStyle">
+                SORRY YOU HAVE NO ACCESS TO THIS MODULE
+            </p>
+        </div>
+    </div>
+    <div class="col-lg-4"></div>
+</div>

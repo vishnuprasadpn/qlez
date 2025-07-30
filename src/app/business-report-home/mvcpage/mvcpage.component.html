@@ -1,0 +1,144 @@
+<header></header>
+<div class="row" align="center">
+    <div class="col-lg-4"></div>
+    <div class="col-lg-4">
+        <div id="loginDiv">
+
+            <table class="table">
+                <br>
+                <tr>
+                    <td>
+                        <span class="detailSearchLabel">
+                                    Start date
+                                </span>
+                        <input class="inputField" type="date" required #start [max]="today" min="1960-01-02" (change)="startDateValidation(start,end) ">
+
+                        <span *ngIf="dateStatus">
+                                    <i class="fa fa-exclamation-triangle faa-flash animated" aria-hidden="true"></i>
+                                    Please enter a valid date
+                                </span>
+
+                    </td>
+                </tr>
+                <br>
+                <br>
+                <tr>
+                    <td>
+
+                        <span class="detailSearchLabel">
+                                    End date
+                                </span>
+                        <input class="inputField" type="date" required #end [max]="today" min={{start}} (change)="endDateValidation(start,end) ">
+
+                        <span id="dateSearchErrorMessage">
+                                    <i class="fa fa-exclamation-triangle faa-flash animated" aria-hidden="true"></i>
+                                    Please enter a valid date
+                                </span>
+                    </td>
+                </tr>
+
+            </table>
+            <span class="white" *ngIf="dateExceeds" style="text-align: center">
+                        <i class="fa fa-exclamation-triangle faa-flash animated" aria-hidden="true"></i>
+                        Date duration should not exceed more than 30 days and should be more than 1 day.
+                    </span>
+            <span class="white" *ngIf="dateError" style="text-align: center">
+                        <i class="fa fa-exclamation-triangle faa-flash animated" aria-hidden="true"></i>
+                        Date duration should be more than 1 day.
+                    </span>
+            <br>
+            <button md-raised-button (click)="getFSPDetails(start,end)">View Most valuable customer</button>
+            <span class="white container" *ngIf="noTransactions" style="text-align: center">
+                        <i class="fa fa-exclamation-triangle faa-flash animated" aria-hidden="true"></i>
+                        <strong>Oops!</strong> No transactions happen in these time duration.
+                    </span>
+            <br>
+            <br>
+
+        </div>
+    </div>
+    <div class="col-lg-4"></div>
+
+</div>
+
+<div *ngIf="mvcTableStatus" id="tableContainer" class="container">
+    <table style="width:100%" id="tableHead" class="tableHeadings">
+        <tr>
+            <th class="coloumnHeadStyle ">Sl.no</th>
+            <th class="coloumnHeadStyle ">Customer ID</th>
+
+            <th class="coloumnHeadStyle ">
+                <!-- (click)="sort('item_name','IconUpDownitemName')" -->
+                Revenue Made in INR
+                <br>
+            </th>
+        </tr>
+        <!-- <tr id="loadTr" *ngFor="let customer of arrayForUI|orderBy:Otype:Oby;let itemIdx = index">
+      <td class="coloumnValueStyle ">{{itemIdx+1}}</td>
+      <td class="coloumnValueStyle ">
+        <a data-toggle="modal" data-target="#myModalCustom" (click)="custDetails(itemIdx)">{{customer.c_id}}</a>
+      </td>
+      <td class="coloumnValueStyle ">{{customer.inr}}</td>
+    </tr> -->
+    </table>
+</div>
+<div id="myModalCustom" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <div>
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&nbsp;&nbsp;&times;&nbsp;&nbsp;</button>
+                    <h4 class="modal-title">Customer Details</h4>
+                </div>
+                <div class="modal-body">
+                    <table id="tableHead" class="tableHeadings">
+                        <!-- <tr>
+              <th class="coloumnHeadStyle" (click)="sort('item_code','IconUpDownitemCode')">
+                Customer Name
+                <br>
+              </th>
+              <th class="coloumnHeadStyle" (click)="sort('item_name','IconUpDownitemName')">
+                Gender
+                <br>
+              </th>
+              <th class="coloumnHeadStyle" (click)="sort('item_group','IconUpDownitemGroup')">
+                Phone Number
+                <br>
+              </th>
+              <th class="coloumnHeadStyle">
+                E-mail
+                <br>
+              </th>
+
+            </tr> -->
+                        <tr id="loadTr">
+                            <td class="coloumnValueStyle">{{CustomerfName}}</td>
+                            <td class="coloumnValueStyle">{{CustomerGender}}</td>
+                            <td class="coloumnValueStyle">{{CustomerPhone}}</td>
+                            <td class="coloumnValueStyle">{{CustomerEmail}}</td>
+                        </tr>
+                    </table>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<svg id="loaderDiv" width="70" height="20" *ngIf="mvcLoading">
+
+  <circle cx="10" cy="10" r="0">
+    <animate attributeName="r" from="0" to="10" values="0;10;10;10;0" dur="1000ms" repeatCount="indefinite" />
+  </circle>
+
+  <circle cx="35" cy="10" r="0">
+    <animate attributeName="r" from="0" to="10" values="0;10;10;10;0" begin="200ms" dur="1000ms" repeatCount="indefinite" />
+  </circle>
+
+  <circle cx="60" cy="10" r="0">
+    <animate attributeName="r" from="0" to="10" values="0;10;10;10;0" begin="400ms" dur="1000ms" repeatCount="indefinite" />
+  </circle>
+</svg>

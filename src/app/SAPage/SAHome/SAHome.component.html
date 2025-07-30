@@ -1,0 +1,61 @@
+<header></header>
+<div class="row" id="welcome_main_div">
+    <table style="height:100%">
+        <tr>
+            <td width="30%" id="bg-td">
+                <div id="sa-intro-td">
+                    <p id="SA-heading">STOCK ADDITION</p>
+                    <br>
+                    <p id="qlez_intro">
+                        Qlez is the project with an aim to craft Retail Store's Future. Artificial Intelligence and Machine Learning combined altogether to redefine customer experience, and operations for retail stores by providing end to end integrated solution right from stock
+                        addition to sales.
+                    </p>
+                    <br><br><br>
+                    <div class="option-tab grow" id="item-option-tab" (click)="goTOItemAddition()">
+                        <table width="100%">
+                            <tr>
+                                <!-- <td width="30%" align="center">
+                                    <img src="https://s3.ap-south-1.amazonaws.com/popees-data-bucket/images/configuration.png" width="100px">
+                                </td> -->
+                                <td>
+                                    <p class="option-tab-text">ITEM ADDITION</p>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                    <br><br><br><br>
+                    <div class="option-tab grow" id="product-option-tab" (click)="goTOProductAddition()">
+                        <table width="100%">
+                            <tr>
+                                <td>
+                                    <p class="option-tab-text">PRODUCT ADDITION</p>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+
+                    <br><br><br>
+                    <p id="backButton" class="grow" (click)="backToHome()">GO BACK</p>
+                </div>
+            </td>
+            <td></td>
+            <td width="60%" align="center">
+                <div *ngIf="defaultSection">
+                    <h1 style="color:#000;font-size:46px;font-weight: 700;margin-top: 0px;">STOCK ADDITION MODULE</h1>
+                    <br><br>
+                    <p style="font-size: 28px;line-height: 55px;">
+                        Qlez is the project with an aim to craft Retail Store's Future. Artificial Intelligence and Machine Learning combined altogether to redefine customer experience, and operations for retail stores by providing end to end integrated solution right from stock
+                        addition to sales.
+                    </p>
+                </div>
+                <div *ngIf="itemAdditionView">
+                    <item-addition></item-addition>
+                </div>
+                <div *ngIf="productAdditionView">
+                    <product-addition></product-addition>
+                </div>
+            </td>
+            <td></td>
+        </tr>
+    </table>
+</div>

@@ -1,0 +1,343 @@
+<div class="animate-fade" *ngIf="noResponseError">
+
+    <h1 style="font-weight: 700;">Oops... Something went Wrong.</h1>
+
+    <br>
+
+    <h2 style="font-weight: 700;">Please check whether connections are fine and Try Again</h2>
+
+    <br><br><br>
+
+    <div class="option-tab grow" id="retry-option-tab" (click)="getStaffList()">
+
+        <table width="100%">
+
+            <tr>
+
+                <td>
+
+                    <p class="option-tab-text">TRY AGAIN</p>
+
+                </td>
+
+            </tr>
+
+        </table>
+
+    </div>
+
+</div>
+
+<div class="animate-fade" *ngIf="noStaffsFound">
+
+    <h1 style="font-weight: 700;">NO STAFFS FOUND.</h1>
+
+    <br><br><br>
+
+    <div class="option-tab grow" id="cancel-option-tab" (click)="getStaffList()">
+
+        <table width="100%">
+
+            <tr>
+
+                <td>
+
+                    <p class="option-tab-text">TRY AGAIN</p>
+
+                </td>
+
+            </tr>
+
+        </table>
+
+    </div>
+
+</div>
+
+<div *ngIf="loadingProgress" class="animate-fade">
+
+    <p class="faa-flash animated" style="font-size: 35px;font-weight: 700;">Please wait</p>
+
+    <br><br>
+
+    <div align="center">
+
+        <svg width="70" height="20" style="z-index: 99999">
+
+            <circle cx="10" cy="10" r="0">
+
+                <animate attributeName="r" from="0" to="10" values="0;10;10;10;0" dur="1000ms" repeatCount="indefinite" />
+
+            </circle>
+
+            <circle cx="35" cy="10" r="0">
+
+                <animate attributeName="r" from="0" to="10" values="0;10;10;10;0" begin="200ms" dur="1000ms" repeatCount="indefinite" />
+
+            </circle>
+
+            <circle cx="60" cy="10" r="0">
+
+                <animate attributeName="r" from="0" to="10" values="0;10;10;10;0" begin="400ms" dur="1000ms" repeatCount="indefinite" />
+
+            </circle>
+
+        </svg>
+
+    </div>
+
+</div>
+
+<div class="animate-fade" *ngIf="staffDisplayStatus" id="staffDisplaySection">
+
+    <div class="row" align="center">.
+
+        <h2>SEARCH & EDIT</h2>
+
+        <br><br>
+
+        <div class="col-lg-3"></div>
+
+        <div class="col-lg-6">
+
+            <table class="table">
+
+                <tr>
+
+                    <td>
+
+                        <input class="inputField" type="text" name="" placeholder="Enter Search Name" #id [(ngModel)]="textValue">
+
+                    </td>
+
+                </tr>
+
+            </table>
+
+        </div>
+
+        <div class="col-lg-3"></div>
+
+    </div>
+    <br>
+    <br>
+
+    <table class="table table-bordered" style="background: #eee">
+
+        <tr>
+
+            <th>Sl</th>
+
+            <th>Name</th>
+
+            <th>ID</th>
+
+            <th>Role</th>
+
+            <th>Type</th>
+
+            <th>Contact</th>
+
+            <!-- <th>DOB</th> -->
+
+            <!-- <th>Gender</th> -->
+
+            <th>Email</th>
+
+            <!-- <th>UID</th> -->
+
+            <!-- <th>PAN</th> -->
+
+            <!-- <th>Address</th> -->
+
+        </tr>
+
+        <tr *ngFor="let employee of employees|Search:textValue;let empIndex = index">
+
+            <td>{{empIndex+1}}</td>
+
+            <td>{{employee.employee_fname}} {{employee.employee_lname}}</td>
+
+            <td>{{employee.employee_ID}}</td>
+
+            <td>{{employee.employee_designation}}</td>
+
+            <td>{{employee.employee_type}}</td>
+
+            <td>{{employee.employee_contact}}</td>
+
+            <!-- <td>{{employee.employee_DOB}}</td> -->
+
+            <!-- <td>{{employee.gender}}</td> -->
+
+            <td>{{employee.employee_mail}}</td>
+
+            <!-- <td>{{employee.uID}}</td> -->
+
+            <!-- <td>{{employee.pAN}}</td> -->
+
+            <td>
+                <div class="animate-fade option-tab grow " id="view-option-tab" (click)="viewEmployeeDt(employee)">
+                    <table width="100%">
+                        <tr>
+                            <td>
+                                <p class="option-tab-text" id="view-option-tab-text">VIEW MORE</p>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </td>
+
+        </tr>
+
+    </table>
+
+</div>
+
+<div *ngIf="editEmployee" class="animate-fade">
+
+    <br>
+
+    <h2>EDIT EMPLOYEE DETAILS</h2>
+
+    <br><br>
+
+    <table class="table" align="center">
+
+        <br>
+
+        <tr>
+            <td>
+                <table>
+                    <tr>
+                        <td class="edit-input-td">
+                            <label class="employeeValueLabel" *ngIf="!editRoleStatus">EMPLOYEE ROLE : {{selectedEmployee.employee_designation}}</label>
+                            <Select class="customInputField" *ngIf="editRoleStatus" #employeeRoleInput id="employeeRole" (change)="changeRoleFunction(employeeRoleInput)">
+                                <option selected="{{adminStatus}}">Admin</option>            
+                                <option selected="{{salesStatus}}">Sales</option>        
+                                <option selected="{{inventoryStatus}}">Inventory</option>
+                                <option selected="{{customerStatus}}">Customer Service</option>
+                            </Select>
+                        </td>
+                        <td>
+                            <i class="material-icons" id="editRole" #editRoleIconEle *ngIf="editRoleIcon" (click)="editRoleFunction(employeeRoleInput)">create</i>
+                            <i class="material-icons" id="saveRole" #saveRoleIconEle *ngIf="saveRoleIcon" (click)="saveRoleFunction(employeeRoleInput)">done</i>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+            <td>
+                <label class="employeeValueLabel">EMPLOYEE ID : {{selectedEmployee.employee_ID}}</label>
+            </td>
+        </tr>
+        <br>
+        <tr>
+            <td>
+                <table>
+                    <tr>
+                        <td class="edit-input-td">
+
+                            <label class="employeeValueLabel" *ngIf="!editTypeStatus">EMPLOYEE TYPE  : {{selectedEmployee.employee_type}}</label>
+                            <select class="customInputField" *ngIf="editTypeStatus" #employeeType id="employeeType" (change)="changeTypeFunction(employeeType)">
+                                <option selected="{{regularStatus}}">Regular</option>
+                                <option selected="{{partTimeStatus}}">Part-Time</option>
+                            </select>
+                        </td>
+                        <td>
+                            <i class="material-icons" id="editType" #editTypeIconEle *ngIf="editTypeIcon" (click)="editTypeFunction(employeeType)">create</i>
+                            <i class="material-icons" id="saveType" #saveTypeIconEle *ngIf="saveTypeIcon" (click)="saveTypeFunction(employeeType)">done</i>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+
+            <td>
+                <label class="employeeValueLabel">EMPLOYEE NAME : {{selectedEmployee.employee_fname}} {{selectedEmployee.employee_lname}}</label>
+            </td>
+        </tr>
+
+        <br>
+
+        <tr>
+            <td>
+                <table>
+                    <tr>
+                        <td class="edit-input-td">
+                            <label class="employeeValueLabel" *ngIf="!editEmailStatus">EMPLOYEE EMAIL : {{selectedEmployee.employee_mail}}</label>
+                            <input class="customInputField" *ngIf="editEmailStatus" type="email" id="employeeEmail" #employeeEmail (keyup)="validateEmail(employeeEmail)" (focusout)="validateEmail(employeeEmail)" value="{{selectedEmployeeMail}}">
+                            <span *ngIf="errorEmailStatus" class="inputErrorMessage">Email Input Error</span>
+                        </td>
+                        <td>
+                            <i class="material-icons" id="editEmail" #editEmailIconEle *ngIf="editEmailIcon" (click)="editEmailFunction()">create</i>
+                            <i class="material-icons" id="saveEmail" #saveEmailIconEle *ngIf="saveEmailIcon" (click)="saveEmailFunction(employeeEmail)">done</i>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+
+            <td>
+                <label class="employeeValueLabel">EMPLOYEE GENDER : {{selectedEmployee.gender}}</label>
+            </td>
+        </tr>
+        <br>
+        <tr>
+            <td>
+
+                <table>
+                    <tr>
+                        <td class="edit-input-td">
+                            <label class="employeeValueLabel" *ngIf="!editContactStatus">EMPLOYEE CONTACT : {{selectedEmployee.employee_contact}}</label>
+                            <input class="customInputField" *ngIf="editContactStatus" id="editEmployeeContact" type="number" #employeeContact (keyup)="validateContact(employeeContact)" (focusout)="validateContact(employeeContact)" value="{{selectedEmployeeContact}}">
+                            <span *ngIf="errorContactStatus" class="inputErrorMessage">Contact Input Error</span>
+                        </td>
+                        <td>
+                            <i class="material-icons" id="editContact" #editContactIconEle *ngIf="editContactIcon" (click)="editContactFunction(employeeContact)">create</i>
+                            <i class="material-icons" id="saveContact" #saveContactIconEle *ngIf="saveContactIcon" (click)="saveContactFunction(employeeContact)">done</i>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+
+            <td>
+                <label class="employeeValueLabel">EMPLOYEE UID : {{selectedEmployee.uID}}</label>
+            </td>
+        </tr>
+        <br>
+        <tr>
+            <td>
+                <table>
+                    <tr>
+                        <td class="edit-input-td">
+                            <label class="employeeValueLabel" *ngIf="!editAddressStatus">EMPLOYEE ADDRESS : {{selectedEmployee.employee_address}}</label>
+                            <textarea class="customInputField" *ngIf="editAddressStatus" id="employeeAddress" rows="5" #employeeAddress (keyup)="verifyAddressFunction(employeeAddress)" (focusout)="verifyAddressFunction(employeeAddress)" value="{{selectedEmployeeAddress}}"></textarea>
+                            <span *ngIf="errorAddressStatus" class="inputErrorMessage">Address Input Error</span>
+                        </td>
+                        <td>
+                            <i class="material-icons" id="editAddress" #editAddressIconEle *ngIf="editAddressIcon" (click)="editAddressFunction()">create</i>
+                            <i class="material-icons" id="saveAddress" #saveAddressIconEle *ngIf="saveAddressIcon" (click)="saveAddressFunction(employeeAddress)">done</i>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+            <td>
+                <label class="employeeValueLabel">EMPLOYEE PAN : {{selectedEmployee.pAN}}</label>
+            </td>
+        </tr>
+        <br>
+
+    </table>
+
+
+    <div class="animate-fade option-tab grow" *ngIf="!errorEmailStatus && !errorAddressStatus && !errorContactStatus
+    " id="save-exit-option-tab" (click)="saveAndReturnList()">
+        <table width="100%">
+            <tr>
+                <td>
+                    <p class="option-tab-text">SAVE AND CLOSE</p>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+
+</div>

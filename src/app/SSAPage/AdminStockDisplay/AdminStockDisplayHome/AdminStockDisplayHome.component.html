@@ -1,0 +1,42 @@
+<div *ngIf="defaultSection">
+    <h1 style="color:#000;font-size:46px;font-weight: 700;margin-top: 0px;">ADMIN STOCK DISPLAY MODULE</h1>
+    <br><br>
+    <p style="font-size: 28px;line-height: 55px;">
+        Qlez is the project with an aim to craft Retail Store's Future. Artificial Intelligence and Machine Learning combined altogether to redefine customer experience, and operations for retail stores by providing end to end integrated solution right from stock
+        addition to sales.
+    </p>
+    <br><br><br>
+    <table class="table">
+        <tr>
+            <td width="50%">
+                <div class="option-tab grow" id="item-option-tab" (click)="goTOItemDisplay()">
+                    <table width="100%">
+                        <tr>
+
+                            <td>
+                                <p class="option-tab-text">ITEM DISPLAY</p>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </td>
+            <td>
+                <div class="option-tab grow" id="product-option-tab" (click)="goTOProductDisplay()">
+                    <table width="100%">
+                        <tr>
+                            <td>
+                                <p class="option-tab-text">PRODUCT DISPLAY</p>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </td>
+        </tr>
+    </table>
+</div>
+<div *ngIf="itemDisplay">
+    <admin-item-display></admin-item-display>
+</div>
+<div *ngIf="productDisplay">
+    <admin-product-display></admin-product-display>
+</div>

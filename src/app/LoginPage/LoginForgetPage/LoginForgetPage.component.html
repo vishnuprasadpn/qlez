@@ -1,0 +1,92 @@
+<div id="forgot-main-bg-div">
+	<div class="container">
+        <div class="row" id="forgot-div">
+            <div class="col-lg-2"></div>
+            <div class="col-lg-8">
+                <div align="center" id="forgot-bg-div">
+                    <h1 id="forgot-text">RESET PASSWORD</h1>
+                </div>
+                <div id="form-div">
+                    <table>
+                        <tr>
+                            <td width="30%">
+                                <p class="form-label">User name</p>
+                            </td>
+                            <td></td>
+                            <td>
+                                <input id="loginUsername" type="text" placeholder="Enter username" required #username></td>
+                        </tr>
+                        <br>
+                    </table>
+					    <br>
+                        <br>
+                    
+					<table align="center" width="100%">
+						<tr>
+							<td (click)="resetPassword(username)" align="center">
+								<span class="action-button" id="search-button">Search</span>
+							</td>
+							<td></td>
+							<td (click)="backToLogin()"  align="center">
+								<span class="action-button" id="cancel-button">Cancel</span>
+							</td>
+                        </tr>
+					</table>
+                </div>
+            </div>
+            <div class="col-lg-2"></div>
+        </div>
+    </div>
+    <div class="container">
+		<div class="row" id="resetSuccessMessage">
+			<div class="col-lg-3"></div>
+			<div class="col-lg-6">
+				<div class="alert alert-success" align="
+				center">
+				    <strong>Auto-Generated Security Code has been sent to your Registered mail ID! {{resetMail}}</strong>
+				    <br>Please Login using the Security Code!
+				    <br>
+				    <a (click)="goToKeyLogin()" >Go For Login!</a> 
+				</div>		
+
+			</div>
+			<div class="col-lg-3"></div>
+		</div>
+		
+		<svg id="loaderDiv" width="70" height="20">	
+			<circle cx="10" cy="10" r="0">
+				<animate attributeName="r" from="0" to="10" values="0;10;10;10;0" dur="1000ms" repeatCount="indefinite" />
+			</circle>
+		
+			<circle cx="35" cy="10" r="0">
+				<animate attributeName="r" from="0" to="10" values="0;10;10;10;0" begin="200ms" dur="1000ms" repeatCount="indefinite" />
+			</circle>
+		
+			<circle cx="60" cy="10" r="0">
+				<animate attributeName="r" from="0" to="10" values="0;10;10;10;0" begin="400ms" dur="1000ms" repeatCount="indefinite" />
+			</circle>
+		</svg>
+		
+		<div class="row" id="resetFailedMessage">
+			<div class="col-lg-4"></div>
+			<div class="col-lg-4">
+				<div class="alert alert-danger" align="
+				center">
+				    <strong>Sorry no such user is registered!</strong> 
+				</div>		
+			</div>
+			<div class="col-lg-4"></div>
+		</div>
+		<div class="row" id="usernameMissingMessage">
+			<div class="col-lg-4"></div>
+			<div class="col-lg-4">
+				<div class="alert alert-danger" align="
+				center">
+				    Please enter username before submit! 
+				</div>		
+			</div>
+			<div class="col-lg-4"></div>
+		</div>
+	</div>
+
+</div>

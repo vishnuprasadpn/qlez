@@ -1,0 +1,64 @@
+#welcome_main_div {
+    margin-right: 0px;
+    margin-left: 0px;
+    background: #fff;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
+#backButton {
+    text-align: center;
+    font-size: 25px;
+    color: #fff;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+#bg-td {
+    background-image: url('../../../assets/images/backgrounds/loginbg.jpg');
+    background-size: cover
+}
+
+#SD-heading {
+    font-size: 47px;
+    font-weight: 700;
+}
+
+#sd-intro-td {
+    color: #fff;
+    padding: 5%;
+}
+
+#qlez_intro {
+    line-height: 38px;
+    font-size: 19px;
+    font-weight: 600;
+    text-align: justify;
+}
+
+.option-tab {
+    padding: 37px 24px;
+    border-radius: 100px;
+}
+
+.option-tab:hover {
+    cursor: pointer;
+}
+
+#item-option-tab {
+    background: #14A850;
+}
+
+#product-option-tab {
+    background: #F0582F
+}
+
+.option-tab-text {
+    font-size: 25px;
+    color: #fff;
+    font-weight: 600;
+    text-align: center;
+}

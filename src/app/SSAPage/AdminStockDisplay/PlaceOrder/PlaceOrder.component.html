@@ -1,0 +1,33 @@
+<div class="container">
+	<table class="table table-bordered" style="color: #fff">
+		<tr>
+			<th>Item</th>
+			<th>Offers</th>
+		</tr>
+		<tr *ngFor="let itemOffer of offerItems;let itemNo = index" >
+			<td style="text-align: left;">{{itemOffer.item_name}}</td>
+			<td>
+				<table style="background: none;margin:0px;width: 50%;" align="left" *ngFor="let off of itemOffer.offer_id;let offerNo = index">
+					<tr>
+						<td style="padding: 3px;" id="offerCode{{itemNo}}{{offerNo}}">
+							<input class="form-control" type="text" name="" value="{{off}}" style="border-radius: 0px" disabled="">
+						</td>
+						<td style="padding: 3px;">
+							<select id="offersSelect{{itemNo}}{{offerNo}}" class="form-control offerSelect" #offerSelect style="color: #000;border-radius: 0px" (change)="selectNewOffer(offerSelect)">
+								<option selected="">Select any Offer</option>
+								<option *ngFor="let offer of offers">
+									{{offer.offer_code}}
+								</option>
+							</select>
+						</td>
+						<td width="30px">
+							<i class="material-icons" id="editOffer{{itemNo}}{{offerNo}}" style="color:#fff" (click)="editOffer(itemNo,offerNo)">create</i>
+							<i class="material-icons" id="saveOffer{{itemNo}}{{offerNo}}" (click)="saveOffer(itemOffer,itemNo,offerNo)" style="color:#fff;display: none" >done</i>
+						</td>
+						<td>&nbsp;&nbsp;</td>
+					</tr>
+				</table>
+			</td> 
+		</tr>
+	</table>
+</div>
